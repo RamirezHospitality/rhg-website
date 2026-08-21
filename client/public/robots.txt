@@ -1,0 +1,48 @@
+# Ramirez Hospitality Group — ramirezhos.com
+# robots.txt — updated May 2026
+
+# ── Standard search engines ──────────────────────────────────────────────────
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_vite/
+Disallow: /node_modules/
+
+# ── AI crawlers — explicitly permitted for GEO (Generative Engine Optimization)
+# Allowing AI crawlers ensures the site content is indexed by ChatGPT, Perplexity,
+# Gemini, Claude, and other generative AI systems for citation and summarization.
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+# OpenAI (browsing plugin)
+User-agent: ChatGPT-User
+Allow: /
+
+# Google Gemini / AI Overviews
+User-agent: Google-Extended
+Allow: /
+
+# Anthropic / Claude
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+# Common Crawl (used for LLM training)
+User-agent: CCBot
+Allow: /
+
+# ── Sitemap ──────────────────────────────────────────────────────────────────
+Sitemap: https://www.ramirezhos.com/sitemap.xml
