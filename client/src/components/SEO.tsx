@@ -41,7 +41,7 @@ export interface SEOProps {
 const SITE_NAME = "Ramirez Hospitality Group";
 const SITE_URL = "https://www.ramirezhos.com"; // canonical domain — update on launch
 const DEFAULT_OG_IMAGE =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663610615090/X8FvtWUK4caTYqQbHciXS9/rhg_hero-RaadcAtSRSQcBbiJKhopFw.webp";
+  "/images/rhg_hero.webp";
 const TWITTER_HANDLE = "@RamirezHospitality";
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────

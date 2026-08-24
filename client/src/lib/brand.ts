@@ -23,13 +23,13 @@ export const BRAND = {
 } as const;
 
 export const IMAGES = {
-  hero: "https://d2xsxph8kpxj0f.cloudfront.net/310519663610615090/X8FvtWUK4caTYqQbHciXS9/rhg_hero-RaadcAtSRSQcBbiJKhopFw.webp",
-  heroOriginal: "https://d2xsxph8kpxj0f.cloudfront.net/310519663610615090/X8FvtWUK4caTYqQbHciXS9/rhg_hero-CLbJVd3jAVMMqPkfAvxwp9.png",
-  revenue: "https://d2xsxph8kpxj0f.cloudfront.net/310519663610615090/X8FvtWUK4caTYqQbHciXS9/rhg_revenue-APqi3b4Qcoy4sEedL76wg9.webp",
-  opening: "https://d2xsxph8kpxj0f.cloudfront.net/310519663610615090/X8FvtWUK4caTYqQbHciXS9/rhg_opening-RLkFg75FzPwfSeBiGHzYHR.webp",
-  audit: "https://d2xsxph8kpxj0f.cloudfront.net/310519663610615090/X8FvtWUK4caTYqQbHciXS9/rhg_audit-SR5fv5SacDjrBqUPjRcbyR.webp",
-  advisory: "https://d2xsxph8kpxj0f.cloudfront.net/310519663610615090/X8FvtWUK4caTYqQbHciXS9/rhg_advisory-ZfZseZSm28Ffmc3JLKJgSz.webp",
-  events: "https://d2xsxph8kpxj0f.cloudfront.net/310519663610615090/X8FvtWUK4caTYqQbHciXS9/rhg_events-Jjg39UNXU2HqfgvtPLuqoz.webp",
+  hero: "/images/rhg_hero.webp",
+  heroOriginal: "/images/rhg_hero_alternate.webp",
+  revenue: "/images/rhg_revenue.webp",
+  opening: "/images/rhg_opening.webp",
+  audit: "/images/rhg_audit.webp",
+  advisory: "/images/rhg_advisory.webp",
+  events: "/images/rhg_events.webp",
 } as const;
 
 export const NAV_LINKS = [
