@@ -21,16 +21,16 @@ const SERVICES_ITEMLIST_SCHEMA = {
   "@type": "ItemList",
   name: "Ramirez Hospitality Group — Hospitality Consulting Services",
   description: "Seven hospitality consulting disciplines for independent hotels, boutique properties, and small portfolios.",
-  url: "https://www.ramirezhos.com/services",
+  url: "https://ramirezhospitality.com/services",
   numberOfItems: 7,
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Hotel Revenue Management Subscription", url: "https://www.ramirezhos.com/revenue-management" },
-    { "@type": "ListItem", position: 2, name: "Hotel Openings & Reopenings", url: "https://www.ramirezhos.com/openings" },
-    { "@type": "ListItem", position: 3, name: "Hotel Tech & Systems Consulting", url: "https://www.ramirezhos.com/tech-stack" },
-    { "@type": "ListItem", position: 4, name: "Hotel Operations & SOPs", url: "https://www.ramirezhos.com/services#operations" },
-    { "@type": "ListItem", position: 5, name: "Hotel Renovations & Construction Oversight", url: "https://www.ramirezhos.com/services#renovations" },
-    { "@type": "ListItem", position: 6, name: "Hotel Asset & Acquisition Advisory", url: "https://www.ramirezhos.com/services#asset-advisory" },
-    { "@type": "ListItem", position: 7, name: "Full-Property Event Production", url: "https://www.ramirezhos.com/services#events" },
+    { "@type": "ListItem", position: 1, name: "Hotel Revenue Management Subscription", url: "https://ramirezhospitality.com/revenue-management" },
+    { "@type": "ListItem", position: 2, name: "Hotel Openings & Reopenings", url: "https://ramirezhospitality.com/openings" },
+    { "@type": "ListItem", position: 3, name: "Hotel Tech & Systems Consulting", url: "https://ramirezhospitality.com/tech-stack" },
+    { "@type": "ListItem", position: 4, name: "Hotel Operations & SOPs", url: "https://ramirezhospitality.com/services#operations" },
+    { "@type": "ListItem", position: 5, name: "Hotel Renovations & Construction Oversight", url: "https://ramirezhospitality.com/services#renovations" },
+    { "@type": "ListItem", position: 6, name: "Hotel Asset & Acquisition Advisory", url: "https://ramirezhospitality.com/services#asset-advisory" },
+    { "@type": "ListItem", position: 7, name: "Full-Property Event Production", url: "https://ramirezhospitality.com/services#events" },
   ],
 };
 
@@ -313,7 +313,7 @@ export default function Services() {
               <span className="italic text-brass">Every revenue lever in one place.</span>
             </h1>
             <p className="mt-9 text-cream/75 text-lg md:text-xl leading-[1.55] max-w-2xl">
-              Most consultants specialize in one. I've worked all seven — for fifteen years,
+              Most consultants specialize in one. I've worked all seven — for 10+ years,
               inside the buildings. The result is a practice where the revenue manager
               understands the renovation budget, the renovation lead understands the SOPs,
               and the SOP author understands the OTA algorithm.

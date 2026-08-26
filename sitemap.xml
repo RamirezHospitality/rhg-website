@@ -6,7 +6,7 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://www.ramirezhos.com/</loc>
+    <loc>https://ramirezhospitality.com/</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -14,7 +14,7 @@
 
   <!-- Flagship conversion page -->
   <url>
-    <loc>https://www.ramirezhos.com/revenue-management</loc>
+    <loc>https://ramirezhospitality.com/revenue-management</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
@@ -22,7 +22,7 @@
 
   <!-- Lead generation -->
   <url>
-    <loc>https://www.ramirezhos.com/audit</loc>
+    <loc>https://ramirezhospitality.com/audit</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
@@ -30,7 +30,7 @@
 
   <!-- Services hub -->
   <url>
-    <loc>https://www.ramirezhos.com/services</loc>
+    <loc>https://ramirezhospitality.com/services</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -38,14 +38,14 @@
 
   <!-- Niche service pages -->
   <url>
-    <loc>https://www.ramirezhos.com/openings</loc>
+    <loc>https://ramirezhospitality.com/openings</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://www.ramirezhos.com/tech-stack</loc>
+    <loc>https://ramirezhospitality.com/tech-stack</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
@@ -53,7 +53,7 @@
 
   <!-- Social proof -->
   <url>
-    <loc>https://www.ramirezhos.com/case-studies</loc>
+    <loc>https://ramirezhospitality.com/case-studies</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
@@ -61,7 +61,7 @@
 
   <!-- Thought leadership (GEO signal) -->
   <url>
-    <loc>https://www.ramirezhos.com/insights</loc>
+    <loc>https://ramirezhospitality.com/insights</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.70</priority>
@@ -69,7 +69,7 @@
 
   <!-- E-E-A-T signal -->
   <url>
-    <loc>https://www.ramirezhos.com/about</loc>
+    <loc>https://ramirezhospitality.com/about</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
@@ -77,7 +77,7 @@
 
   <!-- Contact -->
   <url>
-    <loc>https://www.ramirezhos.com/contact</loc>
+    <loc>https://ramirezhospitality.com/contact</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.60</priority>

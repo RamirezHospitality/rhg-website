@@ -1,4 +1,4 @@
-# Ramirez Hospitality Group — ramirezhos.com
+# Ramirez Hospitality Group — ramirezhospitality.com
 # robots.txt — updated May 2026
 
 # ── Standard search engines ──────────────────────────────────────────────────
@@ -45,4 +45,4 @@ User-agent: CCBot
 Allow: /
 
 # ── Sitemap ──────────────────────────────────────────────────────────────────
-Sitemap: https://www.ramirezhos.com/sitemap.xml
+Sitemap: https://ramirezhospitality.com/sitemap.xml

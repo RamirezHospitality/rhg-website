@@ -136,12 +136,12 @@ const HOME_FAQ_SCHEMA = {
 const HOME_SERVICE_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "@id": "https://www.ramirezhos.com/#revenue-management-service",
+  "@id": "https://ramirezhospitality.com/#revenue-management-service",
   name: "Hotel Revenue Management Subscription",
   description:
     "A flat-fee, month-to-month revenue management subscription for independent and boutique hotels. Includes daily pricing management, OTA optimization, direct booking strategy, and rewards program development. Three tiers from $850/month.",
   provider: {
-    "@id": "https://www.ramirezhos.com/#organization",
+    "@id": "https://ramirezhospitality.com/#organization",
   },
   serviceType: "Hotel Revenue Management",
   areaServed: { "@type": "Country", name: "United States" },
@@ -201,7 +201,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Who is Adam Ramirez?",
-    a: "Adam Ramirez is a Palm Springs-based hotel operator and hospitality consultant with 15+ years of experience. He has opened 8 hotels from concept to ribbon-cutting, repositioned 4 others, managed over $10M in annual hotel revenue, and led teams of 120+. His properties have been featured in Travel & Leisure, Condé Nast Traveler, Forbes, and Modernism Magazine. He is the founder of Ramirez Hospitality Group.",
+    a: "Adam Ramirez is a Palm Springs-based hotel operator and hospitality consultant with 10+ years of experience. He has opened 8 hotels from concept to ribbon-cutting, repositioned 4 others, managed over $10M in annual hotel revenue, and led teams of 120+. His properties have been featured in Travel & Leisure, Condé Nast Traveler, Forbes, and Modernism Magazine. He is the founder of Ramirez Hospitality Group.",
   },
   {
     q: "Does Ramirez Hospitality Group offer a free hotel audit?",
@@ -213,7 +213,7 @@ export default function Home() {
   return (
     <PageLayout
       title="Ramirez Hospitality Group — Hotel Revenue Management & Hospitality Consulting for Independent & Boutique Hotels"
-      description="Operator-led hospitality consulting and remote revenue management for independent hotels, boutique properties, and small hotel groups. Adam Ramirez — 15+ years opening and scaling boutique hotels. Subscriptions from $850/mo. Free property audit."
+      description="Operator-led hospitality consulting and remote revenue management for independent hotels, boutique properties, and small hotel groups. Adam Ramirez — 10+ years opening and scaling boutique hotels. Subscriptions from $850/mo. Free property audit."
       ogImage={IMAGES.hero}
       jsonLd={[HOME_FAQ_SCHEMA, HOME_SERVICE_SCHEMA, ORGANIZATION_SCHEMA, PERSON_SCHEMA]}
     >
@@ -289,7 +289,7 @@ export default function Home() {
           <Reveal className="text-center max-w-3xl mx-auto">
             <Eyebrow numeral="II" label="The Track Record" className="mx-auto" />
             <h2 className="mt-6 font-display text-3xl md:text-4xl text-cream">
-              Fifteen years inside independent hotels.
+              10+ years inside independent hotels.
               <br />
               <span className="italic text-brass">Numbers that translate.</span>
             </h2>
@@ -374,7 +374,7 @@ export default function Home() {
                   Most consultants will sell you a deck. I'll sell you a quarter.
                 </p>
                 <p className="mt-6 text-cream/70 text-base lg:text-lg leading-[1.75]">
-                  I've spent fifteen years inside independent hotels — opening them,
+                  I've spent 10+ years inside independent hotels — opening them,
                   renovating them, rescuing them, running them. I've opened 8 hotels from
                   concept to ribbon-cutting, repositioned more than 4, and turned distressed
                   properties into the press darlings of <em className="text-cream/90">Travel & Leisure</em> and{" "}
@@ -422,7 +422,7 @@ export default function Home() {
             <div className="lg:col-span-4 lg:col-start-9">
               <Reveal delay={200}>
                 <p className="text-cream/65 text-base leading-[1.7]">
-                  Most consultants specialize in one. I've worked all seven — for fifteen
+                  Most consultants specialize in one. I've worked all seven — for 10+
                   years, inside the buildings. My element of genius is driving revenue and
                   opening hotels. Everything else exists to support those two things.
                 </p>
@@ -681,7 +681,7 @@ export default function Home() {
                 <h2 className="mt-6 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] text-cream">
                   Field notes from
                   <br />
-                  <span className="italic text-brass">fifteen years inside hotels.</span>
+                  <span className="italic text-brass">10+ years inside hotels.</span>
                 </h2>
               </Reveal>
             </div>

@@ -13,22 +13,22 @@ import { ORGANIZATION_SCHEMA } from "@/components/SEO";
 const ARTICLE_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Article",
-  "@id": "https://www.ramirezhos.com/insights#revpar-article",
+  "@id": "https://ramirezhospitality.com/insights#revpar-article",
   headline: "Why Your RevPAR Is a Thing of the Past",
   description:
     "RevPAR tells you what happened. It does not tell you what is about to. Here are the five metrics every independent hotel owner should track instead: pace, channel cost, repeat-guest revenue share, composite RevPAR, and rate dispersion.",
   author: {
     "@type": "Person",
     name: "Adam Ramirez",
-    url: "https://www.ramirezhos.com/about",
+    url: "https://ramirezhospitality.com/about",
     jobTitle: "Founder & Principal Consultant, Ramirez Hospitality Group",
   },
   publisher: {
-    "@id": "https://www.ramirezhos.com/#organization",
+    "@id": "https://ramirezhospitality.com/#organization",
   },
   datePublished: "2026-04-01",
   dateModified: "2026-04-01",
-  url: "https://www.ramirezhos.com/insights",
+  url: "https://ramirezhospitality.com/insights",
   about: [
     { "@type": "Thing", name: "Hotel Revenue Management" },
     { "@type": "Thing", name: "RevPAR" },
@@ -55,7 +55,7 @@ export default function Insights() {
   return (
     <PageLayout
       title="Hotel Revenue Management Insights — Notes from a Hotel Operator | Ramirez Hospitality Group"
-      description="Expert field notes on hotel revenue management, OTA strategy, direct booking, hotel openings, and the small decisions that move the needle for independent and boutique hotels. Written by Adam Ramirez, 15-year hotel operator."
+      description="Expert field notes on hotel revenue management, OTA strategy, direct booking, hotel openings, and the small decisions that move the needle for independent and boutique hotels. Written by Adam Ramirez, hotel operator with 10+ years of experience."
       canonical="/insights"
       ogType="article"
       breadcrumbs={[{ name: "Insights", href: "/insights" }]}

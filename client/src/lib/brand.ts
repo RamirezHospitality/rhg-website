@@ -10,12 +10,13 @@ export const BRAND = {
   byline: "By Adam Ramirez",
   tagline:
     "Operator-led hospitality consulting for independent hotels, boutique properties, and the people who own them.",
+  address: "351 E Via Carisma, Palm Springs, CA 92264",
   city: "Palm Springs, CA",
   reach: "Available Nationwide",
   phone: "760-969-9249",
   phoneHref: "tel:+17609699249",
-  email: "adam@luxehospitalityrevpar.com",
-  emailHref: "mailto:adam@luxehospitalityrevpar.com",
+  email: "adam@ramirezhospitality.com",
+  emailHref: "mailto:adam@ramirezhospitality.com",
   hours: "Mon–Fri 8a–6p PT · Weekends by appointment",
   // Free audit calendar placeholder — to be wired to SavvyCal/Calendly post-launch
   calendarUrl: "/audit",

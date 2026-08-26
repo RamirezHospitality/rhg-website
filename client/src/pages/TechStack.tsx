@@ -18,10 +18,10 @@ const TECHSTACK_SERVICE_SCHEMA = {
   name: "Hotel Technology Stack Consulting",
   description:
     "Hotel technology consulting for independent and boutique hotels. Services include PMS selection and integration (Mews, Opera), RMS setup (Hotelitix, Duetto, Light House), channel manager configuration (SiteMinder), CRM and email marketing (Revinate), keylock and mobile access (Salto), and HR/operations (7shifts). Available nationwide.",
-  provider: { "@id": "https://www.ramirezhos.com/#organization" },
+  provider: { "@id": "https://ramirezhospitality.com/#organization" },
   serviceType: "Hotel Technology Consulting",
   areaServed: { "@type": "Country", name: "United States" },
-  url: "https://www.ramirezhos.com/tech-stack",
+  url: "https://ramirezhospitality.com/tech-stack",
 };
 
 interface TechItem {

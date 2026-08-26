@@ -18,10 +18,10 @@ const AUDIT_SERVICE_SCHEMA = {
   name: "Free Hotel Property Audit",
   description:
     "A complimentary 45-minute property audit for independent hotel owners and operators. Covers: OTA health score across Expedia, Booking.com, and Hotels.com; pricing pressure test with live comp-set analysis; direct-booking diagnostic; tech-stack review; and the top three highest-impact revenue moves for the next 90 days. Written follow-up delivered within 48 hours.",
-  provider: { "@id": "https://www.ramirezhos.com/#organization" },
+  provider: { "@id": "https://ramirezhospitality.com/#organization" },
   serviceType: "Hotel Revenue Audit",
   areaServed: { "@type": "Country", name: "United States" },
-  url: "https://www.ramirezhos.com/audit",
+  url: "https://ramirezhospitality.com/audit",
   offers: {
     "@type": "Offer",
     name: "Free Hotel Property Audit",

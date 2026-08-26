@@ -85,7 +85,7 @@ export function SiteFooter() {
               </a>
               <div className="flex items-center gap-3 text-cream/60">
                 <MapPin className="w-4 h-4" strokeWidth={1.5} />
-                <span className="text-sm tracking-wide">{BRAND.city} · {BRAND.reach}</span>
+                <span className="text-sm tracking-wide">{BRAND.address} · {BRAND.reach}</span>
               </div>
             </div>
           </div>

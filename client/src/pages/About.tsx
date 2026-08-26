@@ -77,7 +77,7 @@ export default function About() {
   return (
     <PageLayout
       title="About Adam Ramirez — Hotel Consultant & Revenue Manager, Palm Springs CA | Ramirez Hospitality Group"
-      description="Adam Ramirez is a Palm Springs-based hotel operator and hospitality consultant with 15+ years of experience. He has opened 8 hotels, managed $10M+ in annual revenue, and led teams of 120+. His properties have been featured in Travel & Leisure, Condé Nast Traveler, Forbes, and Modernism Magazine. Founder of Ramirez Hospitality Group."
+      description="Adam Ramirez is a Palm Springs-based hotel operator and hospitality consultant with 10+ years of experience. He has opened 8 hotels, managed $10M+ in annual revenue, and led teams of 120+. His properties have been featured in Travel & Leisure, Condé Nast Traveler, Forbes, and Modernism Magazine. Founder of Ramirez Hospitality Group."
       canonical="/about"
       ogType="profile"
       breadcrumbs={[{ name: "About Adam Ramirez", href: "/about" }]}
@@ -95,7 +95,7 @@ export default function About() {
                 <span className="text-brass">Adam.</span>
               </h1>
               <p className="mt-9 text-cream/80 text-lg md:text-xl leading-[1.55] max-w-xl">
-                I've spent the last fifteen years inside independent and boutique hotels —
+                I've spent 10+ years inside independent and boutique hotels —
                 opening them, renovating them, rescuing them, and running them. Today I do
                 that work for the owners who want to skip the six-figure salary and get
                 straight to the result.
@@ -173,7 +173,7 @@ export default function About() {
                   The practice today is Adam-led on purpose. When you hire Ramirez
                   Hospitality Group you get me — on the strategy, on the calls, on the
                   audit, on the report. I bring the right tech stack — Hotelitix, Duetto,
-                  Light House, Revinate, OpenAI's GPT — to do the math. I bring fifteen
+                  Light House, Revinate, OpenAI's GPT — to do the math. I bring 10+
                   years of operator instinct to do everything else.
                 </p>
               </Reveal>

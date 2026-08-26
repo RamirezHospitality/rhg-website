@@ -17,10 +17,10 @@ const OPENINGS_SERVICE_SCHEMA = {
   name: "Hotel Opening & Reopening Consulting",
   description:
     "Concept to ribbon-cutting hotel opening consulting in 90–270 days. Services include brand positioning, pre-opening budget, tech stack selection, OTA and distribution setup, hiring plan, SOPs, marketing launch, and soft opening management. Eight hotels opened from scratch, four repositioned.",
-  provider: { "@id": "https://www.ramirezhos.com/#organization" },
+  provider: { "@id": "https://ramirezhospitality.com/#organization" },
   serviceType: "Hotel Opening Consulting",
   areaServed: { "@type": "Country", name: "United States" },
-  url: "https://www.ramirezhos.com/openings",
+  url: "https://ramirezhospitality.com/openings",
 };
 
 const PHASES = [

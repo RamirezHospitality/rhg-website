@@ -15,14 +15,14 @@ import { ORGANIZATION_SCHEMA } from "@/components/SEO";
 const RM_SERVICE_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "@id": "https://www.ramirezhos.com/revenue-management#service",
+  "@id": "https://ramirezhospitality.com/revenue-management#service",
   name: "Hotel Revenue Management Subscription",
   description:
     "A flat-fee, month-to-month revenue management subscription for independent and boutique hotels. Includes daily pricing management, OTA optimization, direct booking strategy, and rewards program development. Three tiers: Essentials ($850/mo), Growth ($1,500/mo), Enterprise ($2,500/mo).",
-  provider: { "@id": "https://www.ramirezhos.com/#organization" },
+  provider: { "@id": "https://ramirezhospitality.com/#organization" },
   serviceType: "Hotel Revenue Management",
   areaServed: { "@type": "Country", name: "United States" },
-  url: "https://www.ramirezhos.com/revenue-management",
+  url: "https://ramirezhospitality.com/revenue-management",
   offers: [
     {
       "@type": "Offer",
@@ -240,7 +240,7 @@ export default function RevenueManagement() {
                     "Operator + AI-driven tech stack — Hotelitix, Duetto, Light House, Revinate",
                     "Month-to-month. Stay as long as it performs.",
                     "Onboarded in under fourteen days.",
-                    "Fifteen years launching and scaling independents.",
+                    "10+ years launching and scaling independents.",
                   ].map((line) => (
                     <li key={line} className="flex gap-3">
                       <Check className="w-4 h-4 text-brass mt-1 shrink-0" />

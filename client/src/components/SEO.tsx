@@ -39,7 +39,7 @@ export interface SEOProps {
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const SITE_NAME = "Ramirez Hospitality Group";
-const SITE_URL = "https://www.ramirezhos.com"; // canonical domain — update on launch
+const SITE_URL = "https://ramirezhospitality.com"; // canonical domain — update on launch
 const DEFAULT_OG_IMAGE =
   "/images/rhg_hero.webp";
 const TWITTER_HANDLE = "@RamirezHospitality";
@@ -227,10 +227,10 @@ export const ORGANIZATION_SCHEMA = {
   name: "Ramirez Hospitality Group",
   alternateName: "RHG",
   description:
-    "Operator-led hospitality consulting and remote revenue management for independent hotels, boutique properties, and small hotel groups. Founded by Adam Ramirez, a 15-year hotel operator based in Palm Springs, CA.",
+    "Operator-led hospitality consulting and remote revenue management for independent hotels, boutique properties, and small hotel groups. Founded by Adam Ramirez, a Palm Springs, CA-based hotel operator with 10+ years of experience.",
   url: SITE_URL,
   telephone: "+1-760-969-9249",
-  email: "adam@luxehospitalityrevpar.com",
+  email: "adam@ramirezhospitality.com",
   founder: {
     "@type": "Person",
     name: "Adam Ramirez",
@@ -240,8 +240,10 @@ export const ORGANIZATION_SCHEMA = {
   },
   address: {
     "@type": "PostalAddress",
+    streetAddress: "351 E Via Carisma",
     addressLocality: "Palm Springs",
     addressRegion: "CA",
+    postalCode: "92264",
     addressCountry: "US",
   },
   areaServed: {
@@ -284,14 +286,16 @@ export const PERSON_SCHEMA = {
   familyName: "Ramirez",
   jobTitle: "Founder & Principal Consultant",
   description:
-    "Adam Ramirez is a Palm Springs-based hotel operator and hospitality consultant with 15+ years of experience opening, repositioning, and managing independent and boutique hotels. He has opened 8 hotels from concept to ribbon-cutting, managed over $10M in annual hotel revenue, and led teams of 120+. His properties have been featured in Travel & Leisure, Condé Nast Traveler, Forbes, and Modernism Magazine.",
+    "Adam Ramirez is a Palm Springs-based hotel operator and hospitality consultant with 10+ years of experience opening, repositioning, and managing independent and boutique hotels. He has opened 8 hotels from concept to ribbon-cutting, managed over $10M in annual hotel revenue, and led teams of 120+. His properties have been featured in Travel & Leisure, Condé Nast Traveler, Forbes, and Modernism Magazine.",
   url: `${SITE_URL}/about`,
-  email: "adam@luxehospitalityrevpar.com",
+  email: "adam@ramirezhospitality.com",
   telephone: "+1-760-969-9249",
   address: {
     "@type": "PostalAddress",
+    streetAddress: "351 E Via Carisma",
     addressLocality: "Palm Springs",
     addressRegion: "CA",
+    postalCode: "92264",
     addressCountry: "US",
   },
   worksFor: {
