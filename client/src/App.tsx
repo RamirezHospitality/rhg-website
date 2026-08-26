@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
@@ -15,6 +16,15 @@ import Contact from "./pages/Contact";
 import Audit from "./pages/Audit";
 import TechStack from "./pages/TechStack";
 
+// Lazy-loaded so the marketing bundle does not carry the ad landing page or the
+// private dashboard. Each becomes its own chunk, fetched only on its route.
+const RevenueManagementLP = lazy(() => import("./pages/lp/RevenueManagementLP"));
+const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
+
+function RouteFallback() {
+  return <div className="min-h-screen bg-background" aria-busy="true" />;
+}
+
 function Router() {
   return (
     <Switch>
@@ -28,6 +38,17 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/audit" component={Audit} />
       <Route path="/tech-stack" component={TechStack} />
+      <Route path="/lp/revenue-management">
+        <Suspense fallback={<RouteFallback />}>
+          <RevenueManagementLP />
+        </Suspense>
+      </Route>
+      {/* "/dashboard/*?" matches /dashboard and anything beneath it */}
+      <Route path="/dashboard/*?">
+        <Suspense fallback={<RouteFallback />}>
+          <Dashboard />
+        </Suspense>
+      </Route>
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
