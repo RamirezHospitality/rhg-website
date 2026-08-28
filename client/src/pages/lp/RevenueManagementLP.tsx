@@ -3,20 +3,27 @@
  * Route: /lp/revenue-management
  * Keyword theme: "hotel revenue management consultant" (H1 message-match)
  *
- * One goal: the lead form (plus click-to-call on mobile). No site header,
- * no footer, no nav, no outbound links. noindex so it never competes with
- * /revenue-management in organic search. Not in the sitemap or prerender list.
+ * CTA model: every button reads "Book The Modern Hotel Audit" and scrolls to
+ * the lead form (step one). Submitting the form reveals the Google Calendar
+ * booking embed (step two), so the visitor never leaves the page and the
+ * gclid captured by the form survives into the booked call. No CTA calls the
+ * phone; the number lives in the footer only.
+ *
+ * No site header, no footer nav, no outbound links besides the calendar
+ * embed. noindex so it never competes with /revenue-management in organic
+ * search. Not in the sitemap or prerender list.
  *
  * Performance notes: no hero image above the fold (the H1 is the LCP element),
  * no framer-motion, no Reveal observers, native <details> for the FAQ.
  */
 
-import { useEffect } from "react";
-import { ArrowRight, Check, Phone } from "lucide-react";
+import { Fragment, useEffect } from "react";
+import { ArrowRight, Check } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { Eyebrow } from "@/components/Eyebrow";
 import { LeadForm } from "@/components/lp/LeadForm";
-import { MobileCallBar } from "@/components/lp/MobileCallBar";
+import { BookBar } from "@/components/lp/BookBar";
+import { AuditSection } from "@/components/audit/AuditSection";
 import { BRAND, PROPERTIES } from "@/lib/brand";
 
 const SOURCE = "lp/revenue-management";
@@ -44,21 +51,29 @@ const COVERS = [
   },
 ];
 
-const STEPS = [
+interface Step {
+  n: string;
+  t: string;
+  p: string;
+  highlight?: string;
+}
+
+const STEPS: Step[] = [
   {
     n: "01",
-    t: "Free property review",
-    p: "Reply to this form and I look at your rates, channels, and booking engine before we ever speak. You get the findings whether or not you hire me.",
+    t: "A 20-minute fit call",
+    p: "You pick the time. We cover the property, what is keeping you up at night, and whether the audit is worth your time. If it is not a fit, I will say so.",
   },
   {
     n: "02",
-    t: "Onboarding in under fourteen days",
-    p: "Data exports, system access, comp set, and a pricing plan we agree on together. You keep every login. Nothing sits in a tool you cannot see.",
+    t: "The Modern Hotel Audit",
+    p: "Intake, recon, score, deliver. You get a score out of 100 and a dollar figure for what is being left on the table, with the evidence behind every number. Free. No strings.",
+    highlight: "The Lincoln, Marfa: scored 41/100, $55K to $185K identified on a $444K base.",
   },
   {
     n: "03",
-    t: "Pricing live, reporting monthly",
-    p: "From there it runs daily. You see the numbers in a report you can actually read, and we review strategy together every month.",
+    t: "The subscription, if it fits",
+    p: "System access, comp set, and a pricing plan we agree on together, then it runs daily. Month to month, re-scored on a schedule we put in writing. You keep every login.",
   },
 ];
 
@@ -68,10 +83,24 @@ const TIERS = [
   { name: "Enterprise", price: "$2,500+", fit: "80+ keys and portfolios" },
 ];
 
+const LINCOLN_ARITHMETIC = [
+  { line: "The free moves", fee: "$0", value: "~$14,000", note: "given away" },
+  { line: "Essentials", fee: "$850 / mo", value: "+$64,000", note: "6.3× the fee" },
+  { line: "Growth", fee: "$1,500 / mo", value: "+$26,000 more", note: "5.0× the fee" },
+  { line: "Enterprise", fee: "$2,500+ / mo", value: "+$12,000 and growing", note: "events, buyouts, group sales" },
+];
+
+const CHECKLIST = [
+  "Runs inside the PMS you already have",
+  "Flat fee, no setup cost, no contract",
+  "Monthly strategy call and performance report",
+  "The Modern Hotel Audit first, free, no strings",
+];
+
 const FAQ = [
   {
-    q: "Is this for a hotel my size?",
-    a: "Most clients run between 8 and 75 keys: inns, motels, boutique hotels, and small groups. The Essentials tier exists specifically for properties under 40 keys.",
+    q: "What is The Modern Hotel Audit, and is it really free?",
+    a: "Yes, genuinely free. Seven dimensions of the property, each scored against what a well-run independent of your size can do, each finding tied to a timestamped exhibit and an annual dollar figure. You get the full report and the two highest-value free moves whether or not the subscription ever happens.",
   },
   {
     q: "What does a hotel revenue management consultant actually do each day?",
@@ -86,8 +115,8 @@ const FAQ = [
     a: "They are paid by the OTA. I am paid by you. The advice tends to differ.",
   },
   {
-    q: "What if it does not work for us?",
-    a: "The subscription is month to month after the ninety-day start. If the numbers are not there, you stop. I would rather earn the next month than lock you into it.",
+    q: "What if the subscription does not work for us?",
+    a: "Month to month, no lock-in. If the numbers are not there, you stop. I would rather earn the next month than lock you into it.",
   },
 ];
 
@@ -100,24 +129,20 @@ export default function RevenueManagementLP() {
     <div className="relative min-h-screen flex flex-col bg-background text-foreground pb-20 lg:pb-0">
       <SEO
         title="Hotel Revenue Management Consultant for Independent Hotels | Ramirez Hospitality Group"
-        description="Hotel revenue management consultant for independent and boutique hotels. Daily pricing, OTA management, and direct booking growth run by an operator. 10+ years, 50+ properties, 20% average revenue lift. From $850 a month."
+        description="Hotel revenue management consultant for independent and boutique hotels. Every client starts with The Modern Hotel Audit: free, scored, sized in dollars. Daily pricing, OTA management, and direct booking growth from $850 a month."
         canonical="/lp/revenue-management"
         noindex
       />
 
-      {/* TOP BAR: wordmark only, no navigation */}
+      {/* TOP BAR: wordmark only, no navigation, no phone */}
       <header className="border-b border-brass/15 bg-obsidian">
         <div className="container flex items-center justify-between py-5">
           <div className="font-display text-[1.25rem] leading-none tracking-[0.02em] text-cream font-semibold">
             Ramirez<span className="text-brass"> · </span>Hospitality
           </div>
-          <a
-            href={BRAND.phoneHref}
-            className="hidden lg:inline-flex items-center gap-2 text-sm text-cream/80 hover:text-brass transition-colors"
-          >
-            <Phone className="w-4 h-4 text-brass" strokeWidth={1.5} />
-            {BRAND.phone}
-          </a>
+          <div className="hidden lg:block text-[0.62rem] tracking-[0.32em] uppercase text-cream/55">
+            Palm Springs, CA · Available nationwide
+          </div>
         </div>
       </header>
 
@@ -127,7 +152,7 @@ export default function RevenueManagementLP() {
           <div className="container">
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-14 items-start">
               <div className="lg:col-span-7">
-                <Eyebrow label="Palm Springs, CA · Available nationwide" />
+                <Eyebrow label="Every client starts with The Modern Hotel Audit" />
                 <h1 className="mt-6 font-display font-medium text-[2.4rem] sm:text-5xl lg:text-[3.9rem] leading-[1.06] text-cream tracking-[-0.025em]">
                   Hotel Revenue Management Consultant
                   <br />
@@ -159,7 +184,7 @@ export default function RevenueManagementLP() {
 
                 {/* Mobile CTA: jumps to the form directly below */}
                 <a href="#lead-form" className="btn-brass mt-8 w-full justify-center lg:hidden">
-                  Request the Free Review <ArrowRight className="w-4 h-4" />
+                  Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
 
@@ -170,11 +195,14 @@ export default function RevenueManagementLP() {
           </div>
         </section>
 
-        {/* II · WHAT THE SUBSCRIPTION COVERS */}
-        <section className="py-20 lg:py-28 panel-walnut grain border-y border-brass/15">
-          <div className="container relative z-10">
+        {/* II · THE MODERN HOTEL AUDIT (signature product) */}
+        <AuditSection numeral="II" />
+
+        {/* III · WHAT THE SUBSCRIPTION COVERS */}
+        <section className="py-20 lg:py-28 bg-obsidian">
+          <div className="container">
             <div className="max-w-3xl mb-12">
-              <Eyebrow numeral="II" label="What the subscription covers" />
+              <Eyebrow numeral="III" label="What the subscription covers" />
               <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
                 The work a revenue manager does,
                 <br />
@@ -195,41 +223,45 @@ export default function RevenueManagementLP() {
           </div>
         </section>
 
-        {/* III · HOW IT STARTS */}
-        <section className="py-20 lg:py-28 bg-obsidian">
-          <div className="container">
+        {/* IV · HOW IT STARTS */}
+        <section className="py-20 lg:py-28 panel-walnut grain border-y border-brass/15">
+          <div className="container relative z-10">
             <div className="max-w-3xl mb-12">
-              <Eyebrow numeral="III" label="How it starts" />
+              <Eyebrow numeral="IV" label="How it starts" />
               <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
                 Three steps. <span className="italic text-brass">No pitch deck.</span>
               </h2>
             </div>
             <div className="grid md:grid-cols-3 gap-px bg-brass/15 border border-brass/15">
               {STEPS.map((s) => (
-                <div key={s.n} className="bg-card p-8 lg:p-10">
+                <div key={s.n} className="bg-obsidian p-8 lg:p-10">
                   <div className="font-display italic text-brass text-2xl mb-4">{s.n}</div>
                   <h3 className="font-display text-2xl text-cream leading-snug">{s.t}</h3>
                   <p className="mt-4 text-cream/75 text-sm leading-[1.75]">{s.p}</p>
+                  {s.highlight && (
+                    <p className="mt-4 text-brass text-[0.8125rem] leading-[1.6]">{s.highlight}</p>
+                  )}
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* IV · PRICING */}
+        {/* V · PRICING */}
         <section className="py-20 lg:py-28 panel-emerald border-y border-brass/15">
           <div className="container">
             <div className="grid lg:grid-cols-12 gap-12 items-start">
               <div className="lg:col-span-5">
-                <Eyebrow numeral="IV" label="Pricing" />
+                <Eyebrow numeral="V" label="Pricing" />
                 <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
                   From $850 a month.
                   <br />
-                  <span className="italic text-brass">Ninety-day start, then month to month.</span>
+                  <span className="italic text-brass">Month to month. No lock-in.</span>
                 </h2>
                 <p className="mt-6 text-cream/80 leading-[1.7] max-w-md">
-                  Flat monthly fee. No setup fee, no long contract. You keep every login and every
-                  export.
+                  The subscription starts after The Modern Hotel Audit, and only if it fits.
+                  Flat monthly fee, no setup fee, no contract. Re-scored on a schedule we put
+                  in writing: the number has to move. You keep every login and every export.
                 </p>
               </div>
               <div className="lg:col-span-7">
@@ -245,13 +277,30 @@ export default function RevenueManagementLP() {
                     </div>
                   ))}
                 </div>
+
+                <div className="mt-6 border border-brass/20 bg-background/70">
+                  <div className="px-5 py-3.5 border-b border-brass/20 text-[0.62rem] tracking-[0.32em] uppercase text-brass">
+                    How the arithmetic looked for The Lincoln (base case, per year)
+                  </div>
+                  <div className="grid grid-cols-[1.2fr_0.8fr_1fr_0.9fr] text-[0.8125rem]">
+                    {LINCOLN_ARITHMETIC.map((row, i) => {
+                      const border = i < LINCOLN_ARITHMETIC.length - 1 ? "border-b border-brass/10" : "";
+                      return (
+                        <Fragment key={row.line}>
+                          <div className={`px-5 py-3 text-cream/75 ${border}`}>{row.line}</div>
+                          <div className={`px-5 py-3 text-cream/55 ${border}`}>{row.fee}</div>
+                          <div className={`px-5 py-3 text-cream ${border}`}>{row.value}</div>
+                          <div className={`px-5 py-3 ${i === 0 ? "text-cream/55" : "text-brass"} ${border}`}>
+                            {row.note}
+                          </div>
+                        </Fragment>
+                      );
+                    })}
+                  </div>
+                </div>
+
                 <ul className="mt-8 grid sm:grid-cols-2 gap-x-8 gap-y-3 text-cream/85 text-sm">
-                  {[
-                    "Onboarded in under fourteen days",
-                    "Works inside the PMS you already have",
-                    "Monthly strategy call and performance report",
-                    "Free property review first, no obligation",
-                  ].map((line) => (
+                  {CHECKLIST.map((line) => (
                     <li key={line} className="flex gap-3">
                       <Check className="w-4 h-4 text-brass mt-0.5 shrink-0" />
                       <span>{line}</span>
@@ -263,12 +312,12 @@ export default function RevenueManagementLP() {
           </div>
         </section>
 
-        {/* V · THE OPERATOR */}
+        {/* VI · THE OPERATOR */}
         <section className="py-20 lg:py-28 bg-obsidian">
           <div className="container">
             <div className="grid lg:grid-cols-12 gap-12 items-start">
               <div className="lg:col-span-7">
-                <Eyebrow numeral="V" label="Who does the work" />
+                <Eyebrow numeral="VI" label="Who does the work" />
                 <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
                   Adam Ramirez.
                   <br />
@@ -298,13 +347,13 @@ export default function RevenueManagementLP() {
           </div>
         </section>
 
-        {/* VI · FAQ */}
+        {/* VII · FAQ */}
         <section className="py-20 lg:py-28 panel-walnut grain border-y border-brass/15">
           <div className="container relative z-10">
             <div className="max-w-3xl mb-10">
-              <Eyebrow numeral="VI" label="Owner questions" />
+              <Eyebrow numeral="VII" label="Owner questions" />
               <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
-                What owners ask <span className="italic text-brass">before they call.</span>
+                What owners ask <span className="italic text-brass">before the audit.</span>
               </h2>
             </div>
             <div className="max-w-3xl border-t border-brass/20">
@@ -323,22 +372,23 @@ export default function RevenueManagementLP() {
           </div>
         </section>
 
-        {/* VII · FINAL CTA */}
+        {/* VIII · FINAL CTA */}
         <section className="py-20 lg:py-28 bg-obsidian">
           <div className="container">
             <div className="max-w-3xl">
-              <Eyebrow numeral="VII" label="Next step" />
+              <Eyebrow numeral="VIII" label="Next step" />
               <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
-                Send the property.
+                Get the property scored
                 <br />
-                <span className="italic text-brass">I will send back what I see.</span>
+                <span className="italic text-brass">before you decide.</span>
               </h2>
-              <div className="mt-9 flex flex-wrap items-center gap-5">
+              <p className="mt-6 text-cream/80 leading-[1.7] max-w-xl">
+                A 20-minute fit call, then the audit: a score, a dollar figure, and the
+                evidence behind both. Free. No strings.
+              </p>
+              <div className="mt-9">
                 <a href="#lead-form" className="btn-brass">
-                  Request the Free Review <ArrowRight className="w-4 h-4" />
-                </a>
-                <a href={BRAND.phoneHref} className="btn-ghost">
-                  <Phone className="w-4 h-4" /> {BRAND.phone}
+                  Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
             </div>
@@ -351,10 +401,11 @@ export default function RevenueManagementLP() {
           <span>{BRAND.copyright}</span>
           <span>{BRAND.address}</span>
           <span>{BRAND.email}</span>
+          <span>{BRAND.phone}</span>
         </div>
       </footer>
 
-      <MobileCallBar />
+      <BookBar />
     </div>
   );
 }

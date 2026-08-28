@@ -1,18 +1,24 @@
 /*
  * Ramirez Hospitality Group — Ad landing page lead form
  *
- * Five visible fields. Hidden attribution fields (gclid, gbraid, wbraid, utm_*)
- * are read from storage at SUBMIT time, not mount, so a visitor who arrived
- * from an ad, left, and came back still submits with the click ID attached.
+ * Step one of booking The Modern Hotel Audit. Five visible fields. Hidden
+ * attribution fields (gclid, gbraid, wbraid, utm_*) are read from storage at
+ * SUBMIT time, not mount, so a visitor who arrived from an ad, left, and came
+ * back still submits with the click ID attached.
  *
  * Posts JSON to /api/lead (Cloudflare Pages Function in functions/api/lead.ts).
  * Honeypot + time-on-page are the bot filter; no CAPTCHA script.
+ *
+ * On success the form is replaced by step two: the Google Calendar booking
+ * embed (BookingCalendar), so the visitor picks a time without leaving the
+ * page or losing the gclid this form just captured.
  */
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { ArrowRight, CheckCircle2, Phone } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { BRAND } from "@/lib/brand";
 import { HIDDEN_FIELD_KEYS, captureAttribution, getAttribution, type Attribution } from "@/lib/attribution";
+import { BookingCalendar } from "./BookingCalendar";
 
 interface LeadFormProps {
   /** Identifies which page produced the lead in the email and KV record. */
@@ -32,15 +38,19 @@ const labelClass = "block text-[0.62rem] tracking-[0.32em] uppercase text-brass 
 export function LeadForm({
   source,
   className = "",
-  heading = "Start with a free property review",
-  subheading = "Tell me about the hotel. I look at your rates and channels myself and reply within one business day.",
-  buttonLabel = "Request the Free Review",
+  heading = "Book The Modern Hotel Audit",
+  subheading = "Free, scored, sized in dollars. Tell me about the hotel, then pick a time for a 20-minute fit call. Every revenue management client starts here.",
+  buttonLabel = "Book The Modern Hotel Audit",
 }: LeadFormProps) {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [failure, setFailure] = useState<string | null>(null);
   const [attribution, setAttribution] = useState<Attribution>({});
+  const [booking, setBooking] = useState<{ firstName: string; property: string }>({
+    firstName: "",
+    property: "",
+  });
   const mountedAt = useRef<number>(Date.now());
 
   // Capture click IDs on mount so a visitor who navigates away and back is still attributed.
@@ -60,11 +70,14 @@ export function LeadForm({
     const attribution = getAttribution();
     setAttribution(attribution);
 
+    const name = String(fd.get("name") ?? "").trim();
+    const property = String(fd.get("property") ?? "").trim();
+
     const payload: Record<string, string> = {
       source,
-      name: String(fd.get("name") ?? ""),
+      name,
       email: String(fd.get("email") ?? ""),
-      property: String(fd.get("property") ?? ""),
+      property,
       keys: String(fd.get("keys") ?? ""),
       phone: String(fd.get("phone") ?? ""),
       company_website: String(fd.get("company_website") ?? ""), // honeypot, should be empty
@@ -95,11 +108,12 @@ export function LeadForm({
       if (!res.ok || !data.ok) {
         setFailure(
           data.error ||
-            "Something went wrong on our side. Call or email and I will take it from there.",
+            "Something went wrong on our side. Email adam@ramirezhospitality.com and I will take it from there.",
         );
         return;
       }
 
+      setBooking({ firstName: name.split(/\s+/)[0] || "", property });
       setSubmitted(true);
       // Conversion hook for GTM / GA4 once those are wired. No script is loaded here.
       const w = window as unknown as { dataLayer?: unknown[] };
@@ -111,7 +125,9 @@ export function LeadForm({
         });
       }
     } catch {
-      setFailure("Your connection dropped before the request went through. Call or email and I will take it from there.");
+      setFailure(
+        "Your connection dropped before the request went through. Email adam@ramirezhospitality.com and I will take it from there.",
+      );
     } finally {
       setSubmitting(false);
     }
@@ -119,17 +135,23 @@ export function LeadForm({
 
   if (submitted) {
     return (
-      <div className={`border border-brass/40 bg-card p-10 lg:p-12 text-center ${className}`}>
-        <CheckCircle2 className="w-12 h-12 text-brass mx-auto mb-6" strokeWidth={1.4} />
-        <h3 className="font-display text-3xl text-cream mb-4">Got it. Thank you.</h3>
-        <p className="text-cream/75 leading-[1.7] max-w-md mx-auto">
-          I will look at the property and reply within one business day from
-          {" "}
-          <span className="text-cream">{BRAND.email}</span>. If it is urgent, call me.
+      <div className={`border border-brass/40 bg-card p-7 sm:p-8 lg:p-10 flex flex-col gap-5 ${className}`}>
+        <div className="flex items-center gap-3">
+          <CheckCircle2 className="w-5 h-5 text-brass shrink-0" strokeWidth={1.6} />
+          <span className="text-[0.62rem] tracking-[0.32em] uppercase text-brass">
+            Got it{booking.firstName ? `, ${booking.firstName}` : ""}. Now pick a time for the fit call.
+          </span>
+        </div>
+        <h2 className="font-display text-2xl text-cream leading-tight">
+          The Modern Hotel Audit · 20-minute fit call
+        </h2>
+        <p className="text-cream/75 text-sm leading-[1.6]">
+          {booking.property && (
+            <>We will talk through <span className="text-cream">{booking.property}</span> and whether the audit is worth your time. </>
+          )}
+          Times shown in your time zone.
         </p>
-        <a href={BRAND.phoneHref} className="btn-ghost mt-8 inline-flex">
-          <Phone className="w-4 h-4" /> {BRAND.phone}
-        </a>
+        <BookingCalendar url={BRAND.auditBookingUrl} title="Book The Modern Hotel Audit — pick a time" />
       </div>
     );
   }
@@ -238,14 +260,13 @@ export function LeadForm({
         <div className="border border-brass/40 bg-obsidian p-4 text-sm text-cream/85 leading-[1.6]">
           {failure}
           <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1">
-            <a href={BRAND.phoneHref} className="text-brass underline underline-offset-4">{BRAND.phone}</a>
             <a href={BRAND.emailHref} className="text-brass underline underline-offset-4">{BRAND.email}</a>
           </div>
         </div>
       )}
 
       <p className="text-[0.65rem] tracking-wider text-cream/45 text-center leading-relaxed">
-        Free. No obligation. Your details go to Adam and nowhere else.
+        Next step: choose a time. Free. No strings.
       </p>
     </form>
   );
