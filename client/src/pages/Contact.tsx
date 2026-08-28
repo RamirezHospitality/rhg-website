@@ -1,10 +1,10 @@
 /*
  * Ramirez Hospitality Group — The Reserve · CONTACT
- * Three modes of reach + simple form. Calendar = placeholder until SavvyCal/Calendly is wired.
+ * Three modes of reach: the two live Google Calendar booking links, a simple
+ * message form, and direct phone/email.
  */
 
 import { useState } from "react";
-import { Link } from "wouter";
 import { ArrowRight, Calendar, Mail, MessageSquare, Phone, MapPin } from "lucide-react";
 import { toast } from "sonner";
 import { PageLayout } from "@/components/PageLayout";
@@ -21,7 +21,7 @@ export default function Contact() {
     setSubmitting(true);
     setTimeout(() => {
       setSubmitting(false);
-      toast.success("Thanks — Adam will reply within one business day.", {
+      toast.success("Thanks — Adam reads every message himself.", {
         description:
           "(Form submission is a placeholder. We'll wire to your CRM / lead-gen webhook on launch.)",
       });
@@ -32,7 +32,7 @@ export default function Contact() {
   return (
     <PageLayout
       title="Contact Adam Ramirez — Hotel Consulting & Revenue Management | Ramirez Hospitality Group"
-      description="Contact Adam Ramirez directly. Phone, email, or schedule a call. Free hotel property audits available for independent and boutique hotel owners. Based in Palm Springs, CA. Available nationwide."
+      description="Contact Adam Ramirez directly. Phone, email, or book The Modern Hotel Audit — free and scored across seven dimensions — for independent and boutique hotel owners. Based in Palm Springs, CA. Available nationwide."
       canonical="/contact"
       breadcrumbs={[{ name: "Contact", href: "/contact" }]}
       jsonLd={[ORGANIZATION_SCHEMA]}
@@ -65,24 +65,29 @@ export default function Contact() {
               </div>
               <h2 className="font-display text-2xl text-cream">Schedule a Call</h2>
               <p className="mt-4 text-cream/70 text-sm leading-[1.7] flex-1">
-                Pick the conversation that fits — free property audit, the subscription, an
-                upcoming opening, an asset advisory engagement, or a tech/OTA review.
+                Every revenue management client starts with The Modern Hotel Audit. Opening
+                or reopening a property instead? Book the Opening Consultation. Anything
+                else — subscription details, an asset advisory engagement, a tech/OTA
+                question — send a message and Adam will find the right time.
               </p>
-              <div className="mt-8 space-y-2 text-cream/65 text-sm">
-                <div>· Free Property Audit (45 min)</div>
-                <div>· Subscription Discovery (30 min)</div>
-                <div>· Opening Consult (60 min)</div>
-                <div>· Investor / Acquisition (45 min)</div>
-                <div>· Tech / OTA (30 min)</div>
+              <div className="mt-8 flex flex-col gap-3">
+                <a
+                  href={BRAND.auditBookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-brass w-full justify-center"
+                >
+                  Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+                </a>
+                <a
+                  href={BRAND.openingBookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-ghost w-full justify-center"
+                >
+                  Book an Opening Consultation
+                </a>
               </div>
-              <Link href="/audit">
-                <span className="btn-brass mt-8 w-full justify-center">
-                  Open the Calendar <ArrowRight className="w-4 h-4" />
-                </span>
-              </Link>
-              <p className="mt-3 text-cream/40 text-[0.7rem] tracking-wider">
-                Calendar to be wired post-launch (SavvyCal recommended)
-              </p>
             </Reveal>
 
             {/* Form */}
@@ -92,8 +97,7 @@ export default function Contact() {
               </div>
               <h2 className="font-display text-2xl text-cream">Send a Message</h2>
               <p className="mt-4 text-cream/70 text-sm leading-[1.7] flex-1">
-                Drop a note. Adam reads every message himself and replies within one
-                business day.
+                Drop a note. Adam reads every message himself and replies personally.
               </p>
               <form onSubmit={handleSubmit} className="mt-8 space-y-4">
                 <input
