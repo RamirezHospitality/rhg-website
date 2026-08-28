@@ -6,7 +6,7 @@
 
 import { Link, useLocation } from "wouter";
 import { useEffect, useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { BRAND, NAV_LINKS } from "@/lib/brand";
 import { Monogram } from "./Monogram";
 
@@ -63,17 +63,9 @@ export function SiteHeader() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-4">
-            <a
-              href={BRAND.phoneHref}
-              className="flex items-center gap-2 text-cream/75 hover:text-brass transition-colors text-sm tracking-wide"
-              aria-label={`Call ${BRAND.phone}`}
-            >
-              <Phone className="w-3.5 h-3.5" strokeWidth={1.5} />
-              <span className="font-medium">{BRAND.phone}</span>
+            <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-brass">
+              Book The Modern Hotel Audit
             </a>
-            <Link href="/audit">
-              <span className="btn-brass">Schedule Free Audit</span>
-            </Link>
           </div>
 
           <button
@@ -102,13 +94,14 @@ export function SiteHeader() {
             </Link>
           ))}
           <div className="pt-4 flex flex-col gap-3">
-            <a href={BRAND.phoneHref} className="flex items-center gap-2 text-cream/75 text-sm">
-              <Phone className="w-4 h-4" strokeWidth={1.5} />
-              <span>{BRAND.phone}</span>
+            <a
+              href={BRAND.auditBookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-brass w-full justify-center"
+            >
+              Book The Modern Hotel Audit
             </a>
-            <Link href="/audit">
-              <span className="btn-brass w-full">Schedule Free Audit</span>
-            </Link>
           </div>
         </div>
       </div>

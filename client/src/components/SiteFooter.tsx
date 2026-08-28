@@ -20,25 +20,22 @@ export function PersistentCTA() {
       <div className="container relative py-20 lg:py-24">
         <div className="grid lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-8">
-            <span className="eyebrow">The Free Property Audit</span>
+            <span className="eyebrow">The Modern Hotel Audit</span>
             <h2 className="mt-5 font-display text-4xl md:text-5xl lg:text-[3.4rem] leading-[1.05] text-cream">
-              The next quarter starts now. Let me show you what
+              Let me show you what
               <span className="italic text-brass"> your property is leaving on the table.</span>
             </h2>
             <p className="mt-6 text-cream/70 text-lg max-w-2xl leading-relaxed">
-              Forty-five minutes. Zero cost. A real revenue plan in your inbox within seventy-two hours.
-              Service first. Pitch never.
+              Every client starts here, whether they are buying a hotel, opening one, or
+              running one. Free, scored across seven dimensions, sized in dollars. No strings.
             </p>
           </div>
           <div className="lg:col-span-4 flex flex-col gap-3">
-            <Link href="/audit">
-              <span className="btn-brass w-full justify-center">
-                Schedule Free Audit <ArrowRight className="w-4 h-4" />
-              </span>
-            </Link>
-            <a href={BRAND.phoneHref} className="btn-ghost w-full justify-center">
-              <Phone className="w-3.5 h-3.5" strokeWidth={1.6} />
-              Call {BRAND.phone}
+            <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-brass w-full justify-center">
+              Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+            </a>
+            <a href={BRAND.openingBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost w-full justify-center">
+              Opening a hotel? Book an Opening Consultation
             </a>
           </div>
         </div>
@@ -143,11 +140,9 @@ export function SiteFooter() {
             <div className="text-[0.62rem] tracking-[0.32em] uppercase text-brass mb-6">
               Begin
             </div>
-            <Link href="/audit">
-              <span className="btn-brass w-full justify-center">
-                Free Audit
-              </span>
-            </Link>
+            <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-brass w-full justify-center">
+              Book The Audit
+            </a>
             <p className="text-cream/45 text-xs mt-4 leading-relaxed">
               {BRAND.hours}
             </p>
