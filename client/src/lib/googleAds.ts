@@ -46,9 +46,17 @@ declare global {
   }
 }
 
-const ADS_ID = import.meta.env.VITE_GOOGLE_ADS_ID as string | undefined;
-const LABEL_START = import.meta.env.VITE_GADS_LABEL_FORM_START as string | undefined;
-const LABEL_SUBMIT = import.meta.env.VITE_GADS_LABEL_FORM_SUBMIT as string | undefined;
+// .trim() defends against whitespace copy-paste artifacts in the Cloudflare
+// Pages env var values (a leading tab in a pasted label has silently broken
+// a conversion's send_to value here before — trim rather than trust).
+function cleanEnv(v: string | undefined): string | undefined {
+  const trimmed = v?.trim();
+  return trimmed ? trimmed : undefined;
+}
+
+const ADS_ID = cleanEnv(import.meta.env.VITE_GOOGLE_ADS_ID as string | undefined);
+const LABEL_START = cleanEnv(import.meta.env.VITE_GADS_LABEL_FORM_START as string | undefined);
+const LABEL_SUBMIT = cleanEnv(import.meta.env.VITE_GADS_LABEL_FORM_SUBMIT as string | undefined);
 
 let scriptLoaded = false;
 
