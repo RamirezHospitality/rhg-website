@@ -50,7 +50,7 @@ Flat-fee, month-to-month revenue management for independent and boutique hotels.
 All tiers are month-to-month. No long-term contracts.
 
 ### 2. Hotel Openings & Reopenings
-Concept to ribbon-cutting in 90–270 days. Services include brand positioning, pre-opening budget and pro forma, tech stack selection, OTA and distribution setup, hiring plan, SOPs, marketing launch, soft opening, and 90-day stabilization sprint.
+Concept to ribbon-cutting. Services include brand positioning, pre-opening budget and pro forma, tech stack selection, OTA and distribution setup, hiring plan, SOPs, marketing launch, and soft opening. A typical engagement runs 90–270 days from contract to ribbon-cutting; the range varies by property size, brand, and scope — see https://ramirezhospitality.com/openings for detail.
 
 ### 3. Hotel Technology Consulting
 PMS, RMS, channel manager, CRM, keylock, and HR/operations system selection, integration, and ongoing management. Tools deployed include: Hotelitix, Duetto, Light House, Mews, SiteMinder, Revinate, Salto, 7shifts.
@@ -67,18 +67,21 @@ Due diligence, distressed turnaround, and exit preparation for hotel owners and 
 ### 7. Full-Property Event Production
 Brand activations and full-property event production. Past clients include Hugo Boss, Levi's, NYX Cosmetics, BMW, Volkswagen.
 
-## Free Property Audit
+## The Modern Hotel Audit
 
-Ramirez Hospitality Group offers a complimentary 45-minute property audit for independent hotel owners and operators. The audit covers:
-1. OTA health score (Expedia, Booking.com, Hotels.com)
-2. Pricing pressure test with live comp-set analysis
-3. Direct-booking diagnostic
-4. Tech-stack review
-5. Top three highest-impact revenue opportunities for the next 90 days
+Every Ramirez Hospitality Group client starts here, whether buying a hotel, opening one, or running one. Free. No strings. The whole property is scored across seven dimensions, each finding tied to a timestamped exhibit and an annual dollar figure:
+1. Reputation and rate-worthiness
+2. Direct booking engine
+3. Distribution and channel health
+4. Technology and automation
+5. Demand capture
+6. Pricing and rate strategy
+7. Whole-property yield
 
-Written follow-up delivered within 48 hours. No sales pitch.
+The owner receives a scored report (out of 100, graded A–F) and the two highest-value free moves in full, whether or not the revenue management subscription ever happens. No sales pitch, no timeline promise — the audit is described by what it delivers and the evidence behind it.
 
-Schedule at: https://ramirezhospitality.com/audit
+Book directly: https://calendar.app.google/azAXhjkEBs8NVc2Y6
+Or start at: https://ramirezhospitality.com/audit
 
 ## Contact
 
@@ -92,7 +95,7 @@ Schedule at: https://ramirezhospitality.com/audit
 
 - Homepage: https://ramirezhospitality.com/
 - Revenue Management Subscription: https://ramirezhospitality.com/revenue-management
-- Free Property Audit: https://ramirezhospitality.com/audit
+- The Modern Hotel Audit: https://ramirezhospitality.com/audit
 - Services: https://ramirezhospitality.com/services
 - Hotel Openings: https://ramirezhospitality.com/openings
 - Hotel Tech Stack: https://ramirezhospitality.com/tech-stack
