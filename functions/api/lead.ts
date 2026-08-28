@@ -23,7 +23,13 @@ interface RhgEnv {
   LEADS?: KVNamespaceLike;
   /** Resend API key, stored as a Pages secret. Never in the repo. */
   RESEND_API_KEY?: string;
-  /** Sender on a Resend-verified domain. Defaults to leads@ramirezhospitality.com. */
+  /**
+   * Sender address. Defaults to Resend's shared sandbox address, which sends
+   * without any domain verification but only delivers to the Resend
+   * account's own email — fine here since LEAD_TO is that same address.
+   * Once ramirezhospitality.com is verified with Resend (SPF/DKIM), set this
+   * to a real address on that domain, e.g. "RHG Website <leads@ramirezhospitality.com>".
+   */
   LEAD_FROM?: string;
   /** Recipient. Defaults to adam@ramirezhospitality.com. */
   LEAD_TO?: string;
@@ -36,7 +42,11 @@ interface PagesContext {
 }
 
 const DEFAULT_TO = "adam@ramirezhospitality.com";
-const DEFAULT_FROM = "RHG Website <leads@ramirezhospitality.com>";
+// Resend's shared sandbox sender — works with zero domain verification, but
+// Resend only delivers it to the account's own email, which is exactly
+// DEFAULT_TO here. Override via LEAD_FROM once ramirezhospitality.com is
+// verified with Resend.
+const DEFAULT_FROM = "onboarding@resend.dev";
 const MAX_BODY_BYTES = 16 * 1024;
 const MIN_SECONDS_ON_PAGE = 3; // bots submit instantly; people do not
 
