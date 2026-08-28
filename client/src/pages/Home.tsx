@@ -73,7 +73,7 @@ const PILLARS = [
     title: "Hotel Openings & Reopenings",
     note: "The element of my genius",
     description:
-      "Concept to ribbon-cutting in 90 to 270 days. Eight hotels opened, four repositioned.",
+      "Concept to ribbon-cutting. Eight hotels opened, four repositioned.",
     href: "/openings",
   },
   {

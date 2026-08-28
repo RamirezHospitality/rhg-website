@@ -235,8 +235,8 @@ export default function RevenueManagement() {
                   {[
                     "Starting at $850 / month",
                     "Operator + AI-driven tech stack — Hotelitix, Duetto, Light House, Revinate",
-                    "Month-to-month. Stay as long as it performs.",
-                    "Onboarded in under fourteen days.",
+                    "Month to month. No lock-in.",
+                    "The Modern Hotel Audit first, free, no strings.",
                     "10+ years launching and scaling independents.",
                   ].map((line) => (
                     <li key={line} className="flex gap-3">

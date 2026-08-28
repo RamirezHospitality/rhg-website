@@ -128,9 +128,10 @@ export default function Openings() {
             <div className="lg:col-span-5">
               <Reveal delay={120}>
                 <p className="text-cream/65 leading-[1.7]">
-                  A typical engagement runs 90 to 270 days from contract to ribbon-cutting.
-                  Below is the ten-phase blueprint I follow on every property — adapted to
-                  the size, brand, and timeline of yours.
+                  A typical engagement runs 90 to 270 days from contract to ribbon-cutting —
+                  the range varies by property size, brand, and scope, so treat it as a
+                  planning range, not a quote. Below is the ten-phase blueprint I follow on
+                  every property, adapted to yours.
                 </p>
               </Reveal>
             </div>
