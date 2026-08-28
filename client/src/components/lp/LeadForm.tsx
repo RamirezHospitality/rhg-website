@@ -18,6 +18,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { BRAND } from "@/lib/brand";
 import { HIDDEN_FIELD_KEYS, captureAttribution, getAttribution, type Attribution } from "@/lib/attribution";
+import { fireFormStartConversion, fireFormSubmitConversion } from "@/lib/googleAds";
 import { BookingCalendar } from "./BookingCalendar";
 
 interface LeadFormProps {
@@ -115,7 +116,10 @@ export function LeadForm({
 
       setBooking({ firstName: name.split(/\s+/)[0] || "", property });
       setSubmitted(true);
-      // Conversion hook for GTM / GA4 once those are wired. No script is loaded here.
+      // Primary Google Ads conversion — see lib/googleAds.ts. No-op until
+      // VITE_GOOGLE_ADS_ID / VITE_GADS_LABEL_FORM_SUBMIT are configured.
+      fireFormSubmitConversion({ email: payload.email, phone: payload.phone });
+      // Generic GTM / GA4 hook, unrelated to the Ads conversion above.
       const w = window as unknown as { dataLayer?: unknown[] };
       if (Array.isArray(w.dataLayer)) {
         w.dataLayer.push({
@@ -176,6 +180,7 @@ export function LeadForm({
           autoComplete="name"
           className={inputClass}
           aria-invalid={!!errors.name}
+          onFocus={fireFormStartConversion}
         />
         {errors.name && <p className="mt-1 text-xs text-brass-soft">{errors.name}</p>}
       </div>
