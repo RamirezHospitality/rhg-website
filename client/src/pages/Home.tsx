@@ -1,20 +1,62 @@
 /*
  * Ramirez Hospitality Group — The Reserve · HOME
- * Editorial dark mode. Asymmetric, magazine-paced.
+ * Editorial dark mode. Asymmetric, magazine-paced. Audit-first: every CTA
+ * books The Modern Hotel Audit (or, for openings, the Opening Consultation)
+ * rather than dialing a phone.
+ *
  * Sections: Hero · Track Record · Why Owners Hire Me · Six Pillars ·
- * Subscription Teaser · Case Study Highlight · Audit Method · Insights Teaser.
+ * Three Free Downloads · The Modern Hotel Audit (shared with the ad landing
+ * page) · Pricing (shared) · Case Study Highlight · Hotel Openings ·
+ * The Operator (shared) · Audit CTA · Insights Teaser · FAQ.
  *
  * SEO/GEO: Full structured data — Service, FAQPage, Person, LocalBusiness.
  * FAQ section added for AI search extraction and featured snippet targeting.
  */
 
 import { Link } from "wouter";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Download } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
 import { BRAND, IMAGES, PROPERTIES, PRESS } from "@/lib/brand";
 import { ORGANIZATION_SCHEMA, PERSON_SCHEMA } from "@/components/SEO";
+import { AuditSection } from "@/components/audit/AuditSection";
+import { PricingSection } from "@/components/pricing/PricingSection";
+import { OperatorSection } from "@/components/OperatorSection";
+
+// Three free downloads, each answering the question an owner is asking at a
+// given stage. Files live in the public "RHG Free Downloads" Drive folder;
+// links verified live before shipping. Every one ends at the same place:
+// Book The Modern Hotel Audit.
+const DOWNLOADS = [
+  {
+    stage: "Buying",
+    question: `"Am I crazy to buy this?"`,
+    description:
+      "What a motel making $250K is actually worth, whether the loan pencils, and what happens to the deal if you are wrong by ten percent on rate.",
+    label: "The Small Hotel Underwriting Template",
+    note: "Free spreadsheet. Type over the cream cells; everything else calculates.",
+    href: "https://docs.google.com/spreadsheets/d/1ezLiYB5dzPxA_oqos4oiqolCJI3oNczP9w3461YKxAU/edit?usp=sharing",
+  },
+  {
+    stage: "First year",
+    question: `"What matters in the first 90 days?"`,
+    description:
+      "Thirty-two items in the order they matter, from getting the seller's logins out of your distribution to the five numbers to read every Monday.",
+    label: "The First 90 Days Checklist",
+    note: "Free PDF. Print it and work top to bottom.",
+    href: "https://drive.google.com/file/d/1cg9z0vUCrAfY67NiL35DCD7LvIMgHr0-/view?usp=sharing",
+  },
+  {
+    stage: "Operating",
+    question: `"Am I underpricing?"`,
+    description:
+      "Ten questions you can score in an evening, the two-year test, and the rate ladder: where you sit against the properties around you, and what your guests already pay.",
+    label: "The Rate Audit",
+    note: "Free PDF. The pricing slice of The Modern Hotel Audit, simplified.",
+    href: "https://drive.google.com/file/d/1DWRleDcMP_Cj-bFLOGKPoiffu7Pk48BY/view?usp=sharing",
+  },
+];
 
 const PILLARS = [
   {
@@ -31,7 +73,7 @@ const PILLARS = [
     title: "Hotel Openings & Reopenings",
     note: "The element of my genius",
     description:
-      "Concept to ribbon-cutting in 90 to 270 days. Eight hotels opened, four repositioned.",
+      "Concept to ribbon-cutting. Eight hotels opened, four repositioned.",
     href: "/openings",
   },
   {
@@ -124,10 +166,10 @@ const HOME_FAQ_SCHEMA = {
     },
     {
       "@type": "Question",
-      name: "What is a free hotel property audit?",
+      name: "What is The Modern Hotel Audit, and is it really free?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Ramirez Hospitality Group offers a complimentary 45-minute property audit for independent hotel owners and operators. The audit covers: an OTA health score across Expedia, Booking.com, and Hotels.com; a pricing pressure test with live comp-set analysis; a direct-booking diagnostic; a tech-stack review; and the top three highest-impact revenue moves for the next 90 days. A written follow-up is delivered within 48 hours.",
+        text: "The Modern Hotel Audit is Ramirez Hospitality Group's free property review, and every client — buying, opening, or operating — starts with it. The whole property is scored across seven dimensions (reputation, direct booking, distribution, technology, demand capture, pricing, and whole-property yield), each finding tied to a timestamped exhibit and an annual dollar figure. It is genuinely free: the owner receives the full scored report and the two highest-value free moves whether or not the revenue management subscription ever happens.",
       },
     },
   ],
@@ -204,8 +246,8 @@ const FAQ_ITEMS = [
     a: "Adam Ramirez is a Palm Springs-based hotel operator and hospitality consultant with 10+ years of experience. He has opened 8 hotels from concept to ribbon-cutting, repositioned 4 others, managed over $10M in annual hotel revenue, and led teams of 120+. His properties have been featured in Travel & Leisure, Condé Nast Traveler, Forbes, and Modernism Magazine. He is the founder of Ramirez Hospitality Group.",
   },
   {
-    q: "Does Ramirez Hospitality Group offer a free hotel audit?",
-    a: "Yes. Ramirez Hospitality Group offers a complimentary 45-minute property audit for independent hotel owners and operators. The audit covers OTA health, pricing strategy, direct booking diagnostics, tech stack review, and the top three revenue opportunities for the next 90 days — with a written follow-up within 48 hours.",
+    q: "What is The Modern Hotel Audit, and is it really free?",
+    a: "Yes, genuinely free. Every client starts here, whether they are buying a hotel, opening one, or running one. Seven dimensions of the property, each scored against what a well-run independent of your size can do, each finding tied to a timestamped exhibit and an annual dollar figure. The owner gets the full report and the two highest-value free moves whether or not the subscription ever happens.",
   },
 ];
 
@@ -213,7 +255,7 @@ export default function Home() {
   return (
     <PageLayout
       title="Ramirez Hospitality Group — Hotel Revenue Management & Hospitality Consulting for Independent & Boutique Hotels"
-      description="Operator-led hospitality consulting and remote revenue management for independent hotels, boutique properties, and small hotel groups. Adam Ramirez — 10+ years opening and scaling boutique hotels. Subscriptions from $850/mo. Free property audit."
+      description="Operator-led hospitality consulting and remote revenue management for independent hotels, boutique properties, and small hotel groups. Every client starts with The Modern Hotel Audit, free and scored across seven dimensions. Adam Ramirez — 10+ years opening and scaling boutique hotels. Subscriptions from $850/mo."
       ogImage={IMAGES.hero}
       jsonLd={[HOME_FAQ_SCHEMA, HOME_SERVICE_SCHEMA, ORGANIZATION_SCHEMA, PERSON_SCHEMA]}
     >
@@ -244,33 +286,25 @@ export default function Home() {
           <div className="grid lg:grid-cols-12 gap-10 items-end">
             <div className="lg:col-span-9 xl:col-span-8">
               <div className="animate-rise-in">
-                <Eyebrow numeral="I" label="The Practice" />
+                <Eyebrow numeral="I" label="The Modern Hotel Audit · Free. No strings." />
               </div>
               <h1 className="mt-7 font-display font-medium text-[2.6rem] sm:text-5xl md:text-6xl lg:text-[4.4rem] xl:text-[5rem] leading-[1.02] text-cream tracking-[-0.025em] animate-rise-in delay-100">
-                The Revenue Manager
+                Get the property scored
                 <br />
-                Your Hotel <span className="italic text-brass">Deserves</span> —
-                <br />
-                Without the
-                <br />
-                <span className="italic">Six-Figure Salary.</span>
+                <span className="italic text-brass">before you decide.</span>
               </h1>
               <p className="mt-9 text-cream/80 text-lg md:text-xl leading-[1.55] max-w-2xl animate-rise-in delay-200">
-                Operator-led revenue management, hotel openings, and asset advisory for
-                independent hotels, boutique properties, and the people who own them.
-                Built in Palm Springs. Available nationwide.
+                Buying a hotel, opening one, or running one. The Modern Hotel Audit scores
+                the whole property across seven dimensions, puts a dollar figure on every
+                finding, and shows the evidence behind each. Every client starts here.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-5 animate-rise-in delay-300">
-                <Link href="/audit">
-                  <span className="btn-brass">
-                    Schedule Your Free Audit <ArrowRight className="w-4 h-4" />
-                  </span>
-                </Link>
-                <Link href="/revenue-management">
-                  <span className="link-brass pr-6">
-                    See the Subscription <ArrowRight className="w-4 h-4" />
-                  </span>
-                </Link>
+                <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-brass">
+                  Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+                </a>
+                <a href={BRAND.openingBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost">
+                  Opening a hotel? Book an Opening Consultation
+                </a>
               </div>
             </div>
           </div>
@@ -465,74 +499,65 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ───────── V · SUBSCRIPTION TEASER ───────── */}
-      <section className="relative py-24 lg:py-36 panel-walnut grain border-y border-brass/15">
-        <div className="container relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-            <div className="lg:col-span-6">
-              <Reveal>
-                <Eyebrow numeral="V" label="The Subscription" />
+      {/* ───────── V · THREE FREE DOWNLOADS ───────── */}
+      <section className="relative py-24 lg:py-36 bg-background">
+        <div className="container">
+          <Reveal className="max-w-3xl mb-16">
+            <Eyebrow numeral="V" label="Where are you with the property?" />
+            <h2 className="mt-6 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] text-cream">
+              Three questions owners ask me.
+              <br />
+              <span className="italic text-brass">Three things you can download right now.</span>
+            </h2>
+          </Reveal>
+
+          <div className="grid md:grid-cols-3 gap-px bg-brass/15">
+            {DOWNLOADS.map((d, i) => (
+              <Reveal key={d.label} delay={i * 100} className="bg-obsidian p-8 lg:p-10 flex flex-col gap-4">
+                <span className="text-[0.62rem] tracking-[0.32em] uppercase text-brass">{d.stage}</span>
+                <h3 className="font-display text-2xl leading-tight text-cream">{d.question}</h3>
+                <p className="text-cream/70 text-sm leading-[1.7] flex-1">{d.description}</p>
+                <a
+                  href={d.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 text-brass font-semibold text-sm hover:text-brass-soft transition-colors"
+                >
+                  <Download className="w-3.5 h-3.5" strokeWidth={2} /> {d.label}
+                </a>
+                <p className="text-cream/45 text-xs">{d.note}</p>
               </Reveal>
-              <Reveal delay={100}>
-                <h2 className="mt-7 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] text-cream">
-                  A full-time revenue manager costs
-                  <br />
-                  <span className="italic text-brass">$85,000 a year.</span>
-                  <br />
-                  Mine starts at $850 a month.
-                </h2>
-              </Reveal>
-              <Reveal delay={200}>
-                <p className="mt-8 text-cream/75 text-base lg:text-lg leading-[1.75]">
-                  The Revenue Management subscription is the engine of this practice —
-                  flagship, monthly, and built for hotels of every size. Three tiers, every
-                  one of them month-to-month, every one of them designed to deliver more
-                  revenue than it costs.
-                </p>
-                <p className="mt-5 text-cream/70 text-base leading-[1.75]">
-                  OTA optimization, direct booking strategy, and rewards program development
-                  are included from the start — three levers most consultants charge extra
-                  for, and most independent hotels desperately need.
-                </p>
-              </Reveal>
-              <Reveal delay={300}>
-                <div className="mt-10 flex flex-wrap items-center gap-5">
-                  <Link href="/revenue-management">
-                    <span className="btn-brass">
-                      See the Three Tiers <ArrowRight className="w-4 h-4" />
-                    </span>
-                  </Link>
-                  <Link href="/audit">
-                    <span className="link-brass pr-6">
-                      Schedule a Free Audit <ArrowRight className="w-4 h-4" />
-                    </span>
-                  </Link>
-                </div>
-              </Reveal>
-            </div>
-            <div className="lg:col-span-6">
-              <Reveal delay={150}>
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={IMAGES.revenue}
-                    alt="A revenue manager's desk — emerald leather pad, brass calculator, ledger of revenue figures"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 to-transparent" />
-                </div>
-              </Reveal>
-            </div>
+            ))}
           </div>
+
+          <Reveal delay={300} className="mt-10 text-cream/70 text-sm">
+            Every download ends where every client starts:{" "}
+            <a
+              href={BRAND.auditBookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brass font-semibold hover:text-brass-soft transition-colors"
+            >
+              Book The Modern Hotel Audit
+            </a>
+            .
+          </Reveal>
         </div>
       </section>
 
-      {/* ───────── VI · CASE STUDY HIGHLIGHT ───────── */}
+      {/* ───────── VI · THE MODERN HOTEL AUDIT ───────── */}
+      <AuditSection numeral="VI" />
+
+      {/* ───────── VII · PRICING ───────── */}
+      <PricingSection numeral="VII" />
+
+      {/* ───────── VIII · CASE STUDY HIGHLIGHT ───────── */}
       <section className="relative py-24 lg:py-36 bg-obsidian">
         <div className="container">
           <div className="grid lg:grid-cols-12 gap-12 items-start mb-16">
             <div className="lg:col-span-7">
               <Reveal>
-                <Eyebrow numeral="VI" label="The Results" />
+                <Eyebrow numeral="VIII" label="The Results" />
               </Reveal>
               <Reveal delay={100}>
                 <h2 className="mt-6 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] text-cream">
@@ -584,7 +609,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ───────── VII · OPENING TEASER ───────── */}
+      {/* ───────── IX · OPENING TEASER ───────── */}
       <section className="relative py-24 lg:py-36 panel-emerald grain border-y border-brass/15 overflow-hidden">
         <div className="container relative z-10">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
@@ -601,7 +626,7 @@ export default function Home() {
             </div>
             <div className="lg:col-span-6 order-1 lg:order-2">
               <Reveal>
-                <Eyebrow numeral="VII" label="Hotel Openings" />
+                <Eyebrow numeral="IX" label="Hotel Openings" />
               </Reveal>
               <Reveal delay={100}>
                 <h2 className="mt-7 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] text-cream">
@@ -614,13 +639,18 @@ export default function Home() {
               </Reveal>
               <Reveal delay={200}>
                 <p className="mt-8 text-cream/75 text-base lg:text-lg leading-[1.75]">
-                  Concept to ribbon-cutting in 90 to 270 days. Pre-opening sales strategy,
-                  brand identity, staffing, OS&E, tech infrastructure, and soft-launch
-                  playbook — all under one operator who has done it eight times before.
+                  Concept to ribbon-cutting. Pre-opening sales strategy, brand identity,
+                  staffing, OS&E, tech infrastructure, and soft-launch playbook — all under
+                  one operator who has done it eight times before. Openings start with The
+                  Modern Hotel Audit too: the pro forma is built on the same seven
+                  dimensions, before there is a property to score.
                 </p>
               </Reveal>
               <Reveal delay={300}>
-                <div className="mt-10">
+                <div className="mt-10 flex flex-wrap items-center gap-5">
+                  <a href={BRAND.openingBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-brass">
+                    Book an Opening Consultation <ArrowRight className="w-4 h-4" />
+                  </a>
                   <Link href="/openings">
                     <span className="btn-ghost">
                       The Opening Process <ArrowRight className="w-4 h-4" />
@@ -633,7 +663,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ───────── VIII · AUDIT CTA ───────── */}
+      {/* ───────── X · THE OPERATOR ───────── */}
+      <OperatorSection numeral="X" />
+
+      {/* ───────── XI · AUDIT CTA ───────── */}
       <section className="relative py-24 lg:py-36 bg-obsidian">
         <div className="absolute inset-0 opacity-20">
           <img src={IMAGES.audit} alt="" className="w-full h-full object-cover" />
@@ -642,42 +675,42 @@ export default function Home() {
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <Reveal>
-              <Eyebrow numeral="VIII" label="The Free Audit" className="mx-auto" />
+              <Eyebrow numeral="XI" label="Next Step" className="mx-auto" />
             </Reveal>
             <Reveal delay={100}>
               <h2 className="mt-7 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] text-cream">
-                Service first.
+                Get the property scored
                 <br />
-                <span className="italic text-brass">Pitch never.</span>
+                <span className="italic text-brass">before you decide.</span>
               </h2>
             </Reveal>
             <Reveal delay={200}>
               <p className="mt-8 text-cream/75 text-lg leading-[1.75] max-w-xl mx-auto">
-                We open by understanding the property, the owner, and the gap between where
-                the hotel is and where it should be. The audit is forty-five minutes with a
-                senior operator — not a sales call. You'll leave with five real moves.
+                A 20-minute fit call, then the audit: a score, a dollar figure, and the
+                evidence behind both. Free. No strings.
               </p>
             </Reveal>
             <Reveal delay={300}>
-              <div className="mt-10">
-                <Link href="/audit">
-                  <span className="btn-brass">
-                    Reserve My Free Audit <ArrowRight className="w-4 h-4" />
-                  </span>
-                </Link>
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-5">
+                <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-brass">
+                  Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+                </a>
+                <a href={BRAND.openingBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost">
+                  Book an Opening Consultation
+                </a>
               </div>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ───────── IX · INSIGHTS TEASER ───────── */}
+      {/* ───────── XII · INSIGHTS TEASER ───────── */}
       <section className="relative py-24 lg:py-32 panel-walnut grain border-t border-brass/15">
         <div className="container relative z-10">
           <div className="grid lg:grid-cols-12 gap-10 mb-14 items-end">
             <div className="lg:col-span-7">
               <Reveal>
-                <Eyebrow numeral="IX" label="The Notebook" />
+                <Eyebrow numeral="XII" label="The Notebook" />
                 <h2 className="mt-6 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] text-cream">
                   Field notes from
                   <br />
@@ -711,11 +744,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ───────── X · FAQ (GEO: AI search extraction + featured snippets) ───────── */}
+      {/* ───────── XIII · FAQ (GEO: AI search extraction + featured snippets) ───────── */}
       <section className="relative py-24 lg:py-32 bg-obsidian border-t border-brass/15" aria-label="Frequently Asked Questions">
         <div className="container">
           <Reveal className="max-w-3xl mb-14">
-            <Eyebrow numeral="X" label="Common Questions" />
+            <Eyebrow numeral="XIII" label="Common Questions" />
             <h2 className="mt-6 font-display text-4xl md:text-5xl text-cream leading-[1.05]">
               Questions from
               <br />
@@ -737,11 +770,9 @@ export default function Home() {
           </div>
 
           <Reveal delay={400} className="mt-12">
-            <Link href="/audit">
-              <span className="link-brass pr-6">
-                Have a different question? Schedule a free audit <ArrowRight className="w-4 h-4" />
-              </span>
-            </Link>
+            <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="link-brass pr-6">
+              Have a different question? Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+            </a>
           </Reveal>
         </div>
       </section>

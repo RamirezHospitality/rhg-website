@@ -9,6 +9,7 @@ import { PageLayout } from "@/components/PageLayout";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
 import { ORGANIZATION_SCHEMA } from "@/components/SEO";
+import { BRAND } from "@/lib/brand";
 
 const ARTICLE_SCHEMA = {
   "@context": "https://schema.org",
@@ -277,12 +278,17 @@ export default function Insights() {
               <div className="hairline mt-10" />
               <p className="text-cream/65 text-base">
                 — Adam Ramirez runs Ramirez Hospitality Group, a revenue management and
-                hospitality consulting practice for independent and boutique hotels.
-                Schedule a free property audit at{" "}
-                <a href="/audit" className="text-brass underline">
-                  /audit
+                hospitality consulting practice for independent and boutique hotels. Every
+                client starts with{" "}
+                <a
+                  href={BRAND.auditBookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-brass underline"
+                >
+                  The Modern Hotel Audit
                 </a>
-                .
+                , free and no strings.
               </p>
             </article>
           </div>

@@ -6,6 +6,7 @@
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
+import { BRAND } from "@/lib/brand";
 
 export default function NotFound() {
   return (
@@ -28,7 +29,7 @@ export default function NotFound() {
             </h1>
             <p className="mt-7 text-cream/70 text-lg leading-[1.7] max-w-lg">
               The page you were looking for has moved or never existed. Head back to the
-              homepage or schedule a free property audit — no charge, no pitch.
+              homepage or book The Modern Hotel Audit — free, no strings.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-5">
               <Link href="/">
@@ -36,11 +37,9 @@ export default function NotFound() {
                   Back to Home <ArrowRight className="w-4 h-4" />
                 </span>
               </Link>
-              <Link href="/audit">
-                <span className="link-brass pr-6">
-                  Schedule Free Audit <ArrowRight className="w-4 h-4" />
-                </span>
-              </Link>
+              <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="link-brass pr-6">
+                Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+              </a>
             </div>
           </div>
         </div>

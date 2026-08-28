@@ -11,6 +11,7 @@ import { PageLayout } from "@/components/PageLayout";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
 import { ORGANIZATION_SCHEMA } from "@/components/SEO";
+import { BRAND } from "@/lib/brand";
 
 const TECHSTACK_SERVICE_SCHEMA = {
   "@context": "https://schema.org",
@@ -233,16 +234,14 @@ export default function TechStack() {
             <p className="mt-7 text-cream/75 text-base lg:text-lg leading-[1.7]">
               The hospitality tech landscape changes fast. If your property runs a system
               not listed here, there's a good chance I've encountered it, configured it, or
-              migrated away from it. The free property audit includes a full tech-stack
+              migrated away from it. The Modern Hotel Audit includes a full tech-stack
               review — I'll tell you what's working, what's leaking revenue, and what to
               replace.
             </p>
             <div className="mt-10 flex flex-wrap gap-5 items-center">
-              <Link href="/audit">
-                <span className="btn-brass">
-                  Schedule a Free Tech Audit <ArrowRight className="w-4 h-4" />
-                </span>
-              </Link>
+              <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-brass">
+                Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+              </a>
               <Link href="/contact">
                 <span className="link-brass pr-6">
                   Ask About a Specific System <ArrowRight className="w-4 h-4" />

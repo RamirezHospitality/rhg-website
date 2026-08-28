@@ -4,12 +4,11 @@
  * differentiator block, tech stack strip.
  */
 
-import { Link } from "wouter";
 import { ArrowRight, Check, Star } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
-import { IMAGES } from "@/lib/brand";
+import { BRAND, IMAGES } from "@/lib/brand";
 import { ORGANIZATION_SCHEMA } from "@/components/SEO";
 
 const RM_SERVICE_SCHEMA = {
@@ -180,11 +179,9 @@ export default function RevenueManagement() {
               properties, and small portfolios. Operator-led. AI-powered. Month to month.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-5">
-              <Link href="/audit">
-                <span className="btn-brass">
-                  Schedule Your Free Audit <ArrowRight className="w-4 h-4" />
-                </span>
-              </Link>
+              <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-brass">
+                Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+              </a>
               <a href="#tiers" className="link-brass pr-6">
                 See the Three Tiers <ArrowRight className="w-4 h-4" />
               </a>
@@ -238,8 +235,8 @@ export default function RevenueManagement() {
                   {[
                     "Starting at $850 / month",
                     "Operator + AI-driven tech stack — Hotelitix, Duetto, Light House, Revinate",
-                    "Month-to-month. Stay as long as it performs.",
-                    "Onboarded in under fourteen days.",
+                    "Month to month. No lock-in.",
+                    "The Modern Hotel Audit first, free, no strings.",
                     "10+ years launching and scaling independents.",
                   ].map((line) => (
                     <li key={line} className="flex gap-3">
@@ -330,15 +327,16 @@ export default function RevenueManagement() {
                   </ul>
 
                   <div className="mt-10">
-                    <Link href="/audit">
-                      <span
-                        className={
-                          tier.featured ? "btn-brass w-full justify-center" : "btn-ghost w-full justify-center"
-                        }
-                      >
-                        Schedule Free Audit <ArrowRight className="w-4 h-4" />
-                      </span>
-                    </Link>
+                    <a
+                      href={BRAND.auditBookingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={
+                        tier.featured ? "btn-brass w-full justify-center" : "btn-ghost w-full justify-center"
+                      }
+                    >
+                      Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+                    </a>
                   </div>
                 </div>
               </Reveal>

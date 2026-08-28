@@ -20,6 +20,12 @@ export const BRAND = {
   hours: "Mon–Fri 8a–6p PT · Weekends by appointment",
   // Free audit calendar placeholder — to be wired to SavvyCal/Calendly post-launch
   calendarUrl: "/audit",
+  // Google Calendar appointment schedules. Every "Book The Modern Hotel Audit" CTA
+  // site-wide points at auditBookingUrl; the openings pages/CTAs use openingBookingUrl.
+  // Both verified live and iframe-embeddable (Google's appointment scheduling page
+  // does not send X-Frame-Options/frame-ancestors that would block embedding).
+  auditBookingUrl: "https://calendar.app.google/azAXhjkEBs8NVc2Y6",
+  openingBookingUrl: "https://calendar.app.google/veXqa2eBYGbZa6Pb9",
   copyright: "© 2026 Ramirez Hospitality Group. All rights reserved.",
 } as const;
 
