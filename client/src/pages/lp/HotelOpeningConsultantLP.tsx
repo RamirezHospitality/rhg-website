@@ -32,6 +32,12 @@
  * No site header, no footer nav, no outbound links besides the calendar
  * embed. noindex so it never competes with an indexable site page in organic
  * search. Not in the sitemap or prerender list.
+ *
+ * De-branded 2026-08-29: no named third-party hotel names anywhere on this
+ * page (Google Ads account suspension, Public Figure / Business
+ * Impersonation policy — see brand.ts's PROPERTIES comment). OperatorSection
+ * is passed `unbranded` so it renders summary facts instead of the named
+ * PROPERTIES list.
  */
 
 import { useEffect } from "react";
@@ -155,13 +161,13 @@ export default function HotelOpeningConsultantLP() {
                   <div className="bg-card p-6">
                     <div className="font-display text-4xl text-brass leading-none">8</div>
                     <div className="mt-3 text-cream/75 text-sm leading-[1.6]">
-                      Hotels opened, including The Paloma Resort and Sands Hotel &amp; Spa
+                      Hotels opened from concept to ribbon-cutting
                     </div>
                   </div>
                   <div className="bg-card p-6">
                     <div className="font-display text-4xl text-brass leading-none">4</div>
                     <div className="mt-3 text-cream/75 text-sm leading-[1.6]">
-                      Properties repositioned, including The Stardust
+                      Properties repositioned after renovation or ownership transition
                     </div>
                   </div>
                 </div>
@@ -254,7 +260,7 @@ export default function HotelOpeningConsultantLP() {
         />
 
         {/* V · THE OPERATOR */}
-        <OperatorSection numeral="V" />
+        <OperatorSection numeral="V" unbranded />
 
         {/* VI · FAQ */}
         <section className="py-20 lg:py-28 panel-walnut grain border-y border-brass/15">

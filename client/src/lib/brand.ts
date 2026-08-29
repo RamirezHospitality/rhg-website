@@ -49,6 +49,18 @@ export const NAV_LINKS = [
   { label: "The Stack", href: "/tech-stack" },
 ] as const;
 
+/**
+ * Named third-party properties. Fine to render on indexable pages (Home,
+ * Audit, FeasibilityStudy, CaseStudies, About) — naming past clients is
+ * normal consulting practice. Do NOT render this list, or any single name
+ * from it, on a /lp/* ad landing page: the Google Ads account was suspended
+ * 2026-08-29 for Public Figure / Business Impersonation, most likely
+ * triggered by named third-party hotel brands appearing without their
+ * written permission (Google requires permission to name a client in
+ * advertising regardless of whether the work happened). OperatorSection's
+ * `unbranded` prop renders de-branded stand-in facts instead — use that on
+ * any ad LP rather than mapping over PROPERTIES directly.
+ */
 export const PROPERTIES = [
   "The Paloma Resort",
   "Twist Palm Springs",
