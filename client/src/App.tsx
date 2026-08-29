@@ -16,6 +16,8 @@ import Contact from "./pages/Contact";
 import Audit from "./pages/Audit";
 import TechStack from "./pages/TechStack";
 import FeasibilityStudy from "./pages/FeasibilityStudy";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 
 // Lazy-loaded so the marketing bundle does not carry the ad landing pages or
 // the private dashboard. Each becomes its own chunk, fetched only on its route.
@@ -43,6 +45,8 @@ function Router() {
       <Route path="/audit" component={Audit} />
       <Route path="/tech-stack" component={TechStack} />
       <Route path="/feasibility-study" component={FeasibilityStudy} />
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/terms" component={Terms} />
       <Route path="/lp/revenue-management">
         <Suspense fallback={<RouteFallback />}>
           <RevenueManagementLP />
