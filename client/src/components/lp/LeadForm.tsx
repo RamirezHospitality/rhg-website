@@ -28,6 +28,18 @@ interface LeadFormProps {
   heading?: string;
   subheading?: string;
   buttonLabel?: string;
+  /**
+   * Google Calendar embed shown on the confirmation step. Defaults to The
+   * Modern Hotel Audit's calendar — pass BRAND.openingBookingUrl on a page
+   * whose offer is a pre-opening conversation instead (the audit assumes an
+   * operating property with occupancy/ADR/channel mix to score, which a
+   * pre-opening hotel doesn't have yet).
+   */
+  bookingUrl?: string;
+  /** Heading shown above the calendar embed once the form is submitted. */
+  bookingHeading?: string;
+  /** Second half of the confirmation sentence: "We will talk through {property} ${bookingIntroSuffix}" */
+  bookingIntroSuffix?: string;
 }
 
 type FieldErrors = Partial<Record<"name" | "email" | "property" | "keys" | "phone", string>>;
@@ -42,6 +54,9 @@ export function LeadForm({
   heading = "Book The Modern Hotel Audit",
   subheading = "Free, scored, sized in dollars. Tell me about the hotel, then pick a time for a 20-minute fit call. Every revenue management client starts here.",
   buttonLabel = "Book The Modern Hotel Audit",
+  bookingUrl = BRAND.auditBookingUrl,
+  bookingHeading = "The Modern Hotel Audit · 20-minute fit call",
+  bookingIntroSuffix = "and whether the audit is worth your time.",
 }: LeadFormProps) {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -147,15 +162,15 @@ export function LeadForm({
           </span>
         </div>
         <h2 className="font-display text-2xl text-cream leading-tight">
-          The Modern Hotel Audit · 20-minute fit call
+          {bookingHeading}
         </h2>
         <p className="text-cream/75 text-sm leading-[1.6]">
           {booking.property && (
-            <>We will talk through <span className="text-cream">{booking.property}</span> and whether the audit is worth your time. </>
+            <>We will talk through <span className="text-cream">{booking.property}</span> {bookingIntroSuffix} </>
           )}
           Times shown in your time zone.
         </p>
-        <BookingCalendar url={BRAND.auditBookingUrl} title="Book The Modern Hotel Audit — pick a time" />
+        <BookingCalendar url={bookingUrl} title={`${buttonLabel} — pick a time`} />
       </div>
     );
   }

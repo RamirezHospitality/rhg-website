@@ -17,9 +17,12 @@ import Audit from "./pages/Audit";
 import TechStack from "./pages/TechStack";
 import FeasibilityStudy from "./pages/FeasibilityStudy";
 
-// Lazy-loaded so the marketing bundle does not carry the ad landing page or the
-// private dashboard. Each becomes its own chunk, fetched only on its route.
+// Lazy-loaded so the marketing bundle does not carry the ad landing pages or
+// the private dashboard. Each becomes its own chunk, fetched only on its route.
 const RevenueManagementLP = lazy(() => import("./pages/lp/RevenueManagementLP"));
+const HotelOpeningConsultantLP = lazy(() => import("./pages/lp/HotelOpeningConsultantLP"));
+const BoutiqueHotelConsultingLP = lazy(() => import("./pages/lp/BoutiqueHotelConsultingLP"));
+const HotelAssetManagementLP = lazy(() => import("./pages/lp/HotelAssetManagementLP"));
 const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 
 function RouteFallback() {
@@ -43,6 +46,21 @@ function Router() {
       <Route path="/lp/revenue-management">
         <Suspense fallback={<RouteFallback />}>
           <RevenueManagementLP />
+        </Suspense>
+      </Route>
+      <Route path="/lp/hotel-opening-consultant">
+        <Suspense fallback={<RouteFallback />}>
+          <HotelOpeningConsultantLP />
+        </Suspense>
+      </Route>
+      <Route path="/lp/boutique-hotel-consulting">
+        <Suspense fallback={<RouteFallback />}>
+          <BoutiqueHotelConsultingLP />
+        </Suspense>
+      </Route>
+      <Route path="/lp/hotel-asset-management">
+        <Suspense fallback={<RouteFallback />}>
+          <HotelAssetManagementLP />
         </Suspense>
       </Route>
       {/* "/dashboard/*?" matches /dashboard and anything beneath it */}
