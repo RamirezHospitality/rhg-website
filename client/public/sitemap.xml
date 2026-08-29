@@ -51,6 +51,13 @@
     <priority>0.75</priority>
   </url>
 
+  <url>
+    <loc>https://ramirezhospitality.com/feasibility-study</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
   <!-- Social proof -->
   <url>
     <loc>https://ramirezhospitality.com/case-studies</loc>
