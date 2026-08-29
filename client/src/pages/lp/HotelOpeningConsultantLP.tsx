@@ -5,17 +5,26 @@
  * Ad group: RHG | Search | Revenue Management | US (new ad group, per
  * landing-page-specs.md — targets "hotel opening/pre-opening/reopening consultant")
  *
- * Cloned from RevenueManagementLP.tsx per spec: same machine, different hero
- * copy and proof points. Everything below the fold (audit, subscription
- * covers, how it starts, pricing, operator, FAQ, final CTA) is identical on
- * purpose — the underlying product doesn't change by ad group, only the
- * message-match hook that gets someone here does.
- *
- * CTA model: every button reads "Book The Modern Hotel Audit" and scrolls to
- * the lead form (step one). Submitting the form reveals the Google Calendar
- * booking embed (step two), so the visitor never leaves the page and the
- * gclid captured by the form survives into the booked call. No CTA calls the
- * phone; the number lives in the footer only.
+ * THE EXCEPTION TO "CLONE THE REVENUE-MANAGEMENT TEMPLATE" (2026-08-28):
+ * every other /lp page offers The Modern Hotel Audit — "get the property
+ * scored before you decide" — which assumes an operating property with
+ * occupancy, ADR, and channel mix to score. A pre-opening hotel has none of
+ * that yet, so this page does not offer the audit. Instead:
+ *   - The CTA books openingBookingUrl, not auditBookingUrl (both live in
+ *     lib/brand.ts).
+ *   - The CTA reads "Book an Opening Strategy Call," not "Book The Modern
+ *     Hotel Audit."
+ *   - Section II is the opening-engagement scope (reusing the exact
+ *     deliverables list from the Services page's Openings pillar) instead of
+ *     the shared AuditSection component.
+ *   - The FAQ and final CTA are reframed around a property that hasn't
+ *     opened yet, not a diagnosis of one that's already running.
+ * Everything else — LeadForm, the 17 fields (5 visible + honeypot + 11
+ * hidden attribution fields), conversion tracking, event labels, and the
+ * /api/lead endpoint — is identical to the other three /lp pages. The
+ * PricingSection and OperatorSection blocks stay identical on purpose
+ * (locked, shared sitewide): what ongoing revenue management costs after
+ * launch, and who does the work, don't change because the ad group does.
  *
  * No site header, no footer nav, no outbound links besides the calendar
  * embed. noindex so it never competes with an indexable site page in organic
@@ -28,34 +37,21 @@ import { SEO } from "@/components/SEO";
 import { Eyebrow } from "@/components/Eyebrow";
 import { LeadForm } from "@/components/lp/LeadForm";
 import { BookBar } from "@/components/lp/BookBar";
-import { AuditSection } from "@/components/audit/AuditSection";
 import { PricingSection } from "@/components/pricing/PricingSection";
 import { OperatorSection } from "@/components/OperatorSection";
 import { BRAND } from "@/lib/brand";
 
 const SOURCE = "lp/hotel-opening-consultant";
 
-const COVERS = [
-  {
-    n: "I",
-    t: "Daily pricing decisions",
-    p: "Rates set every day against your comp set, your pace, and what is actually happening in the market. Not a rule left running since last season.",
-  },
-  {
-    n: "II",
-    t: "OTA and channel management",
-    p: "Expedia, Booking.com, and Hotels.com content, visibility, parity, and promotions. Commissions watched like an expense line, because they are one.",
-  },
-  {
-    n: "III",
-    t: "Direct booking growth",
-    p: "Booking engine flow, rate fences, metasearch, and email that move bookings off the OTAs and onto your own site.",
-  },
-  {
-    n: "IV",
-    t: "Reporting an owner can read",
-    p: "Pace, pickup, channel mix, and what changed, in plain language. A strategy call every month to decide what happens next.",
-  },
+const OPENING_SCOPE = [
+  "Concept, positioning, and brand identity direction",
+  "Pre-opening budget and year-one pro forma",
+  "Tech stack selection and full integration",
+  "Sales, distribution, and OTA build",
+  "Hiring plan, org chart, and training program",
+  "SOPs and service standards",
+  "Marketing launch: PR, influencer, paid media, website",
+  "Soft opening management and 90-day stabilization",
 ];
 
 interface Step {
@@ -69,41 +65,41 @@ const STEPS: Step[] = [
   {
     n: "01",
     t: "A 20-minute fit call",
-    p: "You pick the time. We cover the property, what is keeping you up at night, and whether the audit is worth your time. If it is not a fit, I will say so.",
+    p: "You pick the time. We cover the property, the timeline, and what stage the project is at — concept, under construction, or close to opening. If it is not a fit, I will say so.",
   },
   {
     n: "02",
-    t: "The Modern Hotel Audit",
-    p: "Intake, recon, score, deliver. You get a score out of 100 and a dollar figure for what is being left on the table, with the evidence behind every number. Free. No strings.",
-    highlight: "The Lincoln, Marfa: scored 41/100, $55K to $185K identified on a $444K base.",
+    t: "The Opening Strategy Session",
+    p: "Positioning, pre-opening pro forma, tech stack, and a realistic launch timeline mapped to your project's actual stage — not a generic checklist.",
+    highlight: "8 hotels opened from concept to ribbon-cutting, 4 more repositioned after renovation or ownership transitions.",
   },
   {
     n: "03",
-    t: "The subscription, if it fits",
-    p: "System access, comp set, and a pricing plan we agree on together, then it runs daily. Month to month, re-scored on a schedule we put in writing. You keep every login.",
+    t: "The opening engagement, scoped to your timeline",
+    p: "Brand identity, budget, hiring, distribution, and the soft-opening playbook, run by the operator who will be in the building when it happens. Revenue management picks up as its own subscription once you're open.",
   },
 ];
 
 const FAQ = [
   {
-    q: "What is The Modern Hotel Audit, and is it really free?",
-    a: "Yes, genuinely free. Seven dimensions of the property, each scored against what a well-run independent of your size can do, each finding tied to a timestamped exhibit and an annual dollar figure. You get the full report and the two highest-value free moves whether or not the subscription ever happens.",
+    q: "What happens on the opening strategy call?",
+    a: "We talk through the property — stage of the project, timeline, and budget — and I tell you honestly what an opening engagement would look like and whether it's a fit. No pitch deck, no obligation.",
   },
   {
-    q: "What does a hotel revenue management consultant actually do each day?",
-    a: "Set and adjust rates, manage inventory and restrictions, keep OTA listings and parity clean, watch pace against forecast, and flag anything that needs an owner decision. The daily work is mine; the decisions that change your business stay yours.",
+    q: "How far in advance should I bring in an opening consultant?",
+    a: "The earlier the better — ideally before the brand and positioning are locked, since that decision drives the pro forma, the tech stack, and the hiring plan. That said, I've also stepped into projects mid-construction. Bring the timeline to the call and I'll tell you what's still open to change.",
   },
   {
-    q: "Do I need new software?",
-    a: "Usually not to start. I work inside the PMS and channel manager you already have. If a revenue management system would pay for itself, I will show you the math before recommending one.",
+    q: "Do you handle the whole opening, or just strategy?",
+    a: "Both, scoped to what you need. Some owners want the full concept-to-ribbon-cutting engagement — brand, budget, tech stack, hiring, SOPs, marketing launch, and soft-opening management. Others just need the pro forma and rate architecture set correctly before they hire their own team. We scope it on the call.",
   },
   {
-    q: "How is this different from the OTA account manager who calls me?",
-    a: "They are paid by the OTA. I am paid by you. The advice tends to differ.",
+    q: "We're repositioning an existing property, not opening a new one — does this still apply?",
+    a: "Yes. Repositioning after a renovation or ownership transition uses the same pre-opening discipline — positioning, pro forma, tech stack, and a stabilization plan — just compressed. I've repositioned 4 properties this way.",
   },
   {
-    q: "What if the subscription does not work for us?",
-    a: "Month to month, no lock-in. If the numbers are not there, you stop. I would rather earn the next month than lock you into it.",
+    q: "What happens after we open?",
+    a: "Revenue management continues as its own month-to-month subscription, starting at $850/month, so daily pricing and OTA management don't lapse the day the opening engagement ends.",
   },
 ];
 
@@ -116,7 +112,7 @@ export default function HotelOpeningConsultantLP() {
     <div className="relative min-h-screen flex flex-col bg-background text-foreground pb-20 lg:pb-0">
       <SEO
         title="Hotel Opening Consultant for Independent and Boutique Properties | Ramirez Hospitality Group"
-        description="Hotel opening consultant for independent and boutique properties. Every client starts with The Modern Hotel Audit: free, scored, sized in dollars. Pre-opening strategy, rate architecture, and channel setup from an operator who has opened eight hotels."
+        description="Hotel opening consultant for independent and boutique properties. Pre-opening strategy, rate architecture, and channel setup from an operator who has opened eight hotels and repositioned four more. Book a free Opening Strategy Call."
         canonical="/lp/hotel-opening-consultant"
         noindex
       />
@@ -139,7 +135,7 @@ export default function HotelOpeningConsultantLP() {
           <div className="container">
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-14 items-start">
               <div className="lg:col-span-7">
-                <Eyebrow label="Every client starts with The Modern Hotel Audit" />
+                <Eyebrow label="Every opening starts with a strategy call" />
                 <h1 className="mt-6 font-display font-medium text-[2.4rem] sm:text-5xl lg:text-[3.9rem] leading-[1.06] text-cream tracking-[-0.025em]">
                   Hotel Opening Consultant
                   <br />
@@ -167,55 +163,62 @@ export default function HotelOpeningConsultantLP() {
                   </div>
                 </div>
                 <p className="mt-5 text-[0.7rem] tracking-[0.2em] uppercase text-cream/55">
-                  10+ years · 50+ hospitality properties · 20% average revenue lift
+                  10+ years · 50+ hospitality properties · Concept to ribbon-cutting
                 </p>
 
                 {/* Mobile CTA: jumps to the form directly below */}
                 <a href="#lead-form" className="btn-brass mt-8 w-full justify-center lg:hidden">
-                  Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+                  Book an Opening Strategy Call <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
 
               <div className="lg:col-span-5">
-                <LeadForm source={SOURCE} />
+                <LeadForm
+                  source={SOURCE}
+                  heading="Book an Opening Strategy Call"
+                  subheading="Free, 20 minutes. Tell me about the property and where it stands, then pick a time. If it's not a fit, I'll say so."
+                  buttonLabel="Book an Opening Strategy Call"
+                  bookingUrl={BRAND.openingBookingUrl}
+                  bookingHeading="Opening Strategy Call · 20-minute fit call"
+                  bookingIntroSuffix="and what it needs before opening day."
+                />
               </div>
             </div>
           </div>
         </section>
 
-        {/* II · THE MODERN HOTEL AUDIT (signature product) */}
-        <AuditSection numeral="II" />
-
-        {/* III · WHAT THE SUBSCRIPTION COVERS */}
+        {/* II · WHAT THE OPENING ENGAGEMENT COVERS */}
         <section className="py-20 lg:py-28 bg-obsidian">
           <div className="container">
             <div className="max-w-3xl mb-12">
-              <Eyebrow numeral="III" label="What the subscription covers" />
+              <Eyebrow numeral="II" label="What the opening engagement covers" />
               <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
-                The work a revenue manager does,
+                Concept to ribbon-cutting.
                 <br />
-                <span className="italic text-brass">without the payroll.</span>
+                <span className="italic text-brass">One operator, not a committee.</span>
               </h2>
+              <p className="mt-6 text-cream/75 text-base lg:text-lg leading-[1.7] max-w-2xl">
+                Eight hotels opened from scratch, four more repositioned after renovation or
+                ownership transitions. This is the work I love most, and where the difference
+                between an operator and a consultant is most visible.
+              </p>
             </div>
-            <div className="grid md:grid-cols-2 gap-px bg-brass/15 border border-brass/15">
-              {COVERS.map((c) => (
-                <div key={c.t} className="bg-obsidian p-8 lg:p-10">
-                  <div className="flex items-baseline gap-4 mb-5">
-                    <span className="font-display italic text-brass text-3xl">{c.n}</span>
-                    <h3 className="font-display text-2xl text-cream leading-snug">{c.t}</h3>
-                  </div>
-                  <p className="text-cream/75 text-sm leading-[1.75] pl-12">{c.p}</p>
+            <div className="grid sm:grid-cols-2 gap-x-10 gap-y-4 max-w-3xl">
+              {OPENING_SCOPE.map((d) => (
+                <div key={d} className="flex items-start gap-3 text-cream/80 text-sm leading-[1.6]">
+                  <span className="text-brass mt-0.5 shrink-0">◆</span>
+                  {d}
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* IV · HOW IT STARTS */}
+        {/* III · HOW IT STARTS */}
         <section className="py-20 lg:py-28 panel-walnut grain border-y border-brass/15">
           <div className="container relative z-10">
             <div className="max-w-3xl mb-12">
-              <Eyebrow numeral="IV" label="How it starts" />
+              <Eyebrow numeral="III" label="How it starts" />
               <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
                 Three steps. <span className="italic text-brass">No pitch deck.</span>
               </h2>
@@ -235,19 +238,19 @@ export default function HotelOpeningConsultantLP() {
           </div>
         </section>
 
-        {/* V · PRICING */}
-        <PricingSection numeral="V" />
+        {/* IV · WHAT IT COSTS AFTER YOU OPEN */}
+        <PricingSection numeral="IV" />
 
-        {/* VI · THE OPERATOR */}
-        <OperatorSection numeral="VI" />
+        {/* V · THE OPERATOR */}
+        <OperatorSection numeral="V" />
 
-        {/* VII · FAQ */}
+        {/* VI · FAQ */}
         <section className="py-20 lg:py-28 panel-walnut grain border-y border-brass/15">
           <div className="container relative z-10">
             <div className="max-w-3xl mb-10">
-              <Eyebrow numeral="VII" label="Owner questions" />
+              <Eyebrow numeral="VI" label="Owner questions" />
               <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
-                What owners ask <span className="italic text-brass">before the audit.</span>
+                What owners ask <span className="italic text-brass">before opening.</span>
               </h2>
             </div>
             <div className="max-w-3xl border-t border-brass/20">
@@ -266,23 +269,23 @@ export default function HotelOpeningConsultantLP() {
           </div>
         </section>
 
-        {/* VIII · FINAL CTA */}
+        {/* VII · FINAL CTA */}
         <section className="py-20 lg:py-28 bg-obsidian">
           <div className="container">
             <div className="max-w-3xl">
-              <Eyebrow numeral="VIII" label="Next step" />
+              <Eyebrow numeral="VII" label="Next step" />
               <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
-                Get the property scored
+                Know the plan
                 <br />
-                <span className="italic text-brass">before you decide.</span>
+                <span className="italic text-brass">before opening day.</span>
               </h2>
               <p className="mt-6 text-cream/80 leading-[1.7] max-w-xl">
-                A 20-minute fit call, then the audit: a score, a dollar figure, and the
-                evidence behind both. Free. No strings.
+                A 20-minute fit call, then a real opening strategy session mapped to your
+                property's timeline. Free. No strings.
               </p>
               <div className="mt-9">
                 <a href="#lead-form" className="btn-brass">
-                  Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+                  Book an Opening Strategy Call <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
             </div>
@@ -299,7 +302,7 @@ export default function HotelOpeningConsultantLP() {
         </div>
       </footer>
 
-      <BookBar />
+      <BookBar label="Book an Opening Strategy Call" />
     </div>
   );
 }

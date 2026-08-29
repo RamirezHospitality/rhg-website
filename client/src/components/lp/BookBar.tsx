@@ -7,11 +7,16 @@
 
 import { ArrowRight } from "lucide-react";
 
-export function BookBar() {
+interface BookBarProps {
+  /** Defaults to the audit CTA; pass a page-specific label when the offer isn't the audit. */
+  label?: string;
+}
+
+export function BookBar({ label = "Book The Modern Hotel Audit" }: BookBarProps) {
   return (
     <div className="lg:hidden fixed inset-x-0 bottom-0 z-40 border-t border-brass/25 bg-obsidian/95 backdrop-blur px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
       <a href="#lead-form" className="btn-brass w-full justify-center text-sm">
-        Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+        {label} <ArrowRight className="w-4 h-4" />
       </a>
     </div>
   );
