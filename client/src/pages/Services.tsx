@@ -44,6 +44,8 @@ interface Pillar {
   cta: { label: string; href: string; calendar?: boolean };
   image: string;
   hasGallery?: boolean;
+  /** Optional secondary link shown below the deliverables list — used to cross-link a dedicated sub-page. */
+  seeAlso?: { label: string; href: string };
 }
 
 const PILLARS: Pillar[] = [
@@ -157,6 +159,7 @@ const PILLARS: Pillar[] = [
     ],
     cta: { label: "Click to Book a Call", href: "/contact", calendar: true },
     image: IMAGES.advisory,
+    seeAlso: { label: "Considering a purchase? See how a hotel feasibility study works", href: "/feasibility-study" },
   },
   {
     n: "VII",
@@ -273,6 +276,15 @@ function PillarCard({ p, index }: { p: Pillar; index: number }) {
                     ))}
                   </ul>
                 </div>
+                {p.seeAlso && (
+                  <div className="mt-7">
+                    <Link href={p.seeAlso.href}>
+                      <span className="link-brass pr-6 text-sm">
+                        {p.seeAlso.label} <ArrowRight className="w-4 h-4" />
+                      </span>
+                    </Link>
+                  </div>
+                )}
               </div>
 
               <div className="mt-9">

@@ -63,6 +63,10 @@ Owner's-rep oversight for FF&E, capex, contractor selection, and renovation mana
 
 ### 6. Hotel Asset & Acquisition Advisory
 Due diligence, distressed turnaround, and exit preparation for hotel owners and investors.
+Includes hotel feasibility studies — market feasibility (demand, competitive set, ADR/RevPAR
+projections), financial feasibility (pro forma and valuation via income, sales-comparison, and
+cost approaches), and operational feasibility — for buyers, developers, and owners converting
+a property into a boutique hotel. See https://ramirezhospitality.com/feasibility-study
 
 ### 7. Full-Property Event Production
 Brand activations and full-property event production. Past clients include Hugo Boss, Levi's, NYX Cosmetics, BMW, Volkswagen.
@@ -97,6 +101,7 @@ Or start at: https://ramirezhospitality.com/audit
 - Revenue Management Subscription: https://ramirezhospitality.com/revenue-management
 - The Modern Hotel Audit: https://ramirezhospitality.com/audit
 - Services: https://ramirezhospitality.com/services
+- Hotel Feasibility Study: https://ramirezhospitality.com/feasibility-study
 - Hotel Openings: https://ramirezhospitality.com/openings
 - Hotel Tech Stack: https://ramirezhospitality.com/tech-stack
 - Case Studies: https://ramirezhospitality.com/case-studies

@@ -100,6 +100,7 @@ export function SiteFooter() {
                 { label: "Operations & SOPs", href: "/services" },
                 { label: "Renovations", href: "/services" },
                 { label: "Acquisition Advisory", href: "/services" },
+                { label: "Feasibility Study", href: "/feasibility-study" },
               ].map((l) => (
                 <li key={l.label}>
                   <Link href={l.href}>

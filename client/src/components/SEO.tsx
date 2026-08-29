@@ -258,6 +258,7 @@ export const ORGANIZATION_SCHEMA = {
     "Hotel Technology Consulting",
     "Hotel Operations Consulting",
     "Hotel Asset Advisory",
+    "Hotel Feasibility Study",
     "Event Production",
   ],
   priceRange: "$850–$2,500/month",
