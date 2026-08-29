@@ -30,12 +30,27 @@ const CHECKLIST = [
   "The Modern Hotel Audit first, free, no strings",
 ];
 
+const DEFAULT_INTRO =
+  "The subscription starts after The Modern Hotel Audit, and only if it fits. Flat monthly fee, no setup fee, no contract. Re-scored on a schedule we put in writing: the number has to move. You keep every login and every export.";
+
 interface PricingSectionProps {
   /** Roman numeral shown in the section eyebrow — differs by page. */
   numeral?: string;
+  /**
+   * Intro paragraph. Defaults to the Modern Hotel Audit framing — override
+   * on a page whose entry point isn't the audit (e.g. a pre-opening LP,
+   * where there's no operating property yet to audit).
+   */
+  intro?: string;
+  /** Checklist under the tiers/arithmetic table. Defaults mention the audit as the entry point; override alongside `intro` when it doesn't apply. */
+  checklist?: string[];
 }
 
-export function PricingSection({ numeral = "V" }: PricingSectionProps) {
+export function PricingSection({
+  numeral = "V",
+  intro = DEFAULT_INTRO,
+  checklist = CHECKLIST,
+}: PricingSectionProps) {
   return (
     <section className="py-20 lg:py-28 panel-emerald border-y border-brass/15">
       <div className="container">
@@ -47,11 +62,7 @@ export function PricingSection({ numeral = "V" }: PricingSectionProps) {
               <br />
               <span className="italic text-brass">Month to month. No lock-in.</span>
             </h2>
-            <p className="mt-6 text-cream/80 leading-[1.7] max-w-md">
-              The subscription starts after The Modern Hotel Audit, and only if it fits.
-              Flat monthly fee, no setup fee, no contract. Re-scored on a schedule we put
-              in writing: the number has to move. You keep every login and every export.
-            </p>
+            <p className="mt-6 text-cream/80 leading-[1.7] max-w-md">{intro}</p>
           </div>
           <div className="lg:col-span-7">
             <div className="grid sm:grid-cols-3 gap-px bg-brass/15 border border-brass/15">
@@ -89,7 +100,7 @@ export function PricingSection({ numeral = "V" }: PricingSectionProps) {
             </div>
 
             <ul className="mt-8 grid sm:grid-cols-2 gap-x-8 gap-y-3 text-cream/85 text-sm">
-              {CHECKLIST.map((line) => (
+              {checklist.map((line) => (
                 <li key={line} className="flex gap-3">
                   <Check className="w-4 h-4 text-brass mt-0.5 shrink-0" />
                   <span>{line}</span>

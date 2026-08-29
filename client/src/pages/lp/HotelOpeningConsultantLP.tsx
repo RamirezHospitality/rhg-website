@@ -21,10 +21,13 @@
  *     opened yet, not a diagnosis of one that's already running.
  * Everything else — LeadForm, the 17 fields (5 visible + honeypot + 11
  * hidden attribution fields), conversion tracking, event labels, and the
- * /api/lead endpoint — is identical to the other three /lp pages. The
- * PricingSection and OperatorSection blocks stay identical on purpose
- * (locked, shared sitewide): what ongoing revenue management costs after
- * launch, and who does the work, don't change because the ad group does.
+ * /api/lead endpoint — is identical to the other three /lp pages.
+ * OperatorSection stays fully identical (locked, shared sitewide): who does
+ * the work doesn't change because the ad group does. PricingSection keeps
+ * its tiers/arithmetic table identical too, but its intro line and last
+ * checklist bullet default to "starts after The Modern Hotel Audit" — this
+ * page overrides both (via PricingSection's `intro`/`checklist` props,
+ * 2026-08-28) since there's no audit offered here to start after.
  *
  * No site header, no footer nav, no outbound links besides the calendar
  * embed. noindex so it never competes with an indexable site page in organic
@@ -239,7 +242,16 @@ export default function HotelOpeningConsultantLP() {
         </section>
 
         {/* IV · WHAT IT COSTS AFTER YOU OPEN */}
-        <PricingSection numeral="IV" />
+        <PricingSection
+          numeral="IV"
+          intro="Revenue management starts once you're open, and only if it fits. Flat monthly fee, no setup fee, no contract. Re-scored on a schedule we put in writing: the number has to move. You keep every login and every export."
+          checklist={[
+            "Runs inside the PMS you already have",
+            "Flat fee, no setup cost, no contract",
+            "Monthly strategy call and performance report",
+            "The Opening Strategy Call first, free, no strings",
+          ]}
+        />
 
         {/* V · THE OPERATOR */}
         <OperatorSection numeral="V" />
