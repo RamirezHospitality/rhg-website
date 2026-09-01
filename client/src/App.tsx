@@ -18,6 +18,8 @@ import TechStack from "./pages/TechStack";
 import FeasibilityStudy from "./pages/FeasibilityStudy";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import Downloads from "./pages/Downloads";
+import ArticleMotelValuation from "./pages/ArticleMotelValuation";
 
 // Lazy-loaded so the marketing bundle does not carry the ad landing pages or
 // the private dashboard. Each becomes its own chunk, fetched only on its route.
@@ -42,6 +44,11 @@ function Router() {
       <Route path="/case-studies" component={CaseStudies} />
       <Route path="/about" component={About} />
       <Route path="/insights" component={Insights} />
+      <Route
+        path="/insights/what-is-a-motel-making-250k-a-year-actually-worth"
+        component={ArticleMotelValuation}
+      />
+      <Route path="/downloads" component={Downloads} />
       <Route path="/contact" component={Contact} />
       <Route path="/audit" component={Audit} />
       <Route path="/tech-stack" component={TechStack} />

@@ -74,6 +74,21 @@
     <priority>0.70</priority>
   </url>
 
+  <url>
+    <loc>https://ramirezhospitality.com/insights/what-is-a-motel-making-250k-a-year-actually-worth</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+
+  <!-- Free resource library -->
+  <url>
+    <loc>https://ramirezhospitality.com/downloads</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+
   <!-- E-E-A-T signal -->
   <url>
     <loc>https://ramirezhospitality.com/about</loc>
