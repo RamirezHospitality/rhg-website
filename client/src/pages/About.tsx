@@ -134,7 +134,7 @@ export default function About() {
               <Reveal delay={120}>
                 <p className="font-display italic text-2xl lg:text-3xl text-cream leading-[1.4] mb-2">
                   I started in hospitality at sixteen, in the back of a hotel kitchen. I'm
-                  forty-something now and have never worked in anything else.
+                  twenty-nine now and have never worked in anything else.
                 </p>
               </Reveal>
               <Reveal delay={200}>
