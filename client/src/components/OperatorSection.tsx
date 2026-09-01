@@ -9,12 +9,29 @@
 import { Eyebrow } from "@/components/Eyebrow";
 import { PROPERTIES } from "@/lib/brand";
 
+// Unbranded stand-in for the named PROPERTIES list — required on the ad LPs
+// (2026-08-29): the Google Ads account was suspended for Public Figure /
+// Business Impersonation, most likely triggered by named third-party hotel
+// brands appearing without their written permission. Indexable pages
+// (Home, Audit, FeasibilityStudy) keep the named list — naming past clients
+// there is normal consulting practice and isn't what's under review; the
+// noindex ad LPs pass `unbranded` instead. De-brand, don't delete: these are
+// the same facts, just without the third-party names.
+const UNBRANDED_FACTS = [
+  "8 hotels opened from concept to ribbon-cutting",
+  "4 properties repositioned after renovation or ownership transition",
+  "50+ independent and boutique hospitality properties worked with",
+  "$10M+ in annual hotel revenue managed",
+];
+
 interface OperatorSectionProps {
   /** Roman numeral shown in the section eyebrow — differs by page. */
   numeral?: string;
+  /** Render unbranded summary facts instead of the named PROPERTIES list. */
+  unbranded?: boolean;
 }
 
-export function OperatorSection({ numeral = "VI" }: OperatorSectionProps) {
+export function OperatorSection({ numeral = "VI", unbranded = false }: OperatorSectionProps) {
   return (
     <section className="py-20 lg:py-28 bg-obsidian">
       <div className="container">
@@ -35,16 +52,27 @@ export function OperatorSection({ numeral = "VI" }: OperatorSectionProps) {
           </div>
           <div className="lg:col-span-5">
             <div className="text-[0.62rem] tracking-[0.32em] uppercase text-brass mb-5">
-              Properties opened, repositioned, or run
+              {unbranded ? "The track record" : "Properties opened, repositioned, or run"}
             </div>
-            <ul className="grid grid-cols-2 gap-x-6 gap-y-2 text-cream/75 text-sm">
-              {PROPERTIES.map((p) => (
-                <li key={p} className="flex gap-2">
-                  <span className="text-brass/60">·</span>
-                  <span>{p}</span>
-                </li>
-              ))}
-            </ul>
+            {unbranded ? (
+              <ul className="flex flex-col gap-3 text-cream/75 text-sm">
+                {UNBRANDED_FACTS.map((f) => (
+                  <li key={f} className="flex gap-2">
+                    <span className="text-brass/60">·</span>
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <ul className="grid grid-cols-2 gap-x-6 gap-y-2 text-cream/75 text-sm">
+                {PROPERTIES.map((p) => (
+                  <li key={p} className="flex gap-2">
+                    <span className="text-brass/60">·</span>
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </div>

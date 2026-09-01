@@ -21,6 +21,11 @@
  * No site header, no footer nav, no outbound links besides the calendar
  * embed. noindex so it never competes with an indexable site page in organic
  * search. Not in the sitemap or prerender list.
+ *
+ * De-branded 2026-08-29: this page's hero never named a third-party brand to
+ * begin with (Google Ads account suspension, Public Figure / Business
+ * Impersonation policy — see brand.ts's PROPERTIES comment); OperatorSection
+ * is passed `unbranded` below the fold so it doesn't introduce any either.
  */
 
 import { useEffect } from "react";
@@ -241,7 +246,7 @@ export default function HotelAssetManagementLP() {
         <PricingSection numeral="V" />
 
         {/* VI · THE OPERATOR */}
-        <OperatorSection numeral="VI" />
+        <OperatorSection numeral="VI" unbranded />
 
         {/* VII · FAQ */}
         <section className="py-20 lg:py-28 panel-walnut grain border-y border-brass/15">

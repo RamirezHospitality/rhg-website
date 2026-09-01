@@ -18,6 +18,8 @@ import TechStack from "./pages/TechStack";
 import FeasibilityStudy from "./pages/FeasibilityStudy";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import Downloads from "./pages/Downloads";
+import ArticleMotelValuation from "./pages/ArticleMotelValuation";
 
 // Lazy-loaded so the marketing bundle does not carry the ad landing pages or
 // the private dashboard. Each becomes its own chunk, fetched only on its route.
@@ -25,6 +27,7 @@ const RevenueManagementLP = lazy(() => import("./pages/lp/RevenueManagementLP"))
 const HotelOpeningConsultantLP = lazy(() => import("./pages/lp/HotelOpeningConsultantLP"));
 const BoutiqueHotelConsultingLP = lazy(() => import("./pages/lp/BoutiqueHotelConsultingLP"));
 const HotelAssetManagementLP = lazy(() => import("./pages/lp/HotelAssetManagementLP"));
+const HotelManagementCompanyLP = lazy(() => import("./pages/lp/HotelManagementCompanyLP"));
 const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 
 function RouteFallback() {
@@ -41,6 +44,11 @@ function Router() {
       <Route path="/case-studies" component={CaseStudies} />
       <Route path="/about" component={About} />
       <Route path="/insights" component={Insights} />
+      <Route
+        path="/insights/what-is-a-motel-making-250k-a-year-actually-worth"
+        component={ArticleMotelValuation}
+      />
+      <Route path="/downloads" component={Downloads} />
       <Route path="/contact" component={Contact} />
       <Route path="/audit" component={Audit} />
       <Route path="/tech-stack" component={TechStack} />
@@ -65,6 +73,11 @@ function Router() {
       <Route path="/lp/hotel-asset-management">
         <Suspense fallback={<RouteFallback />}>
           <HotelAssetManagementLP />
+        </Suspense>
+      </Route>
+      <Route path="/lp/hotel-management-company">
+        <Suspense fallback={<RouteFallback />}>
+          <HotelManagementCompanyLP />
         </Suspense>
       </Route>
       {/* "/dashboard/*?" matches /dashboard and anything beneath it */}

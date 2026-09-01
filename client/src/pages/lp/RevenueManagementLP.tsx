@@ -15,6 +15,13 @@
  *
  * Performance notes: no hero image above the fold (the H1 is the LCP element),
  * no framer-motion, no Reveal observers, native <details> for the FAQ.
+ *
+ * De-branded 2026-08-29: no named third-party hotel names anywhere on this
+ * page (Google Ads account suspension, Public Figure / Business
+ * Impersonation policy — see brand.ts's PROPERTIES comment). Proof points
+ * keep the dollar figures, just without the property names attached, and
+ * OperatorSection is passed `unbranded` so it doesn't render the named
+ * PROPERTIES list either. Indexable pages are unaffected and keep names.
  */
 
 import { useEffect } from "react";
@@ -150,13 +157,13 @@ export default function RevenueManagementLP() {
                   <div className="bg-card p-6">
                     <div className="font-display text-4xl text-brass leading-none">+$1M</div>
                     <div className="mt-3 text-cream/75 text-sm leading-[1.6]">
-                      Annual revenue lift at Twist Palm Springs
+                      Annual revenue lift at a boutique Palm Springs property
                     </div>
                   </div>
                   <div className="bg-card p-6">
                     <div className="font-display text-4xl text-brass leading-none">$750K</div>
                     <div className="mt-3 text-cream/75 text-sm leading-[1.6]">
-                      Annual revenue on six keys at Limón Palm Springs
+                      Incremental revenue on a six-key independent property
                     </div>
                   </div>
                 </div>
@@ -233,7 +240,7 @@ export default function RevenueManagementLP() {
         <PricingSection numeral="V" />
 
         {/* VI · THE OPERATOR */}
-        <OperatorSection numeral="VI" />
+        <OperatorSection numeral="VI" unbranded />
 
         {/* VII · FAQ */}
         <section className="py-20 lg:py-28 panel-walnut grain border-y border-brass/15">

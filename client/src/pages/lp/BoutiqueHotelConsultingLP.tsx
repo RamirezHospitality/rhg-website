@@ -20,6 +20,14 @@
  * No site header, no footer nav, no outbound links besides the calendar
  * embed. noindex so it never competes with an indexable site page in organic
  * search. Not in the sitemap or prerender list.
+ *
+ * De-branded 2026-08-29: no named third-party hotel names or organizational
+ * affiliation claims anywhere on this page (Google Ads account suspension,
+ * Public Figure / Business Impersonation policy — see brand.ts's PROPERTIES
+ * comment). Dropped the "Board Member, Small Hotel Association of Palm
+ * Springs" line entirely rather than de-brand it — there's no unbranded
+ * version of an org membership claim. OperatorSection is passed `unbranded`
+ * so it renders summary facts instead of the named PROPERTIES list.
  */
 
 import { useEffect } from "react";
@@ -156,19 +164,18 @@ export default function BoutiqueHotelConsultingLP() {
                   <div className="bg-card p-6">
                     <div className="font-display text-4xl text-brass leading-none">+$1M</div>
                     <div className="mt-3 text-cream/75 text-sm leading-[1.6]">
-                      Annual revenue lift at Twist Palm Springs
+                      Annual revenue lift at a boutique Palm Springs property
                     </div>
                   </div>
                   <div className="bg-card p-6">
                     <div className="font-display text-4xl text-brass leading-none">$750K</div>
                     <div className="mt-3 text-cream/75 text-sm leading-[1.6]">
-                      Annual revenue on six keys at Limón Palm Springs
+                      Incremental revenue on a six-key independent property
                     </div>
                   </div>
                 </div>
                 <p className="mt-5 text-[0.7rem] tracking-[0.2em] uppercase text-cream/55">
-                  10+ years · 50+ hospitality properties · Board Member, Small Hotel Association
-                  of Palm Springs
+                  10+ years · 50+ hospitality properties · 20% average revenue lift
                 </p>
 
                 {/* Mobile CTA: jumps to the form directly below */}
@@ -240,7 +247,7 @@ export default function BoutiqueHotelConsultingLP() {
         <PricingSection numeral="V" />
 
         {/* VI · THE OPERATOR */}
-        <OperatorSection numeral="VI" />
+        <OperatorSection numeral="VI" unbranded />
 
         {/* VII · FAQ */}
         <section className="py-20 lg:py-28 panel-walnut grain border-y border-brass/15">
