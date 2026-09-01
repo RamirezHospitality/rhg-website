@@ -18,7 +18,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { BRAND } from "@/lib/brand";
 import { HIDDEN_FIELD_KEYS, captureAttribution, getAttribution, type Attribution } from "@/lib/attribution";
-import { fireFormStartConversion, fireFormSubmitConversion } from "@/lib/googleAds";
+import { fireFormStartConversion, fireFormSubmitConversion, initGoogleAds } from "@/lib/googleAds";
 import { BookingCalendar } from "./BookingCalendar";
 
 interface LeadFormProps {
@@ -73,6 +73,10 @@ export function LeadForm({
   // The hidden inputs below mirror the stored values; submit re-reads storage so they are never stale.
   useEffect(() => {
     setAttribution(captureAttribution());
+    // Load the Google Ads base tag now, not at conversion time — Google
+    // verifies the tag by crawling the page, and a submit must never race
+    // the script download. Conversion firing stays where it is.
+    initGoogleAds();
   }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {

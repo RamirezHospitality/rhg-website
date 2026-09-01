@@ -23,9 +23,13 @@
  *     time and confirmed. Reaching the calendar is the closest observable
  *     proxy.
  *
- * The script loads lazily and only if a conversion ID is configured, so
- * local dev and any deploy without the env vars set stay a safe no-op —
- * nothing loads, nothing is sent.
+ * The base tag loads on page mount (initGoogleAds, called from LeadForm),
+ * not at conversion time. Google Ads crawls the landing page to verify the
+ * tag is installed — a tag that only appears after a conversion fires reads
+ * as "not set up" forever, and a submit racing the script download can drop
+ * the conversion entirely. Loading is still gated on the conversion ID being
+ * configured, so local dev and any deploy without the env vars set stay a
+ * safe no-op — nothing loads, nothing is sent.
  *
  * Required Cloudflare Pages BUILD environment variables (Vite inlines
  * VITE_-prefixed vars at build time — set these in the Pages project's
@@ -81,6 +85,17 @@ function ensureGtagLoaded(): boolean {
 
   scriptLoaded = true;
   return true;
+}
+
+/**
+ * Loads gtag.js and configures the base Ads tag. Call on mount from every
+ * page that can fire a conversion, so the library is present in the DOM on
+ * first paint (Google's tag verification) and fully loaded before anyone
+ * submits (no conversion lost to the script still downloading). Safe to
+ * call repeatedly; no-op when VITE_GOOGLE_ADS_ID is unset.
+ */
+export function initGoogleAds() {
+  ensureGtagLoaded();
 }
 
 export interface LeadContact {
