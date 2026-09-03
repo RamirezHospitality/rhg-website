@@ -72,8 +72,12 @@ function ensureGtagLoaded(): boolean {
   window.dataLayer = window.dataLayer || [];
   window.gtag =
     window.gtag ||
-    function gtag(...args: unknown[]) {
-      window.dataLayer!.push(args);
+    function gtag() {
+      // gtag.js only processes queue entries that are `arguments` objects;
+      // a rest-parameter array is silently ignored, which drops every
+      // config/event command and leaves the tag invisible to Google.
+      // eslint-disable-next-line prefer-rest-params
+      window.dataLayer!.push(arguments);
     };
   window.gtag("js", new Date());
   window.gtag("config", ADS_ID);
