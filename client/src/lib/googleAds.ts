@@ -69,6 +69,13 @@ function ensureGtagLoaded(): boolean {
   if (!ADS_ID || typeof document === "undefined") return false;
   if (scriptLoaded) return true;
 
+  // index.html ships the static base snippet (script tag + config) so Google's
+  // tag checker finds it in raw HTML. If it's there, don't load or config twice.
+  if (window.gtag && document.querySelector('script[src^="https://www.googletagmanager.com/gtag/js"]')) {
+    scriptLoaded = true;
+    return true;
+  }
+
   window.dataLayer = window.dataLayer || [];
   window.gtag =
     window.gtag ||
