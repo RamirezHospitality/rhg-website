@@ -44,6 +44,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,800;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
+    <!-- Google tag (gtag.js) — static so Google's tag checker sees it in raw HTML;
+         client/src/lib/googleAds.ts detects it and will not load a second copy -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18390545621"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+
+      gtag('config', 'AW-18390545621');
+    </script>
+
     <!-- ── Base Organization + WebSite JSON-LD (GEO: AI search entity anchor) ── -->
     <script type="application/ld+json">
     {
