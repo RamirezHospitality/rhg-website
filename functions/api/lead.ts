@@ -7,9 +7,12 @@
  *   2. Write the full record to KV (durable copy, keyed by time + id).
  *   3. Email the lead to Adam through Resend, reply-to set to the visitor.
  *   4. Respond 200 if either the KV write or the email succeeded.
+ *   5. After responding, forward the lead to the client portal's admin
+ *      pipeline (PORTAL_INBOUND_URL + PORTAL_INBOUND_KEY). Best effort, never
+ *      affects the visitor; the portal de-duplicates on the lead id.
  *
- * Nothing here is secret. RESEND_API_KEY and the LEADS binding live in the
- * Cloudflare Pages project settings, not in this repo.
+ * Nothing here is secret. RESEND_API_KEY, PORTAL_INBOUND_KEY and the LEADS
+ * binding live in the Cloudflare Pages project settings, not in this repo.
  *
  * Used by: /lp/revenue-management. Reusable by /audit and /contact later.
  */
@@ -33,6 +36,13 @@ interface RhgEnv {
   LEAD_FROM?: string;
   /** Recipient. Defaults to adam@ramirezhospitality.com. */
   LEAD_TO?: string;
+  /**
+   * Client portal pipeline. Both must be set for forwarding to happen, e.g.
+   * PORTAL_INBOUND_URL = https://rhg-portal.epidemic7074.workers.dev/api/inbound/lead
+   * PORTAL_INBOUND_KEY = the same value as the portal's INBOUND_LEAD_KEY secret.
+   */
+  PORTAL_INBOUND_URL?: string;
+  PORTAL_INBOUND_KEY?: string;
 }
 interface PagesContext {
   request: Request;
@@ -203,6 +213,36 @@ async function storeLead(env: RhgEnv, lead: LeadRecord): Promise<void> {
   });
 }
 
+/**
+ * Hand the lead to the portal's admin pipeline. Skips silently when the portal
+ * is not configured; the portal treats the lead id as an idempotency key, so a
+ * retry can never create a second card. Attribution rides along for offline
+ * conversion imports; the visitor's IP/user agent do not.
+ */
+async function forwardToPortal(env: RhgEnv, lead: LeadRecord): Promise<void> {
+  if (!env.PORTAL_INBOUND_URL || !env.PORTAL_INBOUND_KEY) return;
+  const res = await fetch(env.PORTAL_INBOUND_URL, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      "x-rhg-inbound-key": env.PORTAL_INBOUND_KEY,
+    },
+    body: JSON.stringify({
+      id: lead.id,
+      receivedAt: lead.receivedAt,
+      name: lead.name,
+      email: lead.email,
+      property: lead.property,
+      keys: lead.keys,
+      phone: lead.phone,
+      source: lead.source,
+      attribution: lead.attribution,
+    }),
+    signal: AbortSignal.timeout(8000),
+  });
+  if (!res.ok) throw new Error(`portal ${res.status}`);
+}
+
 export const onRequestPost = async (context: PagesContext): Promise<Response> => {
   const { request, env } = context;
 
@@ -269,6 +309,11 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
 
   if (!storedOk) console.error("lead: KV write failed", (stored as PromiseRejectedResult).reason);
   if (!emailedOk) console.error("lead: email failed", (emailed as PromiseRejectedResult).reason);
+
+  // Portal pipeline: after the response, off the visitor's critical path.
+  context.waitUntil(
+    forwardToPortal(env, lead).catch((err) => console.error("lead: portal forward failed", err)),
+  );
 
   if (!storedOk && !emailedOk) {
     return json(
