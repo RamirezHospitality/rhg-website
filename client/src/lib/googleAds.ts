@@ -23,7 +23,8 @@
  *     time and confirmed. Reaching the calendar is the closest observable
  *     proxy.
  *
- * The base tag loads on page mount (initGoogleAds, called from LeadForm),
+ * The base tag is static in client/index.html since 2026-09; initGoogleAds is
+ * kept for any future caller (the site-hosted LeadForm was removed 2026-09-10),
  * not at conversion time. Google Ads crawls the landing page to verify the
  * tag is installed — a tag that only appears after a conversion fires reads
  * as "not set up" forever, and a submit racing the script download can drop

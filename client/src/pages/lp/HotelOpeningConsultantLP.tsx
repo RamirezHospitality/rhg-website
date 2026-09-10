@@ -19,9 +19,8 @@
  *     the shared AuditSection component.
  *   - The FAQ and final CTA are reframed around a property that hasn't
  *     opened yet, not a diagnosis of one that's already running.
- * Everything else — LeadForm, the 17 fields (5 visible + honeypot + 11
- * hidden attribution fields), conversion tracking, event labels, and the
- * /api/lead endpoint — is identical to the other three /lp pages.
+ * Everything else — the CrmCaptureForm slot (opening calendar instead of
+ * the audit calendar) and event labels — is identical to the other /lp pages.
  * OperatorSection stays fully identical (locked, shared sitewide): who does
  * the work doesn't change because the ad group does. PricingSection keeps
  * its tiers/arithmetic table identical too, but its intro line and last
@@ -44,7 +43,7 @@ import { useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { Eyebrow } from "@/components/Eyebrow";
-import { LeadForm } from "@/components/lp/LeadForm";
+import { CrmCaptureForm } from "@/components/lp/CrmCaptureForm";
 import { BookBar } from "@/components/lp/BookBar";
 import { PricingSection } from "@/components/pricing/PricingSection";
 import { OperatorSection } from "@/components/OperatorSection";
@@ -182,14 +181,11 @@ export default function HotelOpeningConsultantLP() {
               </div>
 
               <div className="lg:col-span-5">
-                <LeadForm
-                  source={SOURCE}
+                <CrmCaptureForm
                   heading="Book an Opening Strategy Call"
-                  subheading="Free, 20 minutes. Tell me about the property and where it stands, then pick a time. If it's not a fit, I'll say so."
-                  buttonLabel="Book an Opening Strategy Call"
+                  subheading="Free, 20 minutes. Pick a time and we will talk through the property and where it stands. If it's not a fit, I'll say so."
                   bookingUrl={BRAND.openingBookingUrl}
-                  bookingHeading="Opening Strategy Call · 20-minute fit call"
-                  bookingIntroSuffix="and what it needs before opening day."
+                  title="Book an Opening Strategy Call — pick a time"
                 />
               </div>
             </div>

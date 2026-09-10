@@ -11,7 +11,7 @@
  * that question actually gets answered — a standalone page for valuation
  * alone wasn't warranted at that search volume.
  *
- * Reuses the same LeadForm -> BookingCalendar flow, AuditSection,
+ * Reuses the same CrmCaptureForm -> BookingCalendar flow, AuditSection,
  * PricingSection, and OperatorSection as /audit and the homepage, so the
  * offer reads identically everywhere it appears on the site.
  */
@@ -20,7 +20,7 @@ import { ArrowRight, TrendingUp, Building2, Users } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
-import { LeadForm } from "@/components/lp/LeadForm";
+import { CrmCaptureForm } from "@/components/lp/CrmCaptureForm";
 import { AuditSection } from "@/components/audit/AuditSection";
 import { PricingSection } from "@/components/pricing/PricingSection";
 import { OperatorSection } from "@/components/OperatorSection";
@@ -154,10 +154,9 @@ export default function FeasibilityStudy() {
               </p>
             </div>
             <div className="lg:col-span-5">
-              <LeadForm
-                source="feasibility-study"
+              <CrmCaptureForm
                 heading="Start With The Modern Hotel Audit"
-                subheading="Feasibility work starts here, free, no strings. Tell me about the property or the deal, then pick a time for a 20-minute fit call to scope what level of study it actually needs."
+                subheading="Feasibility work starts here, free, no strings. Pick a time for a 20-minute fit call to scope what level of study the property or the deal actually needs."
               />
             </div>
           </div>

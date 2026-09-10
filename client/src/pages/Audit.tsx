@@ -1,6 +1,6 @@
 /*
  * Ramirez Hospitality Group — The Reserve · THE MODERN HOTEL AUDIT
- * Every client starts here. Reuses the same LeadForm -> BookingCalendar
+ * Every client starts here. Reuses the same CrmCaptureForm -> BookingCalendar
  * flow as the ad landing page (components/lp) and the same shared
  * AuditSection / OperatorSection used on the homepage, so the audit is
  * described identically wherever it appears on the site.
@@ -10,7 +10,7 @@ import { ArrowRight } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
-import { LeadForm } from "@/components/lp/LeadForm";
+import { CrmCaptureForm } from "@/components/lp/CrmCaptureForm";
 import { AuditSection } from "@/components/audit/AuditSection";
 import { OperatorSection } from "@/components/OperatorSection";
 import { BRAND, IMAGES } from "@/lib/brand";
@@ -69,7 +69,7 @@ export default function Audit() {
               </p>
             </div>
             <div className="lg:col-span-5">
-              <LeadForm source="audit-page" />
+              <CrmCaptureForm />
             </div>
           </div>
         </div>

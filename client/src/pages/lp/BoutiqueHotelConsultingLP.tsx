@@ -34,7 +34,7 @@ import { useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { Eyebrow } from "@/components/Eyebrow";
-import { LeadForm } from "@/components/lp/LeadForm";
+import { CrmCaptureForm } from "@/components/lp/CrmCaptureForm";
 import { BookBar } from "@/components/lp/BookBar";
 import { AuditSection } from "@/components/audit/AuditSection";
 import { PricingSection } from "@/components/pricing/PricingSection";
@@ -185,7 +185,7 @@ export default function BoutiqueHotelConsultingLP() {
               </div>
 
               <div className="lg:col-span-5">
-                <LeadForm source={SOURCE} />
+                <CrmCaptureForm />
               </div>
             </div>
           </div>
