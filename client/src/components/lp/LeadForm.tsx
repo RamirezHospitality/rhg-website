@@ -232,6 +232,12 @@ export function LeadForm({
             aria-invalid={!!errors.phone}
           />
           {errors.phone && <p className="mt-1 text-xs text-brass-soft">{errors.phone}</p>}
+          {/* A2P 10DLC: this form does NOT collect SMS opt-in. The chat widget
+              is the site's only SMS consent point (LeadConnector campaign
+              registration). Do not add a text-consent checkbox here. */}
+          <p className="mt-1.5 text-[0.68rem] text-cream/45 leading-[1.5]">
+            For the fit call only. We will not text this number.
+          </p>
         </div>
       </div>
 
