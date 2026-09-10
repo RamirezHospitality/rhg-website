@@ -55,6 +55,10 @@ function Router() {
       <Route path="/feasibility-study" component={FeasibilityStudy} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
+      {/* Aliases: the A2P templates and the LeadConnector opt-in form link to
+          these names. Canonical URLs stay /privacy and /terms (set in each page). */}
+      <Route path="/privacy-policy" component={Privacy} />
+      <Route path="/terms-and-conditions" component={Terms} />
       <Route path="/lp/revenue-management">
         <Suspense fallback={<RouteFallback />}>
           <RevenueManagementLP />
