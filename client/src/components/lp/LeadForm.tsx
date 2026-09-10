@@ -100,8 +100,6 @@ export function LeadForm({
       property,
       keys: String(fd.get("keys") ?? ""),
       phone: String(fd.get("phone") ?? ""),
-      // Explicit, unchecked-by-default SMS opt-in (A2P 10DLC). "1" only when ticked.
-      sms_consent: fd.get("sms_consent") === "1" ? "1" : "",
       company_website: String(fd.get("company_website") ?? ""), // honeypot, should be empty
       seconds_on_page: String(Math.round((Date.now() - mountedAt.current) / 1000)),
     };
@@ -234,6 +232,12 @@ export function LeadForm({
             aria-invalid={!!errors.phone}
           />
           {errors.phone && <p className="mt-1 text-xs text-brass-soft">{errors.phone}</p>}
+          {/* A2P 10DLC: this form does NOT collect SMS opt-in. The chat widget
+              is the site's only SMS consent point (LeadConnector campaign
+              registration). Do not add a text-consent checkbox here. */}
+          <p className="mt-1.5 text-[0.68rem] text-cream/45 leading-[1.5]">
+            For the fit call only. We will not text this number.
+          </p>
         </div>
       </div>
 
@@ -266,27 +270,6 @@ export function LeadForm({
           {errors.keys && <p className="mt-1 text-xs text-brass-soft">{errors.keys}</p>}
         </div>
       </div>
-
-      {/* SMS opt-in. Must stay unchecked by default and optional (carrier A2P
-          10DLC rules): the checkbox is the consent record, and the copy below
-          it is the disclosure carriers review. Keep both if the form changes. */}
-      <label htmlFor="lf-sms-consent" className="flex items-start gap-3 cursor-pointer">
-        <input
-          id="lf-sms-consent"
-          name="sms_consent"
-          type="checkbox"
-          value="1"
-          className="mt-[3px] h-4 w-4 shrink-0 appearance-none border border-brass/40 bg-obsidian checked:bg-brass checked:border-brass focus:outline-none focus:ring-1 focus:ring-brass/60 cursor-pointer"
-        />
-        <span className="text-xs text-cream/60 leading-[1.6]">
-          Yes, Ramirez Hospitality Group may text me at this number about my inquiry and The
-          Modern Hotel Audit. Consent is not a condition of booking. Message frequency varies.
-          Message and data rates may apply. Reply STOP to opt out, HELP for help. See our{" "}
-          <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-brass underline underline-offset-2">Privacy Policy</a>
-          {" "}and{" "}
-          <a href="/terms#sms" target="_blank" rel="noopener noreferrer" className="text-brass underline underline-offset-2">Terms</a>.
-        </span>
-      </label>
 
       {/* Hidden attribution fields, populated from the URL and persisted in storage. */}
       {HIDDEN_FIELD_KEYS.map((key) => (

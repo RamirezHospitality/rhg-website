@@ -76,11 +76,13 @@ export default function Terms() {
 
           <h2 id="sms" className={`${H2} scroll-mt-32`}>Text messaging (SMS) terms</h2>
           <p className={P}>
-            When you tick the text-message box on a form, or ask to be texted in the chat widget,
-            you consent to receive text messages from Ramirez Hospitality Group at the mobile
-            number you provided. Messages relate to your inquiry: confirming, rescheduling, or
-            following up on The Modern Hotel Audit and answering questions you have asked.
-            Consent is not a condition of any purchase or engagement.
+            Consent to receive text messages is collected only through the chat widget on this
+            Site. When you provide your mobile number there and agree to receive texts, you
+            consent to receive text messages from Ramirez Hospitality Group at that number.
+            Messages relate to your inquiry: confirming, rescheduling, or following up on The
+            Modern Hotel Audit and answering questions you have asked. Consent is not a
+            condition of any purchase or engagement. Phone numbers entered on our booking forms
+            are used for the fit call only and are not enrolled in text messaging.
           </p>
           <ul className={UL}>
             <li>Message frequency varies depending on your conversation with us.</li>

@@ -53,7 +53,7 @@ export default function Privacy() {
           <ul className={UL}>
             <li>Your name, email address, and phone number</li>
             <li>Your property name and number of keys (rooms)</li>
-            <li>Whether you ticked the optional box agreeing to receive text messages, and when</li>
+            <li>In the chat widget only: whether you agreed to receive text messages, and when</li>
             <li>Automatically, from your browser and our hosting provider: IP address, approximate country, and user-agent string</li>
           </ul>
           <p className={P}>
@@ -83,12 +83,13 @@ export default function Privacy() {
 
           <h2 className={H2}>Text messaging (SMS)</h2>
           <p className={P}>
-            If you tick the text-message box on a form, or ask to be texted in the chat widget,
-            you agree to receive text messages from Ramirez Hospitality Group at the number you
-            provided. Those messages are about your inquiry: confirming or rescheduling your
-            audit call, answering a question you asked, and following up on The Modern Hotel
-            Audit. Consent is optional and is not a condition of booking, purchasing, or working
-            with us.
+            The chat widget in the corner of this site is the only place we collect consent to
+            text you. If you provide your mobile number there and agree to receive texts, you
+            agree to receive text messages from Ramirez Hospitality Group at that number. Those
+            messages are about your inquiry: confirming or rescheduling your audit call,
+            answering a question you asked, and following up on The Modern Hotel Audit. Consent
+            is optional and is not a condition of booking, purchasing, or working with us. The
+            phone number on our booking forms is used for the fit call only; we do not text it.
           </p>
           <ul className={UL}>
             <li>Message frequency varies. Message and data rates may apply.</li>
