@@ -5,7 +5,7 @@
  * 2026-09-10; it never sent anything), and direct phone/email.
  */
 
-import { ArrowRight, Calendar, Mail, MessageSquare, Phone, MapPin } from "lucide-react";
+import { ArrowRight, Calendar, Mail, Phone, MapPin } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { LeadConnectorOptInForm } from "@/components/LeadConnectorOptInForm";
 import { Eyebrow } from "@/components/Eyebrow";
@@ -75,20 +75,11 @@ export default function Contact() {
               </div>
             </Reveal>
 
-            {/* Form */}
-            <Reveal delay={120} className="bg-card p-8 lg:p-10 flex flex-col">
-              <div className="text-brass mb-6">
-                <MessageSquare className="w-7 h-7" strokeWidth={1.4} />
-              </div>
-              <h2 className="font-display text-2xl text-cream">Send a Message</h2>
-              <p className="mt-4 text-cream/70 text-sm leading-[1.7]">
-                Drop a note. Adam reads every message himself and replies personally.
-              </p>
-              {/* LeadConnector Opt In Form: the site's one capture form. Fields,
-                  SMS consent boxes, and styling are set in LeadConnector. */}
-              <div className="mt-8">
-                <LeadConnectorOptInForm />
-              </div>
+            {/* LeadConnector Opt In Form: the whole middle section is the embed.
+                Heading, fields, SMS consent boxes, and styling are set in
+                LeadConnector, so nothing is layered above it here. */}
+            <Reveal delay={120} className="bg-card p-4 lg:p-6 flex flex-col">
+              <LeadConnectorOptInForm />
             </Reveal>
 
             {/* Direct */}
