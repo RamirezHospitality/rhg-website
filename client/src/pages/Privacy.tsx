@@ -40,7 +40,7 @@ export default function Privacy() {
           <h1 className="mt-7 font-display font-medium text-4xl md:text-5xl leading-[1.08] text-cream tracking-[-0.02em]">
             Privacy Policy
           </h1>
-          <p className="mt-6 text-cream/55 text-sm">Effective and last updated: August 28, 2026</p>
+          <p className="mt-6 text-cream/55 text-sm">Effective August 28, 2026. Last updated September 10, 2026.</p>
 
           <p className={`${P} mt-10`}>
             Ramirez Hospitality Group ("RHG," "we," "us") operates ramirezhospitality.com and
@@ -49,10 +49,11 @@ export default function Privacy() {
           </p>
 
           <h2 className={H2}>Information we collect</h2>
-          <p className={P}>When you submit a lead form (for example, to book The Modern Hotel Audit), we collect:</p>
+          <p className={P}>When you submit a lead form (for example, to book The Modern Hotel Audit) or start a conversation in the chat widget, we collect:</p>
           <ul className={UL}>
             <li>Your name, email address, and phone number</li>
             <li>Your property name and number of keys (rooms)</li>
+            <li>Whether you ticked the optional box agreeing to receive text messages, and when</li>
             <li>Automatically, from your browser and our hosting provider: IP address, approximate country, and user-agent string</li>
           </ul>
           <p className={P}>
@@ -75,10 +76,39 @@ export default function Privacy() {
           <h2 className={H2}>How we use information</h2>
           <ul className={UL}>
             <li>To respond to your inquiry and schedule a call or The Modern Hotel Audit</li>
-            <li>To send you a confirmation and any follow-up related to your request, by email</li>
+            <li>To send you a confirmation and any follow-up related to your request, by email or, only if you have agreed to it, by text message</li>
             <li>To measure which ad campaigns, keywords, and pages produce genuine inquiries, so ad spend is not wasted on channels that don't work</li>
             <li>To detect and filter automated spam submissions (a hidden honeypot field and a minimum time-on-page check — no CAPTCHA, no data shared with a third party for this purpose)</li>
           </ul>
+
+          <h2 className={H2}>Text messaging (SMS)</h2>
+          <p className={P}>
+            If you tick the text-message box on a form, or ask to be texted in the chat widget,
+            you agree to receive text messages from Ramirez Hospitality Group at the number you
+            provided. Those messages are about your inquiry: confirming or rescheduling your
+            audit call, answering a question you asked, and following up on The Modern Hotel
+            Audit. Consent is optional and is not a condition of booking, purchasing, or working
+            with us.
+          </p>
+          <ul className={UL}>
+            <li>Message frequency varies. Message and data rates may apply.</li>
+            <li>Reply <strong className="text-cream/90">STOP</strong> at any time to opt out. You will receive one final message confirming the opt-out.</li>
+            <li>Reply <strong className="text-cream/90">HELP</strong> for help, or contact us at {BRAND.email} or {BRAND.phone}.</li>
+          </ul>
+          <p className={P}>
+            <strong className="text-cream/90">
+              No mobile information will be shared with third parties or affiliates for marketing
+              or promotional purposes. All the other categories of sharing described in this
+              policy exclude text-messaging originator opt-in data and consent; this information
+              will not be shared with any third parties.
+            </strong>{" "}
+            Your phone number and opt-in record are shared only with the messaging platform that
+            delivers our texts (LeadConnector, below), and only so that it can deliver them.
+          </p>
+          <p className={P}>
+            Full program terms are in the{" "}
+            <a href="/terms#sms" className="text-brass underline underline-offset-4">Terms of Service</a>.
+          </p>
 
           <h2 className={H2}>Google Ads and Enhanced Conversions</h2>
           <p className={P}>
@@ -108,6 +138,13 @@ export default function Privacy() {
               to deliver that email.
             </li>
             <li>
+              <strong className="text-cream/90">LeadConnector</strong> powers the chat widget in
+              the corner of the site and delivers our text messages and their replies. Anything
+              you type in the widget, and your phone number and opt-in status if you have agreed
+              to texts, is processed by LeadConnector solely so we can respond to you. It is not
+              used by LeadConnector for its own marketing.
+            </li>
+            <li>
               <strong className="text-cream/90">Google Calendar</strong> appointment scheduling
               is embedded directly on the confirmation step so you can pick a time without
               leaving the page. That embed is Google's own product, governed by Google's privacy
@@ -131,6 +168,7 @@ export default function Privacy() {
           <h2 className={H2}>Your choices</h2>
           <ul className={UL}>
             <li>Email or call us (below) to request a copy of, or the deletion of, the information we hold about you.</li>
+            <li>Reply STOP to any text message to stop receiving texts. Opting out of texts does not affect your inquiry or any email follow-up.</li>
             <li>Clear your browser's local storage at any time to remove the ad-attribution values described above; doing so does not affect anything you've already submitted.</li>
             <li>Adjust your Google ad personalization settings directly with Google.</li>
           </ul>

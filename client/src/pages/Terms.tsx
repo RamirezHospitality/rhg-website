@@ -26,7 +26,7 @@ export default function Terms() {
           <h1 className="mt-7 font-display font-medium text-4xl md:text-5xl leading-[1.08] text-cream tracking-[-0.02em]">
             Terms of Service
           </h1>
-          <p className="mt-6 text-cream/55 text-sm">Effective and last updated: August 28, 2026</p>
+          <p className="mt-6 text-cream/55 text-sm">Effective August 28, 2026. Last updated September 10, 2026.</p>
 
           <p className={`${P} mt-10`}>
             These terms govern your use of ramirezhospitality.com (the "Site"), operated by
@@ -74,10 +74,29 @@ export default function Terms() {
             first — {BRAND.email}.
           </p>
 
+          <h2 id="sms" className={`${H2} scroll-mt-32`}>Text messaging (SMS) terms</h2>
+          <p className={P}>
+            When you tick the text-message box on a form, or ask to be texted in the chat widget,
+            you consent to receive text messages from Ramirez Hospitality Group at the mobile
+            number you provided. Messages relate to your inquiry: confirming, rescheduling, or
+            following up on The Modern Hotel Audit and answering questions you have asked.
+            Consent is not a condition of any purchase or engagement.
+          </p>
+          <ul className={UL}>
+            <li>Message frequency varies depending on your conversation with us.</li>
+            <li>Message and data rates may apply. Check with your carrier for details.</li>
+            <li>To opt out at any time, reply <strong className="text-cream/90">STOP</strong>. You will receive a single confirmation message and no further texts unless you opt in again.</li>
+            <li>For help, reply <strong className="text-cream/90">HELP</strong>, email {BRAND.email}, or call {BRAND.phone}.</li>
+            <li>Wireless carriers are not liable for delayed or undelivered messages.</li>
+            <li>How we handle your phone number and opt-in record is described in the{" "}
+              <a href="/privacy" className="text-brass underline underline-offset-4">Privacy Policy</a>. Mobile information is never shared with third parties or affiliates for marketing or promotional purposes.</li>
+          </ul>
+
           <h2 className={H2}>Third-party links and services</h2>
           <p className={P}>
             The Site links to and embeds services we don't control, including Google Calendar
-            for scheduling. Your use of those services is governed by their own terms and
+            for scheduling and LeadConnector for the chat widget and text messaging. Your use of
+            those services is governed by their own terms and
             privacy policies, not ours. See our{" "}
             <a href="/privacy" className="text-brass underline underline-offset-4">Privacy Policy</a>{" "}
             for how information moves between this Site and those services.

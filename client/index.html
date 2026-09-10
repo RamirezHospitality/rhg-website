@@ -134,6 +134,12 @@
       </div>
     </noscript>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- LeadConnector chat widget (site-wide). Static in the raw HTML so the
+         A2P 10DLC / LeadConnector website check finds it without running JS.
+         Widget copy, opt-in wording, and the SMS follow-up are configured in
+         the LeadConnector dashboard, not here. -->
+    <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6aa3169f4d7ca2bf0f3b8144" data-source="WEB_USER"></script>
   </body>
 
 </html>

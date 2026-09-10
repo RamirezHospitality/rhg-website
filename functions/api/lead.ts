@@ -85,6 +85,12 @@ interface LeadRecord {
   property: string;
   keys: number;
   phone: string;
+  /**
+   * Explicit SMS opt-in (A2P 10DLC). True only when the visitor ticked the
+   * unchecked-by-default box on the form. Kept with the record, together with
+   * receivedAt, ip and userAgent, as the proof of consent carriers can ask for.
+   */
+  smsConsent: boolean;
   attribution: Partial<Record<AttributionKey, string>>;
   meta: {
     ip?: string;
@@ -130,6 +136,7 @@ function buildEmail(lead: LeadRecord): { subject: string; text: string; html: st
     ["Name", lead.name],
     ["Email", lead.email],
     ["Phone", lead.phone || "(not provided)"],
+    ["SMS opt-in", lead.smsConsent ? "Yes (ticked the box)" : "No, email only"],
     ["Property", lead.property],
     ["Keys", String(lead.keys)],
     ["Source", lead.source],
@@ -235,6 +242,7 @@ async function forwardToPortal(env: RhgEnv, lead: LeadRecord): Promise<void> {
       property: lead.property,
       keys: lead.keys,
       phone: lead.phone,
+      smsConsent: lead.smsConsent,
       source: lead.source,
       attribution: lead.attribution,
     }),
@@ -268,6 +276,7 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
   const email = str(body.email, 254).toLowerCase();
   const property = str(body.property, 160);
   const phone = str(body.phone, 40);
+  const smsConsent = str(body.sms_consent, 4) === "1";
   const keysRaw = str(body.keys, 10).replace(/[^\d]/g, "");
   const keys = keysRaw ? Number(keysRaw) : NaN;
   const source = str(body.source, 80) || "lp/revenue-management";
@@ -295,6 +304,7 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
     property,
     keys,
     phone,
+    smsConsent,
     attribution,
     meta: {
       ip: request.headers.get("cf-connecting-ip") || undefined,
