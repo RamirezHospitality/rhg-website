@@ -1,21 +1,21 @@
 /*
  * Ramirez Hospitality Group — Privacy Policy
  *
- * Added because the site had never had one: /privacy and /terms were linked
- * from the footer since the first build, but no page or route ever backed
- * them — the wouter catch-all silently served the 404 component at both
- * URLs (with an HTTP 200, because the SPA fallback returns 200 for every
- * path). Flagged 2026-08-28 as blocking the Google Ads launch: Ads policy
- * requires a reachable privacy policy, and the Google Auth Platform OAuth
- * consent screen points at this exact URL.
+ * Originally added 2026-08-28 because /privacy was linked from the footer
+ * but never existed (Google Ads policy and the Google Auth OAuth consent
+ * screen both require it).
  *
- * Content below is a good-faith description of what this site and its
- * lead form actually do, grounded in the real code (client/src/lib/
- * attribution.ts, client/src/lib/googleAds.ts, functions/api/lead.ts) —
- * not boilerplate copied from a template. It is NOT a substitute for
- * review by an attorney. Adam should have this reviewed before relying on
- * it for compliance purposes beyond "the URL resolves and describes real
- * practices," which is the immediate, narrow problem it fixes.
+ * Rewritten 2026-09-10 for A2P 10DLC registration through LeadConnector.
+ * Structure and required SMS clauses follow the Harvest Creatives "A2P
+ * Privacy Policy" template (Drive folder "A2p Verification"), adapted to
+ * what this site actually does: the LeadConnector chat widget is the only
+ * place SMS consent is collected, there is no site-hosted lead form any
+ * more, and the Google Ads tag is static in client/index.html.
+ *
+ * The bold "no mobile information shared" statements are the exact wording
+ * carriers look for. Do not paraphrase them.
+ *
+ * Not a substitute for review by an attorney.
  */
 
 import { PageLayout } from "@/components/PageLayout";
@@ -23,14 +23,17 @@ import { Eyebrow } from "@/components/Eyebrow";
 import { BRAND } from "@/lib/brand";
 
 const H2 = "font-display text-2xl md:text-3xl text-cream mt-14 mb-5 leading-snug";
+const H3 = "text-[0.7rem] tracking-[0.28em] uppercase text-brass mt-8 mb-3";
 const P = "text-cream/75 text-base leading-[1.8] mb-4";
 const UL = "list-disc pl-6 space-y-2 text-cream/75 text-base leading-[1.7] mb-4";
+const STRONG = "text-cream/90";
+const LINK = "text-brass underline underline-offset-4";
 
 export default function Privacy() {
   return (
     <PageLayout
       title="Privacy Policy | Ramirez Hospitality Group"
-      description="How Ramirez Hospitality Group collects, uses, and protects information from visitors and hotel owners who submit an inquiry or book The Modern Hotel Audit."
+      description="How Ramirez Hospitality Group collects, uses, and protects information from visitors, hotel owners who book The Modern Hotel Audit, and anyone who opts in to text messages."
       canonical="/privacy"
       breadcrumbs={[{ name: "Privacy Policy", href: "/privacy" }]}
     >
@@ -43,165 +46,239 @@ export default function Privacy() {
           <p className="mt-6 text-cream/55 text-sm">Effective August 28, 2026. Last updated September 10, 2026.</p>
 
           <p className={`${P} mt-10`}>
-            Ramirez Hospitality Group ("RHG," "we," "us") operates ramirezhospitality.com and
-            related booking pages. This policy explains what information we collect when you
-            visit the site or submit an inquiry, how we use it, and the choices you have.
+            Ramirez Hospitality Group ("RHG," "we," "us," or "our") operates ramirezhospitality.com
+            (the "Site") and related booking pages. This policy explains what information we
+            collect when you visit the Site, start a conversation in our chat widget, book The
+            Modern Hotel Audit, or opt in to text messages, how we use it, and the choices you
+            have.
           </p>
 
-          <h2 className={H2}>Information we collect</h2>
-          <p className={P}>When you submit a lead form (for example, to book The Modern Hotel Audit) or start a conversation in the chat widget, we collect:</p>
+          <div className="border border-brass/40 bg-card p-6 sm:p-8 mt-8 mb-4">
+            <p className={H3}>Important notice regarding text messaging data</p>
+            <p className="text-cream/90 text-base leading-[1.8]">
+              Ramirez Hospitality Group does not share customer opt-in information, including
+              phone numbers and consent records, with any affiliates or third parties for
+              marketing, promotional, or any other purposes unrelated to providing our direct
+              services. All text messaging originator opt-in data is kept strictly confidential.
+            </p>
+          </div>
+
+          <h2 className={H2}>1. Information we collect</h2>
+          <p className={H3}>Personal information</p>
           <ul className={UL}>
-            <li>Your name, email address, and phone number</li>
-            <li>Your property name and number of keys (rooms)</li>
-            <li>In the chat widget only: whether you agreed to receive text messages, and when</li>
-            <li>Automatically, from your browser and our hosting provider: IP address, approximate country, and user-agent string</li>
+            <li>Name, email address, and phone number, when you provide them in the chat widget, a booking form, or a scheduling page</li>
+            <li>Your property name, location, and number of keys (rooms), and anything else you tell us about the hotel or the deal</li>
+            <li>Opt-in records and timestamps for every communication channel you agree to (SMS, email)</li>
+            <li>Payment information, only if you later engage us for paid work, and only through the invoicing or payment provider we use for that engagement, never through the Site</li>
           </ul>
+          <p className={H3}>Non-personal information</p>
+          <ul className={UL}>
+            <li>IP address, approximate country, browser type, and device information, collected automatically by our hosting provider</li>
+            <li>
+              Advertising attribution values when you arrive from a paid ad or a tagged link:
+              Google Ads click identifiers (gclid, gbraid, wbraid), UTM parameters, the page you
+              landed on, and the referring page. These are held in your browser's local storage
+              for up to 90 days and are only associated with you if you contact us.
+            </li>
+          </ul>
+          <p className={H3}>Customer communication</p>
+          <ul className={UL}>
+            <li>Records of inquiries, chat conversations, and service requests</li>
+            <li>Appointment details and scheduling preferences</li>
+            <li>Audit findings, engagement history, and feedback</li>
+          </ul>
+
+          <h2 className={H2}>2. How we use your information</h2>
+          <ul className={UL}>
+            <li>To respond to your inquiry and schedule The Modern Hotel Audit or a strategy call</li>
+            <li>To send confirmations, reminders, follow-ups, and customer support related to what you asked for, by email or, only if you opted in, by text message</li>
+            <li>To deliver the audit and any consulting engagement you agree to</li>
+            <li>To measure which ad campaigns, keywords, and pages produce genuine inquiries so ad spend is not wasted</li>
+            <li>To maintain records of your communication preferences and consent</li>
+            <li>To keep the Site secure and to detect and filter automated spam</li>
+          </ul>
+
+          <h2 id="sms" className={`${H2} scroll-mt-32`}>3. SMS messaging and compliance</h2>
           <p className={P}>
-            We also capture standard advertising attribution values when you arrive from a paid
-            ad or a link with tracking parameters: Google Ads click identifiers (gclid, gbraid,
-            wbraid), UTM parameters (source, medium, campaign, term, content), the page you
-            landed on, and the referring page. These are stored in your browser's local storage
-            for up to 90 days — not in a tracking cookie, and not shared with anyone until you
-            submit a form, at which point they travel with your submission so we know which ad
-            or channel produced the inquiry. If you never submit a form, this information never
-            leaves your browser.
-          </p>
-          <p className={P}>
-            We do not use tracking cookies for advertising or analytics on this site. The only
-            data we persist client-side is the attribution record described above, and it is
-            used solely to attribute a form submission to the marketing channel that produced
-            it.
+            <strong className={STRONG}>Where consent is collected.</strong> The chat widget on
+            this Site is the only place we collect consent to text you. When you provide your
+            mobile number there and explicitly agree to receive text messages, you agree to
+            receive texts from Ramirez Hospitality Group related to the services you asked about:
+            appointment confirmations and reminders for The Modern Hotel Audit, follow-up on your
+            inquiry, and customer support. You may also opt in verbally during a consultation
+            call. Consent is never a condition of booking, purchasing, or working with us.
           </p>
 
-          <h2 className={H2}>How we use information</h2>
+          <p className={H3}>Opt-in and consent</p>
           <ul className={UL}>
-            <li>To respond to your inquiry and schedule a call or The Modern Hotel Audit</li>
-            <li>To send you a confirmation and any follow-up related to your request, by email or, only if you have agreed to it, by text message</li>
-            <li>To measure which ad campaigns, keywords, and pages produce genuine inquiries, so ad spend is not wasted on channels that don't work</li>
-            <li>To detect and filter automated spam submissions (a hidden honeypot field and a minimum time-on-page check — no CAPTCHA, no data shared with a third party for this purpose)</li>
+            <li>You will only receive text messages if you have explicitly opted in</li>
+            <li>We maintain timestamped records of every opt-in action</li>
+            <li>We comply with the Telephone Consumer Protection Act (TCPA), CTIA messaging guidelines, and all applicable laws</li>
           </ul>
 
-          <h2 className={H2}>Text messaging (SMS)</h2>
-          <p className={P}>
-            The chat widget in the corner of this site is the only place we collect consent to
-            text you. If you provide your mobile number there and agree to receive texts, you
-            agree to receive text messages from Ramirez Hospitality Group at that number. Those
-            messages are about your inquiry: confirming or rescheduling your audit call,
-            answering a question you asked, and following up on The Modern Hotel Audit. Consent
-            is optional and is not a condition of booking, purchasing, or working with us. The
-            phone number on our booking forms is used for the fit call only; we do not text it.
-          </p>
+          <p className={H3}>Opt-out instructions</p>
           <ul className={UL}>
-            <li>Message frequency varies. Message and data rates may apply.</li>
-            <li>Reply <strong className="text-cream/90">STOP</strong> at any time to opt out. You will receive one final message confirming the opt-out.</li>
-            <li>Reply <strong className="text-cream/90">HELP</strong> for help, or contact us at {BRAND.email} or {BRAND.phone}.</li>
+            <li>You can cancel text messages at any time by replying <strong className={STRONG}>STOP</strong></li>
+            <li>You will receive one final confirmation message, and no further messages will be sent unless you opt in again</li>
+            <li>All opt-out requests are processed immediately</li>
           </ul>
+
+          <p className={H3}>Message frequency and content</p>
+          <ul className={UL}>
+            <li>Message frequency varies based on your interactions with us</li>
+            <li>Messages relate directly to the services you have requested</li>
+            <li>We do not send promotional content without your specific, separate consent to receive it</li>
+          </ul>
+
+          <p className={H3}>Help and support</p>
+          <ul className={UL}>
+            <li>Reply <strong className={STRONG}>HELP</strong> for assistance, or contact us at {BRAND.email} or {BRAND.phone}</li>
+            <li>Support is available during regular business hours, {BRAND.hours}</li>
+          </ul>
+
+          <p className={H3}>Carrier information</p>
+          <ul className={UL}>
+            <li>Standard message and data rates may apply</li>
+            <li>Carriers are not liable for delayed or undelivered messages</li>
+            <li>Supported carriers include AT&amp;T, Verizon, T-Mobile, and most regional U.S. carriers</li>
+          </ul>
+
+          <p className={H3}>SMS data protection statement</p>
           <p className={P}>
-            <strong className="text-cream/90">
+            <strong className={STRONG}>
               No mobile information will be shared with third parties or affiliates for marketing
-              or promotional purposes. All the other categories of sharing described in this
-              policy exclude text-messaging originator opt-in data and consent; this information
-              will not be shared with any third parties.
-            </strong>{" "}
-            Your phone number and opt-in record are shared only with the messaging platform that
-            delivers our texts (LeadConnector, below), and only so that it can deliver them.
+              or promotional purposes. Information sharing with subcontractors in support
+              services, such as customer service, is permitted. All other use case categories
+              exclude text messaging originator opt-in data and consent; this information will
+              not be shared with any third parties.
+            </strong>
           </p>
           <p className={P}>
-            Full program terms are in the{" "}
-            <a href="/terms#sms" className="text-brass underline underline-offset-4">Terms of Service</a>.
+            We implement strict data protection measures to safeguard your SMS opt-in
+            information and consent records. Full program terms are in the{" "}
+            <a href="/terms#sms" className={LINK}>Terms of Service</a>.
           </p>
 
-          <h2 className={H2}>Google Ads and Enhanced Conversions</h2>
-          <p className={P}>
-            When a Google Ads campaign is active, this site loads Google's tag (gtag.js) after
-            you interact with the lead form — not on page load. When you submit the form, we
-            report a conversion to Google Ads and, where you've provided an email or phone
-            number, pass those values to Google using Enhanced Conversions for Leads. Google's
-            own tag hashes this information in your browser before it is sent; we never transmit
-            it in plain text ourselves for this purpose. Google's use of this information is
-            governed by Google's own privacy policy. You can review or adjust your ad
-            personalization settings directly with Google at{" "}
-            <a href="https://myadcenter.google.com" target="_blank" rel="noopener noreferrer" className="text-brass underline underline-offset-4">
-              myadcenter.google.com
-            </a>.
-          </p>
-
-          <h2 className={H2}>Other services we use</h2>
+          <h2 className={H2}>4. Information sharing and disclosure</h2>
+          <p className={P}>We do not sell, rent, or trade personal information. We may share information with:</p>
+          <p className={H3}>Service providers</p>
           <ul className={UL}>
             <li>
-              <strong className="text-cream/90">Cloudflare</strong> hosts this site and stores
-              submitted lead records in a Cloudflare KV database, so an inquiry is never lost
-              even if a downstream step fails.
+              <strong className={STRONG}>LeadConnector</strong>, which powers the chat widget,
+              our booking and contact forms, and our CRM, and which delivers our text messages
+              and emails and receives your replies. It processes your information solely so we
+              can respond to you and is contractually bound to keep it confidential.
             </li>
             <li>
-              <strong className="text-cream/90">Resend</strong> delivers the email notification
-              generated when you submit a form. Your submission is sent to Resend's API solely
-              to deliver that email.
+              <strong className={STRONG}>Cloudflare</strong>, which hosts the Site.
             </li>
             <li>
-              <strong className="text-cream/90">LeadConnector</strong> powers the chat widget in
-              the corner of the site and delivers our text messages and their replies. Anything
-              you type in the widget, and your phone number and opt-in status if you have agreed
-              to texts, is processed by LeadConnector solely so we can respond to you. It is not
-              used by LeadConnector for its own marketing.
+              <strong className={STRONG}>Google Calendar</strong> appointment scheduling, which
+              is embedded on our booking pages so you can pick a time. That embed is Google's own
+              product, governed by Google's privacy policy.
             </li>
             <li>
-              <strong className="text-cream/90">Google Calendar</strong> appointment scheduling
-              is embedded directly on the confirmation step so you can pick a time without
-              leaving the page. That embed is Google's own product, governed by Google's privacy
-              policy, and any information you enter there (your chosen time, and whatever Google
-              itself collects) is between you and Google.
+              <strong className={STRONG}>Google Ads</strong>. Google's tag loads on this Site so
+              we can measure which campaigns produce genuine inquiries. Where we report a
+              conversion with your email or phone number, Google's tag hashes it in your browser
+              before it is sent. You can adjust your ad settings at{" "}
+              <a href="https://myadcenter.google.com" target="_blank" rel="noopener noreferrer" className={LINK}>myadcenter.google.com</a>.
             </li>
+            <li>SMS aggregators and carriers, solely to deliver messages you have consented to receive</li>
           </ul>
-          <p className={P}>
-            We do not sell your information, and we do not share it with anyone outside the
-            services listed above except as required by law.
-          </p>
-
-          <h2 className={H2}>Data retention</h2>
-          <p className={P}>
-            We keep submitted lead records for as long as reasonably necessary to respond to
-            your inquiry and to maintain our own business records, including for ad-campaign
-            performance reporting. You can ask us to delete your information at any time — see
-            Contact below.
-          </p>
-
-          <h2 className={H2}>Your choices</h2>
+          <p className={H3}>Legal compliance</p>
           <ul className={UL}>
-            <li>Email or call us (below) to request a copy of, or the deletion of, the information we hold about you.</li>
-            <li>Reply STOP to any text message to stop receiving texts. Opting out of texts does not affect your inquiry or any email follow-up.</li>
-            <li>Clear your browser's local storage at any time to remove the ad-attribution values described above; doing so does not affect anything you've already submitted.</li>
-            <li>Adjust your Google ad personalization settings directly with Google.</li>
+            <li>If required by law, legal process, or to protect our rights</li>
+            <li>In response to valid law enforcement requests or court orders</li>
+          </ul>
+          <p className={H3}>Business transfers</p>
+          <ul className={UL}>
+            <li>In case of a merger, acquisition, or sale of assets, your data remains protected under the terms of this policy</li>
           </ul>
           <p className={P}>
-            If you are located somewhere with specific statutory privacy rights (for example,
-            California or the EU/UK), we will honor a request made in good faith to the extent
-            those rights apply, even though this policy is not written as a jurisdiction-by-
-            jurisdiction legal notice.
+            <strong className={STRONG}>
+              All of the above categories exclude text messaging originator opt-in data and
+              consent; this information will not be shared with any third parties, excluding
+              the aggregators and providers of the text message service.
+            </strong>
+          </p>
+
+          <h2 className={H2}>5. Data security</h2>
+          <p className={P}>We implement and maintain reasonable security measures to protect your personal information:</p>
+          <ul className={UL}>
+            <li>Encryption of data in transit (the Site is served only over HTTPS) and at rest with our providers</li>
+            <li>Access controls and authentication on every system that holds client information</li>
+            <li>Confidential client files are kept in access-logged storage, never in analytics, URLs, or public hosting</li>
+            <li>Breach notification in accordance with applicable law</li>
+          </ul>
+          <p className={P}>
+            No method of transmission over the Internet or electronic storage is completely
+            secure. We use commercially acceptable means to protect your information but cannot
+            guarantee absolute security.
+          </p>
+
+          <h2 className={H2}>6. Cookies and tracking technologies</h2>
+          <p className={P}>
+            We do not set tracking cookies of our own. The only data the Site keeps in your
+            browser is the advertising attribution record described in Section 1, held in local
+            storage, and it is used solely to attribute an inquiry to the channel that produced
+            it. Google's tag and the LeadConnector chat widget may set their own cookies to
+            function, governed by their own policies. You can clear local storage and control
+            cookies through your browser settings; doing so may limit some features.
+          </p>
+
+          <h2 className={H2}>7. Your rights and choices</h2>
+          <p className={P}>You have the right to:</p>
+          <ul className={UL}>
+            <li>Access, update, or delete your personal information</li>
+            <li>Opt out of marketing emails by clicking "unsubscribe" in any email we send</li>
+            <li>Opt out of text messages by replying <strong className={STRONG}>STOP</strong>; this does not affect your inquiry or any email follow-up</li>
+            <li>Request information on how we process your data</li>
+            <li>Withdraw consent at any time for future communications</li>
+            <li>Lodge a complaint with a supervisory authority if you believe your rights have been violated</li>
+          </ul>
+          <p className={P}>
+            To exercise these rights, contact us using the information in Section 10. If you are
+            located somewhere with specific statutory privacy rights (for example, California or
+            the EU/UK), we will honor a request made in good faith to the extent those rights
+            apply.
+          </p>
+
+          <h2 className={H2}>8. Third-party links</h2>
+          <p className={P}>
+            The Site may contain links to third-party websites. We are not responsible for their
+            privacy practices and encourage you to review their policies. This policy applies
+            only to information collected by Ramirez Hospitality Group.
           </p>
 
           <h2 className={H2}>Children's privacy</h2>
           <p className={P}>
-            This site is directed at hotel owners, operators, and investors. It is not directed
-            at, and we do not knowingly collect information from, anyone under 16.
+            The Site is directed at hotel owners, operators, and investors. It is not directed
+            at, and we do not knowingly collect information from, anyone under 18.
           </p>
 
-          <h2 className={H2}>Changes to this policy</h2>
+          <h2 className={H2}>9. Changes to this policy</h2>
           <p className={P}>
-            We may update this policy as the site or our tools change. The date at the top of
-            this page reflects the most recent update.
+            We may update this policy as the Site or our tools change. The latest version will
+            always be available on this page with its effective date. For significant changes we
+            will notify you by email or by a notice on the Site.
           </p>
 
-          <h2 className={H2}>Contact</h2>
+          <h2 className={H2}>10. Contact us</h2>
           <p className={P}>
             Questions about this policy, or a request to access or delete your information:
             <br />
-            <a href={BRAND.emailHref} className="text-brass underline underline-offset-4">{BRAND.email}</a>
-            {" · "}
-            <a href={BRAND.phoneHref} className="text-brass underline underline-offset-4">{BRAND.phone}</a>
+            {BRAND.name}
+            <br />
+            Phone: {BRAND.phone}
+            <br />
+            Email: <a href={BRAND.emailHref} className={LINK}>{BRAND.email}</a>
+            <br />
+            Website: ramirezhospitality.com
             <br />
             {BRAND.address}
           </p>
+          <p className={P}>By using our website and services, you consent to this Privacy Policy.</p>
         </div>
       </section>
     </PageLayout>
