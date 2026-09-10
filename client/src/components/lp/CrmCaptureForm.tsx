@@ -1,45 +1,47 @@
 /*
- * Ramirez Hospitality Group — CRM capture form slot
+ * Ramirez Hospitality Group — CRM capture form (LeadConnector "Opt In Form")
  *
- * Replaces the old site-hosted LeadForm (removed 2026-09-10). LeadConnector's
- * A2P 10DLC registration requires that no site-hosted form collecting phone
- * numbers exists on any page where the LeadConnector chat widget is embedded,
- * and the widget is embedded site-wide. The capture form therefore has to be
- * the CRM's own embed, not ours.
+ * Replaces the old site-hosted LeadForm (removed 2026-09-10). For A2P 10DLC
+ * registration the capture form has to be the CRM's own embed so the SMS
+ * consent checkboxes and their timestamps live in LeadConnector, not in a
+ * form we host. The two unchecked consent boxes (transactional, marketing),
+ * the Privacy / Terms links, and the button label are all configured in
+ * LeadConnector's form builder, not here.
  *
- * Wiring the CRM form: paste the iframe src from LeadConnector
- * (Sites → Forms → Integrate) into CRM_FORM_URL below. If the embed snippet
- * also ships a script tag (form_embed.js), add it to client/index.html next
- * to the chat widget loader so it is present in the raw HTML.
- *
- * Until CRM_FORM_URL is set, the slot renders the Google Calendar booking
- * embed directly, so every "Book The Modern Hotel Audit" CTA still books a
- * calendar slot and nothing on the page collects a phone number.
+ * The iframe attributes mirror LeadConnector's embed snippet exactly; its
+ * helper script (https://link.msgsndr.com/js/form_embed.js) is loaded once
+ * in client/index.html and resizes the iframe from postMessage events, so a
+ * form mounted after client-side navigation still sizes correctly. The
+ * explicit height matches the snippet's data-height so the card never
+ * collapses before the script runs.
  *
  * Keeps id="lead-form" so the existing #lead-form anchor CTAs on every page
- * continue to scroll here.
+ * continue to scroll here. The Google Calendar embed remains as a fallback
+ * only if CRM_FORM_ID is ever cleared.
  */
 
 import { BRAND } from "@/lib/brand";
 import { BookingCalendar } from "./BookingCalendar";
 
-/** LeadConnector form iframe src. Leave null until Adam supplies the embed. */
-const CRM_FORM_URL: string | null = null;
+/** LeadConnector form id from the embed snippet (Sites → Forms → Integrate). */
+const CRM_FORM_ID: string | null = "Skmmsxecczs1LoY79WxK";
+const CRM_FORM_NAME = "Opt In Form";
+const CRM_FORM_HEIGHT = 1148;
 
 interface CrmCaptureFormProps {
   className?: string;
   heading?: string;
   subheading?: string;
-  /** Calendar shown while CRM_FORM_URL is unset. Openings pages pass BRAND.openingBookingUrl. */
+  /** Calendar shown only when CRM_FORM_ID is unset. Openings pages pass BRAND.openingBookingUrl. */
   bookingUrl?: string;
-  /** Accessible title for whichever iframe renders. */
+  /** Accessible title for the calendar fallback iframe. */
   title?: string;
 }
 
 export function CrmCaptureForm({
   className = "",
   heading = "Book The Modern Hotel Audit",
-  subheading = "Free, scored, sized in dollars. Pick a time for a 20-minute fit call. Every revenue management client starts here.",
+  subheading = "Free, scored, sized in dollars. Tell me about the hotel and I will reach out to set up a 20-minute fit call. Every revenue management client starts here.",
   bookingUrl = BRAND.auditBookingUrl,
   title = "Book The Modern Hotel Audit — pick a time",
 }: CrmCaptureFormProps) {
@@ -53,20 +55,32 @@ export function CrmCaptureForm({
         <p className="mt-3 text-cream/70 text-sm leading-[1.7]">{subheading}</p>
       </div>
 
-      {CRM_FORM_URL ? (
+      {CRM_FORM_ID ? (
         <iframe
-          src={CRM_FORM_URL}
-          title={title}
-          className="w-full border-0 block"
-          style={{ minHeight: 560 }}
-          loading="lazy"
+          src={`https://api.leadconnectorhq.com/widget/form/${CRM_FORM_ID}`}
+          style={{ width: "100%", height: CRM_FORM_HEIGHT, border: "none", borderRadius: 4 }}
+          id={`inline-${CRM_FORM_ID}`}
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name={CRM_FORM_NAME}
+          data-height={String(CRM_FORM_HEIGHT)}
+          data-layout-iframe-id={`inline-${CRM_FORM_ID}`}
+          data-form-id={CRM_FORM_ID}
+          data-cookie-consent="true"
+          data-cookie-consent-provider="auto"
+          title={CRM_FORM_NAME}
         />
       ) : (
         <BookingCalendar url={bookingUrl} title={title} />
       )}
 
       <p className="text-[0.65rem] tracking-wider text-cream/45 text-center leading-relaxed">
-        Free. No strings. Times shown in your time zone.
+        {CRM_FORM_ID ? "Free. No strings. Text consent is optional." : "Free. No strings. Times shown in your time zone."}
       </p>
     </div>
   );

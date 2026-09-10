@@ -183,7 +183,7 @@ export default function HotelOpeningConsultantLP() {
               <div className="lg:col-span-5">
                 <CrmCaptureForm
                   heading="Book an Opening Strategy Call"
-                  subheading="Free, 20 minutes. Pick a time and we will talk through the property and where it stands. If it's not a fit, I'll say so."
+                  subheading="Free, 20 minutes. Tell me about the property and where it stands, and I will reach out to set up the call. If it's not a fit, I'll say so."
                   bookingUrl={BRAND.openingBookingUrl}
                   title="Book an Opening Strategy Call — pick a time"
                 />

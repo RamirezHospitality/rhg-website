@@ -211,7 +211,7 @@ export default function HotelManagementCompanyLP() {
 
               <div className="lg:col-span-5">
                 <CrmCaptureForm
-                  subheading="For hotels in Palm Springs and the Coachella Valley. Free, scored, sized in dollars. Pick a time for a 20-minute fit call."
+                  subheading="For hotels in Palm Springs and the Coachella Valley. Free, scored, sized in dollars. Tell me about the property and I will reach out to set up a 20-minute fit call."
                 />
               </div>
             </div>

@@ -156,7 +156,7 @@ export default function FeasibilityStudy() {
             <div className="lg:col-span-5">
               <CrmCaptureForm
                 heading="Start With The Modern Hotel Audit"
-                subheading="Feasibility work starts here, free, no strings. Pick a time for a 20-minute fit call to scope what level of study the property or the deal actually needs."
+                subheading="Feasibility work starts here, free, no strings. Tell me about the property or the deal, and I will reach out to set up a 20-minute fit call to scope what level of study it actually needs."
               />
             </div>
           </div>
