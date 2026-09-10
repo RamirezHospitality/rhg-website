@@ -1,34 +1,19 @@
 /*
  * Ramirez Hospitality Group — The Reserve · CONTACT
- * Three modes of reach: the two live Google Calendar booking links, a simple
- * message form, and direct phone/email.
+ * Three modes of reach: the two live Google Calendar booking links, the
+ * LeadConnector Opt In Form (replaced the placeholder message form
+ * 2026-09-10; it never sent anything), and direct phone/email.
  */
 
-import { useState } from "react";
 import { ArrowRight, Calendar, Mail, MessageSquare, Phone, MapPin } from "lucide-react";
-import { toast } from "sonner";
 import { PageLayout } from "@/components/PageLayout";
+import { LeadConnectorOptInForm } from "@/components/LeadConnectorOptInForm";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
 import { BRAND } from "@/lib/brand";
 import { ORGANIZATION_SCHEMA } from "@/components/SEO";
 
 export default function Contact() {
-  const [submitting, setSubmitting] = useState(false);
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      toast.success("Thanks — Adam reads every message himself.", {
-        description:
-          "(Form submission is a placeholder. We'll wire to your CRM / lead-gen webhook on launch.)",
-      });
-      (e.target as HTMLFormElement).reset();
-    }, 600);
-  }
-
   return (
     <PageLayout
       title="Contact Adam Ramirez — Hotel Consulting & Revenue Management | Ramirez Hospitality Group"
@@ -96,41 +81,14 @@ export default function Contact() {
                 <MessageSquare className="w-7 h-7" strokeWidth={1.4} />
               </div>
               <h2 className="font-display text-2xl text-cream">Send a Message</h2>
-              <p className="mt-4 text-cream/70 text-sm leading-[1.7] flex-1">
+              <p className="mt-4 text-cream/70 text-sm leading-[1.7]">
                 Drop a note. Adam reads every message himself and replies personally.
               </p>
-              <form onSubmit={handleSubmit} className="mt-8 space-y-4">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your name"
-                  required
-                  className="w-full bg-obsidian border border-brass/20 px-4 py-3 text-sm text-cream placeholder:text-cream/40 focus:outline-none focus:border-brass/60 transition-colors"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  required
-                  className="w-full bg-obsidian border border-brass/20 px-4 py-3 text-sm text-cream placeholder:text-cream/40 focus:outline-none focus:border-brass/60 transition-colors"
-                />
-                <input
-                  type="text"
-                  name="hotel"
-                  placeholder="Hotel name"
-                  className="w-full bg-obsidian border border-brass/20 px-4 py-3 text-sm text-cream placeholder:text-cream/40 focus:outline-none focus:border-brass/60 transition-colors"
-                />
-                <textarea
-                  name="message"
-                  placeholder="What can I help with?"
-                  rows={4}
-                  required
-                  className="w-full bg-obsidian border border-brass/20 px-4 py-3 text-sm text-cream placeholder:text-cream/40 focus:outline-none focus:border-brass/60 transition-colors resize-none"
-                />
-                <button type="submit" disabled={submitting} className="btn-brass w-full justify-center">
-                  {submitting ? "Sending…" : "Send Message"}
-                </button>
-              </form>
+              {/* LeadConnector Opt In Form: the site's one capture form. Fields,
+                  SMS consent boxes, and styling are set in LeadConnector. */}
+              <div className="mt-8">
+                <LeadConnectorOptInForm />
+              </div>
             </Reveal>
 
             {/* Direct */}
