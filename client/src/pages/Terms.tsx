@@ -56,12 +56,12 @@ export default function Terms() {
             This messaging program sends appointment confirmations, reminders, follow-up
             communications, and customer support messages to hotel owners and operators who have
             contacted Ramirez Hospitality Group and have explicitly opted in to receive SMS
-            notifications. Opt-in is collected through the chat widget on ramirezhospitality.com,
-            where you provide your mobile number and explicitly agree to receive text messages
-            before submitting. You may also opt in verbally during a consultation call. Phone
-            numbers entered on our booking pages are used for the fit call only and are not
-            enrolled in text messaging. Marketing or promotional messages are sent only with your
-            specific, separate consent. Consent is not a condition of any purchase or engagement.
+            notifications. Opt-in is collected on ramirezhospitality.com through the opt-in form
+            on our booking pages and through the chat widget, where you provide your mobile
+            number and check an unchecked box explicitly agreeing to receive text messages before
+            submitting. The form has a separate checkbox for marketing and promotional messages;
+            those are sent only if you checked it. You may also opt in verbally during a
+            consultation call. Consent is not a condition of any purchase or engagement.
           </p>
 
           <p className={H3}>2. Cancellation instructions</p>

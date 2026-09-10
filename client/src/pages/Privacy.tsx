@@ -100,13 +100,15 @@ export default function Privacy() {
 
           <h2 id="sms" className={`${H2} scroll-mt-32`}>3. SMS messaging and compliance</h2>
           <p className={P}>
-            <strong className={STRONG}>Where consent is collected.</strong> The chat widget on
-            this Site is the only place we collect consent to text you. When you provide your
-            mobile number there and explicitly agree to receive text messages, you agree to
-            receive texts from Ramirez Hospitality Group related to the services you asked about:
-            appointment confirmations and reminders for The Modern Hotel Audit, follow-up on your
-            inquiry, and customer support. You may also opt in verbally during a consultation
-            call. Consent is never a condition of booking, purchasing, or working with us.
+            <strong className={STRONG}>Where consent is collected.</strong> We collect consent
+            to text you in two places on this Site: the opt-in form on our booking pages, and the
+            chat widget. In both, you provide your mobile number and check an unchecked box that
+            explicitly agrees to receive text messages before you submit. The form offers two
+            separate boxes: one for transactional messages related to the services you asked
+            about (appointment confirmations and reminders for The Modern Hotel Audit, follow-up
+            on your inquiry, and customer support), and one for marketing and promotional
+            messages. You may also opt in verbally during a consultation call. Consent is never
+            a condition of booking, purchasing, or working with us.
           </p>
 
           <p className={H3}>Opt-in and consent</p>
@@ -127,7 +129,7 @@ export default function Privacy() {
           <ul className={UL}>
             <li>Message frequency varies based on your interactions with us</li>
             <li>Messages relate directly to the services you have requested</li>
-            <li>We do not send promotional content without your specific, separate consent to receive it</li>
+            <li>We do not send marketing or promotional content unless you checked the separate marketing consent box</li>
           </ul>
 
           <p className={H3}>Help and support</p>
