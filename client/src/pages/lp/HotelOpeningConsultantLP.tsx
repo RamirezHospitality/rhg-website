@@ -12,7 +12,7 @@
  * that yet, so this page does not offer the audit. Instead:
  *   - The CTA books openingBookingUrl, not auditBookingUrl (both live in
  *     lib/brand.ts).
- *   - The CTA reads "Book an Opening Strategy Call," not "Book The Modern
+ *   - The CTA reads "Book an Opening Consultation," not "Book The Modern
  *     Hotel Audit."
  *   - Section II is the opening-engagement scope (reusing the exact
  *     deliverables list from the Services page's Openings pillar) instead of
@@ -59,7 +59,7 @@ const OPENING_SCOPE = [
   "Hiring plan, org chart, and training program",
   "SOPs and service standards",
   "Marketing launch: PR, influencer, paid media, website",
-  "Soft opening management and 90-day stabilization",
+  "Soft opening management and the handoff to the Subscription",
 ];
 
 interface Step {
@@ -77,14 +77,14 @@ const STEPS: Step[] = [
   },
   {
     n: "02",
-    t: "The Opening Strategy Session",
-    p: "Positioning, pre-opening pro forma, tech stack, and a realistic launch timeline mapped to your project's actual stage — not a generic checklist.",
+    t: "The Modern Hotel Plan",
+    p: "$6,000, flat, priced up front: the demand, the math and the value, so the Launch is built on numbers that hold. Every Launch starts with a Plan.",
     highlight: "8 hotels opened from concept to ribbon-cutting, 4 more repositioned after renovation or ownership transitions.",
   },
   {
     n: "03",
-    t: "The opening engagement, scoped to your timeline",
-    p: "Brand identity, budget, hiring, distribution, and the soft-opening playbook, run by the operator who will be in the building when it happens. Revenue management picks up as its own subscription once you're open.",
+    t: "The Modern Hotel Launch, quoted per project",
+    p: "Brand and budget to first guest, ten phases, on site nationwide, run by the operator who will be in the building when it happens. Revenue management picks up as the Subscription once you are open.",
   },
 ];
 
@@ -107,7 +107,7 @@ const FAQ = [
   },
   {
     q: "What happens after we open?",
-    a: "Revenue management continues as its own month-to-month subscription, starting at $850/month, so daily pricing and OTA management don't lapse the day the opening engagement ends.",
+    a: "Revenue management continues as the Subscription, plans from $1,250 a month, flat and published, so daily pricing and the booking sites never lapse the day the Launch ends.",
   },
 ];
 
@@ -120,7 +120,7 @@ export default function HotelOpeningConsultantLP() {
     <div className="relative min-h-screen flex flex-col bg-background text-foreground pb-20 lg:pb-0">
       <SEO
         title="Hotel Opening Consultant for Independent and Boutique Properties | Ramirez Hospitality Group"
-        description="Hotel opening consultant for independent and boutique properties. Pre-opening strategy, rate architecture, and channel setup from an operator who has opened eight hotels and repositioned four more. Book a free Opening Strategy Call."
+        description="Hotel opening consultant for independent and boutique properties. Pre-opening strategy, rate architecture, and channel setup from an operator who has opened eight hotels and repositioned four more. Book an Opening Consultation."
         canonical="/lp/hotel-opening-consultant"
         noindex
       />
@@ -176,14 +176,14 @@ export default function HotelOpeningConsultantLP() {
 
                 {/* Mobile CTA: jumps to the form directly below */}
                 <a href="#lead-form" className="btn-brass mt-8 w-full justify-center lg:hidden">
-                  Book an Opening Strategy Call <ArrowRight className="w-4 h-4" />
+                  Book an Opening Consultation <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
 
               <div className="lg:col-span-5">
                 <CrmCaptureForm
-                  heading="Book an Opening Strategy Call"
-                  subheading="Free, 20 minutes. Tell me about the property and where it stands, and I will reach out to set up the call. If it's not a fit, I'll say so."
+                  heading="Book an Opening Consultation"
+                  subheading="Twenty minutes. Tell me about the project, the stage it is at, the budget and the date, and I will reach out to set up the consultation. If it is not a fit, I will say so."
                 />
               </div>
             </div>
@@ -287,12 +287,12 @@ export default function HotelOpeningConsultantLP() {
                 <span className="italic text-brass">before opening day.</span>
               </h2>
               <p className="mt-6 text-cream/80 leading-[1.7] max-w-xl">
-                A 20-minute fit call, then a real opening strategy session mapped to your
-                property's timeline. Free. No strings.
+                A 20-minute consultation, then The Modern Hotel Plan, then the Launch, quoted
+                per project.
               </p>
               <div className="mt-9">
                 <a href="#lead-form" className="btn-brass">
-                  Book an Opening Strategy Call <ArrowRight className="w-4 h-4" />
+                  Book an Opening Consultation <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
             </div>
@@ -309,7 +309,7 @@ export default function HotelOpeningConsultantLP() {
         </div>
       </footer>
 
-      <BookBar label="Book an Opening Strategy Call" />
+      <BookBar label="Book an Opening Consultation" />
     </div>
   );
 }

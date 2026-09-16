@@ -10,14 +10,14 @@ import { PageLayout } from "@/components/PageLayout";
 import { LeadConnectorOptInForm } from "@/components/LeadConnectorOptInForm";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
-import { BRAND } from "@/lib/brand";
+import { BRAND, OFFERS } from "@/lib/brand";
 import { ORGANIZATION_SCHEMA } from "@/components/SEO";
 
 export default function Contact() {
   return (
     <PageLayout
-      title="Contact Adam Ramirez — Hotel Consulting & Revenue Management | Ramirez Hospitality Group"
-      description="Contact Adam Ramirez directly. Phone, email, or book The Modern Hotel Audit — free and scored across seven dimensions — for independent and boutique hotel owners. Based in Palm Springs, CA. Available nationwide."
+      title="Contact Adam Ramirez: Hotel Revenue Management and Openings | Ramirez Hospitality Group"
+      description="Contact Adam Ramirez directly, or book the offer that fits: The Modern Hotel Audit (free) if you run a hotel, The Modern Hotel Plan if you are buying or building, an Opening Consultation if you have a date. Palm Springs, CA, working nationwide."
       canonical="/contact"
       breadcrumbs={[{ name: "Contact", href: "/contact" }]}
       jsonLd={[ORGANIZATION_SCHEMA]}
@@ -50,27 +50,20 @@ export default function Contact() {
               </div>
               <h2 className="font-display text-2xl text-cream">Schedule a Call</h2>
               <p className="mt-4 text-cream/70 text-sm leading-[1.7] flex-1">
-                Every revenue management client starts with The Modern Hotel Audit. Opening
-                or reopening a property instead? Book the Opening Consultation. Anything
-                else — subscription details, an asset advisory engagement, a tech/OTA
-                question — send a message and Adam will find the right time.
+                If you run a hotel, book the audit: free, scored, sized in dollars. If you are
+                buying, building or converting, book the Plan. If you have an opening date,
+                book the consultation. Anything else, send a message and Adam will find the
+                right time.
               </p>
               <div className="mt-8 flex flex-col gap-3">
-                <a
-                  href={BRAND.auditBookingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-brass w-full justify-center"
-                >
-                  Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+                <a href={OFFERS.audit.formPath} className="btn-brass w-full justify-center">
+                  {OFFERS.audit.cta} <ArrowRight className="w-4 h-4" />
                 </a>
-                <a
-                  href={BRAND.openingBookingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-ghost w-full justify-center"
-                >
-                  Book an Opening Consultation
+                <a href={OFFERS.plan.formPath} className="btn-ghost w-full justify-center">
+                  {OFFERS.plan.cta}
+                </a>
+                <a href={OFFERS.launch.formPath} className="btn-ghost w-full justify-center">
+                  {OFFERS.launch.cta}
                 </a>
               </div>
             </Reveal>

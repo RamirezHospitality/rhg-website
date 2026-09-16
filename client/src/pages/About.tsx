@@ -24,7 +24,7 @@ const CAREER = [
     location: "Palm Springs, CA",
     period: "Jun 2021 – Oct 2023",
     bullet:
-      "Opened 8 hotels from concept to ribbon-cutting — including The Paloma Resort, Twist Palm Springs, Limón Palm Springs, The Stardust, Dunes Palm Springs, and more — and repositioned more than 4 others including The Creekstone Inn. Managed $10M in annual revenue and a team of 120+ across all properties. Drove $1.5M Y1 at Paloma, +$1M / +40% revenue lift at Twist (60% direct bookings), and $750K on six keys at Limón (ADR $550+).",
+      "Opened 8 hotels from concept to ribbon-cutting — including The Paloma Resort, Twist Palm Springs, Limón Palm Springs, The Stardust, Dunes Palm Springs, and more — and repositioned more than 4 others including The Creekstone Inn. Managed $10M in annual revenue and a team of 120+ across all properties. Drove $1.5M in year-one revenue at Paloma and a 60% direct booking rate at Twist.",
   },
   {
     role: "Regional Operations Manager",
@@ -95,10 +95,10 @@ export default function About() {
                 <span className="text-brass">Adam.</span>
               </h1>
               <p className="mt-9 text-cream/80 text-lg md:text-xl leading-[1.55] max-w-xl">
-                I've spent 10+ years inside independent and boutique hotels —
-                opening them, renovating them, rescuing them, and running them. Today I do
-                that work for the owners who want to skip the six-figure salary and get
-                straight to the result.
+                I have spent 10+ years inside independent and boutique hotels: opening them,
+                renovating them, rescuing them, and running them. Today I do that work for
+                owners with fewer than 50 rooms who want the revenue department a big hotel
+                has, without hiring for it.
               </p>
             </div>
             <div className="lg:col-span-5">
@@ -147,9 +147,12 @@ export default function About() {
               </Reveal>
               <Reveal delay={280}>
                 <p>
-                  Over the last decade and a half I've opened 8 hotels from concept to ribbon-cutting, repositioned more than 4, and worked with a portfolio of luxury vacation rentals across the Coachella Valley. The properties I've launched — Paloma, Twist, Limón, The Stardust, Dunes, and more — span the full spectrum of independent boutique hospitality. I've
-                  taken a distressed Palm Springs property from a 6.4 Booking score to a
-                  9.1 in eleven months and built it into a 60% direct-booking machine. At
+                  Over 10+ years I have opened 8 hotels from concept to ribbon-cutting,
+                  repositioned 4, and worked with a portfolio of luxury vacation rentals across
+                  the Coachella Valley. The properties I have launched, Paloma, Twist, Limón,
+                  The Stardust, Dunes and more, span the full range of independent boutique
+                  hospitality. I have taken a distressed Palm Springs property from a 6.4
+                  Booking score to a 9.1 and built it into a 60% direct-booking machine. At
                   the Sands Hotel & Spa I held a 9.8 Expedia rating and a 4.9 on Google
                   across hundreds of reviews. I've managed more than $10M in annual hotel
                   revenue, hired and led teams of 120+, and overseen renovation and
@@ -172,9 +175,10 @@ export default function About() {
                 <p>
                   The practice today is Adam-led on purpose. When you hire Ramirez
                   Hospitality Group you get me — on the strategy, on the calls, on the
-                  audit, on the report. I bring the right tech stack — Hotelitix, Duetto,
-                  Light House, Revinate, OpenAI's GPT — to do the math. I bring 10+
-                  years of operator instinct to do everything else.
+                  audit, on the report. I bring the systems that run a modern hotel, Duetto
+                  first for pricing, to do the math. I bring 10+ years of operator instinct to
+                  do everything else. The method lives in your own accounts, and a second
+                  contact is named on every one of them.
                 </p>
               </Reveal>
               <Reveal delay={520}>
@@ -196,12 +200,12 @@ export default function About() {
                 Track Record
               </div>
               <ul className="space-y-3 text-cream/80 text-sm">
-                <li>$10M+ managed annual revenue</li>
-                <li>$1M+ single-property revenue lifts</li>
+                <li>10+ years · 50+ hospitality properties · 20% average revenue lift</li>
+                <li>8 hotels opened from concept to ribbon-cutting, 4 repositioned</li>
+                <li>$10M+ in annual hotel revenue managed</li>
+                <li>6 funded feasibility projects</li>
                 <li>120+ team members hired and led</li>
-                <li>9.8 Expedia · 4.9 Google (Sands)</li>
                 <li>60% direct booking rate (Twist)</li>
-                <li>ADR $550+ (Limón)</li>
               </ul>
             </Reveal>
             <Reveal delay={100} className="bg-obsidian p-8 lg:p-10">
