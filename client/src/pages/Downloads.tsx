@@ -13,7 +13,7 @@ import { PageLayout } from "@/components/PageLayout";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
 import { ORGANIZATION_SCHEMA } from "@/components/SEO";
-import { BRAND } from "@/lib/brand";
+import { OFFERS } from "@/lib/brand";
 
 const RESOURCES = [
   {
@@ -106,12 +106,16 @@ export default function Downloads() {
               <span className="italic text-brass">An audit gets you the number.</span>
             </h2>
             <p className="mt-7 text-cream/75 leading-[1.7]">
-              If you want the walk done on a property you are actually looking at, bring it
-              to a conversation.
+              If you want the walk done on a property you are actually looking at, bring it to
+              a conversation. Running a hotel today: the audit, free. Buying, building or
+              opening one: {OFFERS.plan.name}, {OFFERS.plan.priceLabel}, flat.
             </p>
-            <div className="mt-9">
-              <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-brass">
-                Book The Modern Hotel Audit
+            <div className="mt-9 flex flex-wrap items-center gap-5">
+              <a href={OFFERS.audit.formPath} className="btn-brass">
+                {OFFERS.audit.cta}
+              </a>
+              <a href={OFFERS.plan.formPath} className="btn-ghost">
+                {OFFERS.plan.cta}
               </a>
             </div>
           </Reveal>
