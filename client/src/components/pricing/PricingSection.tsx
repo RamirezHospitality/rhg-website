@@ -1,37 +1,29 @@
 /*
- * Ramirez Hospitality Group — Pricing (with the Lincoln tier bridge)
+ * Ramirez Hospitality Group — The three plans, in brief
  *
- * Shared between the ad landing page and the homepage on purpose — Adam's
- * canvas notes call these out as "the same block... they stay identical
- * across the site," so the tiers and the arithmetic table live here once.
+ * Shared between the homepage and the ad landing pages so the plan names,
+ * prices and terms can never drift. Reads everything from OFFERS in
+ * lib/brand.ts. The full plan cards and comparison table live on the
+ * Subscription page (/revenue-management); this block is the summary.
+ *
+ * No per-plan dollar-capture claims, no key counts, no software price.
  */
 
-import { Fragment } from "react";
 import { Check } from "lucide-react";
+import { Link } from "wouter";
 import { Eyebrow } from "@/components/Eyebrow";
+import { OFFERS, SOFTWARE } from "@/lib/brand";
 
-const TIERS = [
-  { name: "Essentials", price: "$850", fit: "10 to 40 keys" },
-  { name: "Growth", price: "$1,500", fit: "30 to 80 keys" },
-  { name: "Enterprise", price: "$2,500+", fit: "80+ keys and portfolios" },
-];
-
-const LINCOLN_ARITHMETIC = [
-  { line: "The free moves", fee: "$0", value: "~$14,000", note: "given away" },
-  { line: "Essentials", fee: "$850 / mo", value: "+$64,000", note: "6.3× the fee" },
-  { line: "Growth", fee: "$1,500 / mo", value: "+$26,000 more", note: "5.0× the fee" },
-  { line: "Enterprise", fee: "$2,500+ / mo", value: "+$12,000 and growing", note: "events, buyouts, group sales" },
-];
-
-const CHECKLIST = [
-  "Runs inside the PMS you already have",
-  "Flat fee, no setup cost, no contract",
-  "Monthly strategy call and performance report",
-  "The Modern Hotel Audit first, free, no strings",
+const SAME_ON_EVERY_PLAN = [
+  "No setup fee. Nothing on commission.",
+  SOFTWARE.short,
+  "Floors and ceilings you set. Nothing goes below your floor without your sign-off.",
+  "One full cycle to start, then month to month with thirty days' notice.",
+  "Re-scored against your audit on a schedule we put in writing.",
 ];
 
 const DEFAULT_INTRO =
-  "The subscription starts after The Modern Hotel Audit, and only if it fits. Flat monthly fee, no setup fee, no contract. Re-scored on a schedule we put in writing: the number has to move. You keep every login and every export.";
+  "The subscription starts after The Modern Hotel Audit, and only if it fits. Kind of work sets the plan; every plan runs at full effort. Flat monthly fee, published. One full cycle to start, then month to month.";
 
 interface PricingSectionProps {
   /** Roman numeral shown in the section eyebrow — differs by page. */
@@ -42,71 +34,61 @@ interface PricingSectionProps {
    * where there's no operating property yet to audit).
    */
   intro?: string;
-  /** Checklist under the tiers/arithmetic table. Defaults mention the audit as the entry point; override alongside `intro` when it doesn't apply. */
-  checklist?: string[];
+  /** Show the "See the three plans" link to the Subscription page. Off on ad pages. */
+  linkToPlans?: boolean;
 }
 
 export function PricingSection({
   numeral = "V",
   intro = DEFAULT_INTRO,
-  checklist = CHECKLIST,
+  linkToPlans = true,
 }: PricingSectionProps) {
+  const plans = OFFERS.subscription.plans;
   return (
     <section className="py-20 lg:py-28 panel-emerald border-y border-brass/15">
       <div className="container">
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5">
-            <Eyebrow numeral={numeral} label="Pricing" />
+            <Eyebrow numeral={numeral} label="The Subscription" />
             <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
-              From $850 a month.
+              Your prices set every day.
               <br />
-              <span className="italic text-brass">Month to month. No lock-in.</span>
+              Your booking sites worked.
+              <br />
+              <span className="italic text-brass">Your groups priced right.</span>
             </h2>
             <p className="mt-6 text-cream/80 leading-[1.7] max-w-md">{intro}</p>
+            {linkToPlans && (
+              <div className="mt-8">
+                <Link href={OFFERS.subscription.path}>
+                  <span className="link-brass pr-6">See the three plans</span>
+                </Link>
+              </div>
+            )}
           </div>
           <div className="lg:col-span-7">
             <div className="grid sm:grid-cols-3 gap-px bg-brass/15 border border-brass/15">
-              {TIERS.map((t) => (
-                <div key={t.name} className="bg-obsidian p-7">
-                  <div className="text-[0.62rem] tracking-[0.32em] uppercase text-brass">{t.name}</div>
+              {plans.map((p) => (
+                <div key={p.key} className="bg-obsidian p-7">
+                  <div className="text-[0.62rem] tracking-[0.32em] uppercase text-brass">{p.name}</div>
                   <div className="mt-4 font-display text-3xl text-cream">
-                    {t.price}
-                    <span className="text-cream/50 text-base"> / mo</span>
+                    {p.priceLabel}
+                    <span className="text-cream/50 text-base"> a month</span>
                   </div>
-                  <div className="mt-2 text-cream/65 text-sm">{t.fit}</div>
+                  <div className="mt-2 text-cream/75 text-sm leading-[1.55]">{p.line}</div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-6 border border-brass/20 bg-background/70">
-              <div className="px-5 py-3.5 border-b border-brass/20 text-[0.62rem] tracking-[0.32em] uppercase text-brass">
-                How the arithmetic looked for The Lincoln (base case, per year)
-              </div>
-              <div className="grid grid-cols-[1.2fr_0.8fr_1fr_0.9fr] text-[0.8125rem]">
-                {LINCOLN_ARITHMETIC.map((row, i) => {
-                  const border = i < LINCOLN_ARITHMETIC.length - 1 ? "border-b border-brass/10" : "";
-                  return (
-                    <Fragment key={row.line}>
-                      <div className={`px-5 py-3 text-cream/75 ${border}`}>{row.line}</div>
-                      <div className={`px-5 py-3 text-cream/55 ${border}`}>{row.fee}</div>
-                      <div className={`px-5 py-3 text-cream ${border}`}>{row.value}</div>
-                      <div className={`px-5 py-3 ${i === 0 ? "text-cream/55" : "text-brass"} ${border}`}>
-                        {row.note}
-                      </div>
-                    </Fragment>
-                  );
-                })}
-              </div>
-            </div>
-
             <ul className="mt-8 grid sm:grid-cols-2 gap-x-8 gap-y-3 text-cream/85 text-sm">
-              {checklist.map((line) => (
+              {SAME_ON_EVERY_PLAN.map((line) => (
                 <li key={line} className="flex gap-3">
                   <Check className="w-4 h-4 text-brass mt-0.5 shrink-0" />
                   <span>{line}</span>
                 </li>
               ))}
             </ul>
+            <p className="mt-5 text-cream/45 text-xs leading-[1.6]">{SOFTWARE.footnote}</p>
           </div>
         </div>
       </div>

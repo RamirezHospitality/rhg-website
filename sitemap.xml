@@ -7,23 +7,23 @@
   <!-- Homepage -->
   <url>
     <loc>https://ramirezhospitality.com/</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Flagship conversion page -->
+  <!-- The Subscription -->
   <url>
     <loc>https://ramirezhospitality.com/revenue-management</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
 
-  <!-- Lead generation -->
+  <!-- The Modern Hotel Audit -->
   <url>
     <loc>https://ramirezhospitality.com/audit</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
@@ -31,7 +31,7 @@
   <!-- Services hub -->
   <url>
     <loc>https://ramirezhospitality.com/services</loc>
-    <lastmod>2026-05-29</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -39,21 +39,21 @@
   <!-- Niche service pages -->
   <url>
     <loc>https://ramirezhospitality.com/openings</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
 
   <url>
     <loc>https://ramirezhospitality.com/tech-stack</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
 
   <url>
     <loc>https://ramirezhospitality.com/feasibility-study</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
@@ -61,7 +61,7 @@
   <!-- Social proof -->
   <url>
     <loc>https://ramirezhospitality.com/case-studies</loc>
-    <lastmod>2026-05-29</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -84,7 +84,7 @@
   <!-- Free resource library -->
   <url>
     <loc>https://ramirezhospitality.com/downloads</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
@@ -92,7 +92,7 @@
   <!-- E-E-A-T signal -->
   <url>
     <loc>https://ramirezhospitality.com/about</loc>
-    <lastmod>2026-05-29</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
@@ -100,7 +100,7 @@
   <!-- Contact -->
   <url>
     <loc>https://ramirezhospitality.com/contact</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.60</priority>
   </url>

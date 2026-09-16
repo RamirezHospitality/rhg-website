@@ -92,15 +92,10 @@ export default function Contact() {
                 Old-fashioned phone and email. Both go straight to Adam.
               </p>
               <div className="mt-8 space-y-5">
-                <a
-                  href={BRAND.phoneHref}
-                  className="flex items-center gap-3 text-cream hover:text-brass transition-colors group"
-                >
+                <div className="flex items-center gap-3 text-cream">
                   <Phone className="w-4 h-4 text-brass" strokeWidth={1.5} />
-                  <span className="font-display text-xl group-hover:text-brass transition-colors">
-                    {BRAND.phone}
-                  </span>
-                </a>
+                  <span className="font-display text-xl">{BRAND.phone}</span>
+                </div>
                 <a
                   href={BRAND.emailHref}
                   className="flex items-center gap-3 text-cream hover:text-brass transition-colors group"

@@ -104,16 +104,16 @@ const HOW_IT_RUNS = [
 
 const SCOPES = [
   {
-    label: "Buying",
-    p: "Feasibility and underwriting: what the property can earn before you sign.",
+    label: "Running a hotel",
+    p: "Start here. Where the revenue is leaking today, and the order to fix it in.",
+  },
+  {
+    label: "Buying or building",
+    p: "Start with The Modern Hotel Plan: demand, the math and the value, before capital is committed.",
   },
   {
     label: "Opening",
-    p: "Pro forma, rate architecture, and channels set before the first guest.",
-  },
-  {
-    label: "Operating",
-    p: "Where the revenue is leaking today, and the order to fix it in.",
+    p: "The Plan first, then The Modern Hotel Launch: ten phases, concept to ribbon-cutting.",
   },
 ];
 
@@ -135,10 +135,15 @@ export function AuditSection({ numeral = "II" }: AuditSectionProps) {
               <span className="italic text-brass">scored, and sized in dollars.</span>
             </h2>
             <p className="mt-6 leading-[1.7] max-w-xl text-cream/80">
-              Every client starts here, whether they are buying a hotel, opening one, or
-              running one. Seven dimensions, each scored against what a well-run independent
-              of your size can actually do, each finding tied to a timestamped exhibit and an
-              annual dollar figure. Free. No strings.
+              Free. Your property scored out of 100 across seven areas, each against what a
+              well-run independent of your size can actually do, every finding priced in
+              dollars with the evidence behind it. The two most valuable fixes are written out
+              in full, yours to keep whether we work together or not.
+            </p>
+            <p className="mt-4 leading-[1.7] max-w-xl text-cream/80">
+              Every finding is tagged to the cheapest plan that captures it, so the plan
+              decision is arithmetic, not a pitch. The catch, in full: at the end we ask
+              whether you want help fixing the three lowest scores. That is the whole catch.
             </p>
           </div>
           <div className="lg:col-span-5 grid grid-cols-3 gap-px bg-brass/15 border border-brass/15 self-end">
@@ -233,7 +238,7 @@ export function AuditSection({ numeral = "II" }: AuditSectionProps) {
               Annual revenue opportunity identified
             </div>
             <div className="flex items-baseline gap-4 flex-wrap">
-              <span className="font-display text-4xl lg:text-5xl leading-none text-cream">$110K</span>
+              <span className="font-display text-4xl lg:text-5xl leading-none text-cream">$116K</span>
               <span className="text-cream/55 text-sm">
                 base case · $55K conservative · $185K stretch · on a $444K base
               </span>
@@ -244,17 +249,17 @@ export function AuditSection({ numeral = "II" }: AuditSectionProps) {
               viewBox="0 0 640 64"
               preserveAspectRatio="none"
               role="img"
-              aria-label="Base revenue $444K, conservative case adds $55K, stretch case adds $185K"
+              aria-label="Base revenue $444K, conservative case adds $55K, base case adds $116K, stretch case adds $185K"
             >
               <rect x={0} y={20} width={452} height={18} rx={4} fill="var(--cream)" fillOpacity={0.22} />
               <rect x={452} y={20} width={56} height={18} rx={4} fill="var(--brass)" />
-              <rect x={508} y={20} width={56} height={18} rx={4} fill="var(--brass)" fillOpacity={0.65} />
-              <rect x={564} y={20} width={76} height={18} rx={4} fill="var(--brass)" fillOpacity={0.3} />
+              <rect x={508} y={20} width={62} height={18} rx={4} fill="var(--brass)" fillOpacity={0.65} />
+              <rect x={570} y={20} width={70} height={18} rx={4} fill="var(--brass)" fillOpacity={0.3} />
             </svg>
-            <div className="grid grid-cols-[452fr_56fr_56fr_76fr] text-[0.68rem] tracking-[0.08em] -mt-4">
+            <div className="grid grid-cols-[452fr_56fr_62fr_70fr] text-[0.68rem] tracking-[0.08em] -mt-4">
               <div className="text-cream/55">Today · $444K</div>
               <div className="text-brass whitespace-nowrap">+12%</div>
-              <div className="text-brass whitespace-nowrap">+25%</div>
+              <div className="text-brass whitespace-nowrap">+26%</div>
               <div className="text-cream/75 text-right">+42%</div>
             </div>
             <p className="text-cream/75 text-[0.8125rem] leading-[1.6]">

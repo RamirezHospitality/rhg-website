@@ -1,33 +1,23 @@
 /*
  * Ramirez Hospitality Group — Who does the work
  *
- * Shared between the ad landing page and the homepage on purpose — Adam's
- * canvas notes call this block out as one that stays identical across the
- * site, alongside the audit and pricing sections.
+ * Shared across the site and the ad landing pages on purpose, so the
+ * operator's story and the track record read the same everywhere.
  */
 
 import { Eyebrow } from "@/components/Eyebrow";
-import { PROPERTIES } from "@/lib/brand";
-
-// Unbranded stand-in for the named PROPERTIES list — required on the ad LPs
-// (2026-08-29): the Google Ads account was suspended for Public Figure /
-// Business Impersonation, most likely triggered by named third-party hotel
-// brands appearing without their written permission. Indexable pages
-// (Home, Audit, FeasibilityStudy) keep the named list — naming past clients
-// there is normal consulting practice and isn't what's under review; the
-// noindex ad LPs pass `unbranded` instead. De-brand, don't delete: these are
-// the same facts, just without the third-party names.
-const UNBRANDED_FACTS = [
-  "8 hotels opened from concept to ribbon-cutting",
-  "4 properties repositioned after renovation or ownership transition",
-  "50+ independent and boutique hospitality properties worked with",
-  "$10M+ in annual hotel revenue managed",
-];
+import { PROPERTIES, TRACK_RECORD_FACTS } from "@/lib/brand";
 
 interface OperatorSectionProps {
   /** Roman numeral shown in the section eyebrow — differs by page. */
   numeral?: string;
-  /** Render unbranded summary facts instead of the named PROPERTIES list. */
+  /**
+   * Render the unbranded track-record facts instead of the named PROPERTIES
+   * list. Required on the /lp ad pages (2026-08-29): the Google Ads account
+   * was suspended for Public Figure / Business Impersonation, most likely
+   * triggered by named third-party hotel brands appearing without their
+   * written permission. Indexable pages keep the named list.
+   */
   unbranded?: boolean;
 }
 
@@ -41,13 +31,18 @@ export function OperatorSection({ numeral = "VI", unbranded = false }: OperatorS
             <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
               Adam Ramirez.
               <br />
-              <span className="italic text-brass">Operator first, consultant second.</span>
+              <span className="italic text-brass">Operator first.</span>
             </h2>
             <p className="mt-7 text-cream/80 leading-[1.7] max-w-2xl">
-              I have spent 10+ years opening, repositioning, and running independent and
-              boutique hotels, many of them in Palm Springs, and I still price hotels every
-              morning. Ramirez Hospitality Group is how owners get that work without hiring
-              for it. You deal with me, not an account team.
+              Adam has spent 10+ years opening, repositioning and running independent and
+              boutique hotels, many of them in Palm Springs, and still prices hotels every
+              morning. Ramirez Hospitality Group is how an owner gets that work without hiring
+              for it.
+            </p>
+            <p className="mt-5 text-cream/80 leading-[1.7] max-w-2xl">
+              The method is the product and it lives in your own accounts: every rate plan,
+              rule and piece of data belongs to you. A second contact is named on every
+              account. If you wanted to take it over tomorrow, you could.
             </p>
           </div>
           <div className="lg:col-span-5">
@@ -56,7 +51,7 @@ export function OperatorSection({ numeral = "VI", unbranded = false }: OperatorS
             </div>
             {unbranded ? (
               <ul className="flex flex-col gap-3 text-cream/75 text-sm">
-                {UNBRANDED_FACTS.map((f) => (
+                {TRACK_RECORD_FACTS.map((f) => (
                   <li key={f} className="flex gap-2">
                     <span className="text-brass/60">·</span>
                     <span>{f}</span>
@@ -64,14 +59,24 @@ export function OperatorSection({ numeral = "VI", unbranded = false }: OperatorS
                 ))}
               </ul>
             ) : (
-              <ul className="grid grid-cols-2 gap-x-6 gap-y-2 text-cream/75 text-sm">
-                {PROPERTIES.map((p) => (
-                  <li key={p} className="flex gap-2">
-                    <span className="text-brass/60">·</span>
-                    <span>{p}</span>
-                  </li>
-                ))}
-              </ul>
+              <>
+                <ul className="grid grid-cols-2 gap-x-6 gap-y-2 text-cream/75 text-sm">
+                  {PROPERTIES.map((p) => (
+                    <li key={p} className="flex gap-2">
+                      <span className="text-brass/60">·</span>
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
+                <ul className="mt-6 pt-5 border-t border-brass/15 flex flex-col gap-2 text-cream/60 text-sm">
+                  {TRACK_RECORD_FACTS.map((f) => (
+                    <li key={f} className="flex gap-2">
+                      <span className="text-brass/60">·</span>
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </>
             )}
           </div>
         </div>

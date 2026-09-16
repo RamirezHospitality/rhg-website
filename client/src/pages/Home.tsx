@@ -1,267 +1,198 @@
 /*
  * Ramirez Hospitality Group — The Reserve · HOME
- * Editorial dark mode. Asymmetric, magazine-paced. Audit-first: every CTA
- * books The Modern Hotel Audit (or, for openings, the Opening Consultation)
- * rather than dialing a phone.
+ * Editorial dark mode. Audit-first, then the three offers as three doors.
+ * Rebuilt 2026-09 to the September 9 offer brief: three offers, two tracks,
+ * flat published prices, one CTA per offer, form first.
  *
- * Sections: Hero · Track Record · Why Owners Hire Me · Six Pillars ·
- * Three Free Downloads · The Modern Hotel Audit (shared with the ad landing
- * page) · Pricing (shared) · Case Study Highlight · Hotel Openings ·
- * The Operator (shared) · Audit CTA · Insights Teaser · FAQ.
+ * Sections: Hero · Three offers · The Modern Hotel Audit (shared) · The
+ * Subscription in brief (shared) · Track B: Plan then Launch · Proof ·
+ * The Operator (shared) · Common questions · Next step.
  *
- * SEO/GEO: Full structured data — Service, FAQPage, Person, LocalBusiness.
- * FAQ section added for AI search extraction and featured snippet targeting.
+ * SEO/GEO: FAQPage built from the brief's objection bank, an OfferCatalog
+ * listing the three offers, Organization, Person.
  */
 
 import { Link } from "wouter";
-import { ArrowRight, ArrowUpRight, Download } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
-import { BRAND, IMAGES, PROPERTIES, PRESS } from "@/lib/brand";
+import { IMAGES, OFFERS, TRACK_RECORD_LINE } from "@/lib/brand";
 import { ORGANIZATION_SCHEMA, PERSON_SCHEMA } from "@/components/SEO";
 import { AuditSection } from "@/components/audit/AuditSection";
 import { PricingSection } from "@/components/pricing/PricingSection";
 import { OperatorSection } from "@/components/OperatorSection";
 
-// Three free downloads, each answering the question an owner is asking at a
-// given stage. Files live in the public "RHG Free Downloads" Drive folder;
-// links verified live before shipping. Every one ends at the same place:
-// Book The Modern Hotel Audit.
-const DOWNLOADS = [
+const [ESSENTIALS] = OFFERS.subscription.plans;
+
+const DOORS = [
   {
-    stage: "Buying",
-    question: `"Am I crazy to buy this?"`,
-    description:
-      "What a motel making $250K is actually worth, whether the loan pencils, and what happens to the deal if you are wrong by ten percent on rate.",
-    label: "The Small Hotel Underwriting Template",
-    note: "Free spreadsheet. Type over the cream cells; everything else calculates.",
-    href: "https://docs.google.com/spreadsheets/d/1ezLiYB5dzPxA_oqos4oiqolCJI3oNczP9w3461YKxAU/edit?usp=sharing",
+    who: "You run a hotel",
+    title: OFFERS.subscription.name,
+    price: `${ESSENTIALS.name} ${ESSENTIALS.priceLabel} a month`,
+    body: "Your prices set every day. Your booking sites worked. Your groups priced right. Three plans, one flat monthly fee each, published on the page. It starts with the free audit, and the audit tells you which plan captures what it found.",
+    cta: { label: OFFERS.audit.cta, href: OFFERS.audit.formPath, primary: true },
+    more: { label: "See the three plans", href: OFFERS.subscription.path },
   },
   {
-    stage: "First year",
-    question: `"What matters in the first 90 days?"`,
-    description:
-      "Thirty-two items in the order they matter, from getting the seller's logins out of your distribution to the five numbers to read every Monday.",
-    label: "The First 90 Days Checklist",
-    note: "Free PDF. Print it and work top to bottom.",
-    href: "https://drive.google.com/file/d/1cg9z0vUCrAfY67NiL35DCD7LvIMgHr0-/view?usp=sharing",
+    who: "You are buying, building or converting",
+    title: OFFERS.plan.name,
+    price: `${OFFERS.plan.priceLabel}, flat, priced up front`,
+    body: "Know the numbers before you buy, build, or open. Three questions in order: is the demand real, does the math work, what is the property worth. The study, the model, and a clear yes, no, or not at this price.",
+    cta: { label: OFFERS.plan.cta, href: OFFERS.plan.formPath, primary: false },
+    more: { label: "How the Plan works", href: OFFERS.plan.path },
   },
   {
-    stage: "Operating",
-    question: `"Am I underpricing?"`,
-    description:
-      "Ten questions you can score in an evening, the two-year test, and the rate ladder: where you sit against the properties around you, and what your guests already pay.",
-    label: "The Rate Audit",
-    note: "Free PDF. The pricing slice of The Modern Hotel Audit, simplified.",
-    href: "https://drive.google.com/file/d/1DWRleDcMP_Cj-bFLOGKPoiffu7Pk48BY/view?usp=sharing",
+    who: "You have an opening date",
+    title: OFFERS.launch.name,
+    price: "Quoted per project",
+    body: "Concept to ribbon-cutting. Brand and budget to first guest, ten phases, on site nationwide. Every Launch starts with a Plan. It also covers the reset for a hotel that is open and underperforming.",
+    cta: { label: OFFERS.launch.cta, href: OFFERS.launch.formPath, primary: false },
+    more: { label: "The ten phases", href: OFFERS.launch.path },
   },
 ];
 
-const PILLARS = [
+const TRACK_B = [
   {
-    numeral: "I",
-    title: "Revenue Management Subscription",
-    note: "From $850 / month",
-    description:
-      "Daily pricing, OTA optimization, direct booking, and loyalty under one monthly retainer.",
-    href: "/revenue-management",
-    flagship: true,
+    n: "Step one",
+    title: OFFERS.plan.name,
+    body: `${OFFERS.plan.priceLabel}, flat, priced up front. A feasibility study for anyone buying, building or opening a hotel under 50 rooms. Is the demand real? Does the math work? What is the property worth, by income, by comparable sales and by cost, and which of the three does the lender believe? The study, the model, and a clear yes, no, or not at this price. A broker's pro forma is a sales document. The Plan is allowed to say no.`,
+    cta: { label: OFFERS.plan.cta, href: OFFERS.plan.formPath, primary: true },
   },
   {
-    numeral: "II",
-    title: "Hotel Openings & Reopenings",
-    note: "The element of my genius",
-    description:
-      "Concept to ribbon-cutting. Eight hotels opened, four repositioned.",
-    href: "/openings",
+    n: "Step two",
+    title: OFFERS.launch.name,
+    body: "The hands-on opening or reopening engagement: brand and budget to first guest, ten phases, on site nationwide. The nine months of decisions that have to happen in the right order, with the booking sites live long before the paint dries. Quoted per project after the Plan. It also covers the reset for a property that is open and underperforming, which often beats the renovation.",
+    cta: { label: OFFERS.launch.cta, href: OFFERS.launch.formPath, primary: false },
   },
   {
-    numeral: "III",
-    title: "Hotel Tech & Systems",
-    note: "PMS · RMS · CRM · Booking",
-    description:
-      "Hotelitix, Duetto, Light House, Revinate. The right stack — integrated and disciplined.",
-    href: "/services#tech-systems",
-  },
-  {
-    numeral: "IV",
-    title: "Operations & SOPs",
-    note: "Front of house to back",
-    description:
-      "Built to scale. Written to last. The SOP binder you actually use.",
-    href: "/services#operations",
-  },
-  {
-    numeral: "V",
-    title: "Renovations & Construction",
-    note: "Owner's-rep oversight",
-    description:
-      "FF&E, capex, contractor selection. The operator in the room with the architect.",
-    href: "/services#renovations",
-  },
-  {
-    numeral: "VI",
-    title: "Asset & Acquisition Advisory",
-    note: "Pre-purchase to exit",
-    description:
-      "Due diligence, distressed turnaround, and exit prep. Discreet. Operator-grade.",
-    href: "/services#asset-advisory",
-  },
-  {
-    numeral: "VII",
-    title: "Full-Property Event Production",
-    note: "Brand takeovers & activations",
-    description:
-      "Hugo Boss. Levi's. NYX Cosmetics. BMW. Volkswagen. I source everything — private chefs to the silverware on the table.",
-    href: "/services#events",
+    n: "Then",
+    title: "The Subscription picks up",
+    body: "Once the hotel is open, the daily pricing, the booking sites and the group inquiries do not stop needing an owner. The Launch hands off to the Subscription so the revenue function is there from the first guest, not bolted on after the first soft season.",
+    cta: { label: "See the three plans", href: OFFERS.subscription.path, primary: false, internal: true },
   },
 ];
 
-// ─── Structured Data ────────────────────────────────────────────────────────
+const PROOF = [
+  { who: "The Lincoln, Marfa, Texas", v: "41", l: "out of 100, grade D, on a property guests love. $55,000 to $185,000 in annual revenue opportunity identified on a $444,000 base." },
+  { who: "Paloma, Palm Springs", v: "$1.5M", l: "year-one revenue for an upscale boutique opening. Featured in Travel & Leisure." },
+  { who: "Twist Hotel", v: "6.4 to 9.1", l: "Booking score after a distressed turnaround and reopening. 60% direct booking rate." },
+  { who: "Limón, California", v: "Launch", l: "upscale boutique launch, featured in Modernism Magazine." },
+];
+
+// The brief's objection bank, word for word where the brief gives the words.
+const FAQ = [
+  {
+    q: "Will you price me out of my own market?",
+    a: "You set the floors and ceilings for every room type. Nothing goes below your floor without your sign-off, every change is logged with the reason, and any change is reversed on request.",
+  },
+  {
+    q: "Software does this for a fraction of the price. Why you?",
+    a: "We run the software for you and do what it cannot: work the booking sites as a cost line, price the wedding inquiry, keep your own website from being undercut. Compare the fee to your hours, not to the software.",
+  },
+  {
+    q: "So I have to buy software too? Do you take a cut?",
+    a: "Yes, one system, on every plan, and it is not included in the fee. Duetto is our preferred system, and every client on every plan gets it at RHG's partner pricing: we are a contracted Duetto vendor, and the commission Duetto would pay us goes back to you as a lower rate than you could get on your own. It is your account and your data. The fee on the page is the whole fee; nothing is on commission.",
+  },
+  {
+    q: "It's you, Adam. What if you get busy or sell?",
+    a: "The method is the product and it lives in your own account: every rate plan, rule and piece of data belongs to you. A second contact is named on every account. If you wanted to take it over tomorrow, you could.",
+  },
+  {
+    q: "How will I know it was you and not the market?",
+    a: "Results are reported against your market, not just against last year, split into rate and occupancy, net of commission. The baseline is fixed in the audit before we change anything.",
+  },
+  {
+    q: "My broker already gave me a pro forma.",
+    a: "A broker's pro forma is a sales document. The Plan answers three questions in order, from someone who has run the front desk and priced the rooms, and it is allowed to say no.",
+  },
+  {
+    q: "I have a general manager for the opening.",
+    a: "A general manager runs a hotel that exists. An opening is a different job: ten phases in the right order, from the name and the budget to the first guest, and it hands off to the manager at the end.",
+  },
+];
+
+// ─── Structured data ─────────────────────────────────────────────────────────
 
 const HOME_FAQ_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "What does a hotel revenue management consultant do?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "A hotel revenue management consultant manages daily pricing strategy, OTA optimization, direct booking growth, and demand forecasting for independent and boutique hotels. At Ramirez Hospitality Group, this means setting rates every day based on comp-set data, demand pace, and AI-driven forecasting — delivering the work of a full-time revenue manager at a fraction of the cost.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How much does outsourced hotel revenue management cost?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Ramirez Hospitality Group offers three flat-fee, month-to-month revenue management subscription tiers: Essentials at $850/month for 10–40 key properties, Growth at $1,500/month for 30–80 key boutique hotels, and Enterprise at $2,500/month for 80+ key properties and small portfolios. All tiers include OTA optimization, direct booking strategy, and rewards program development — services most consultants charge extra for.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What is the difference between outsourced and in-house hotel revenue management?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "A full-time, in-house hotel revenue manager typically costs $70,000–$110,000 per year in salary alone, plus benefits and tools. Outsourced revenue management through a subscription service like Ramirez Hospitality Group starts at $850/month ($10,200/year), includes access to enterprise-grade RMS tools like Hotelitix and Duetto, and delivers the same daily pricing discipline and OTA strategy without the overhead.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What hotel revenue management tools does Adam Ramirez use?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Adam Ramirez uses Hotelitix, Duetto, and Light House for revenue management systems (RMS); Revinate for CRM and email marketing; SiteMinder for channel management; and Mews for property management. He selects and configures the right stack for each property's size, budget, and goals.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Does Ramirez Hospitality Group work with small independent hotels?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. Ramirez Hospitality Group specializes in independent and boutique hotels, including properties as small as 10 keys. The Essentials subscription tier is designed specifically for inns, motels, and small boutiques whose owners want a real revenue strategist without the cost of a full-time hire. All services are available nationwide from a base in Palm Springs, CA.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What is The Modern Hotel Audit, and is it really free?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "The Modern Hotel Audit is Ramirez Hospitality Group's free property review, and every client — buying, opening, or operating — starts with it. The whole property is scored across seven dimensions (reputation, direct booking, distribution, technology, demand capture, pricing, and whole-property yield), each finding tied to a timestamped exhibit and an annual dollar figure. It is genuinely free: the owner receives the full scored report and the two highest-value free moves whether or not the revenue management subscription ever happens.",
-      },
-    },
-  ],
+  mainEntity: FAQ.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
 };
 
-const HOME_SERVICE_SCHEMA = {
+const HOME_OFFER_CATALOG_SCHEMA = {
   "@context": "https://schema.org",
-  "@type": "Service",
-  "@id": "https://ramirezhospitality.com/#revenue-management-service",
-  name: "Hotel Revenue Management Subscription",
-  description:
-    "A flat-fee, month-to-month revenue management subscription for independent and boutique hotels. Includes daily pricing management, OTA optimization, direct booking strategy, and rewards program development. Three tiers from $850/month.",
-  provider: {
-    "@id": "https://ramirezhospitality.com/#organization",
-  },
-  serviceType: "Hotel Revenue Management",
-  areaServed: { "@type": "Country", name: "United States" },
-  offers: [
+  "@type": "OfferCatalog",
+  "@id": "https://ramirezhospitality.com/#offers",
+  name: "Ramirez Hospitality Group offers",
+  url: "https://ramirezhospitality.com/",
+  itemListElement: [
     {
       "@type": "Offer",
-      name: "Essentials",
-      description: "For 10–40 key properties. Daily pricing, OTA optimization, monthly strategy call.",
-      price: "850",
+      name: OFFERS.audit.name,
+      description: "Free. The hotel scored out of 100 across seven areas, every finding priced in dollars, the two most valuable fixes written out in full.",
+      price: "0",
       priceCurrency: "USD",
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        price: "850",
-        priceCurrency: "USD",
-        unitText: "month",
-      },
+      url: `https://ramirezhospitality.com${OFFERS.audit.path}`,
+    },
+    ...OFFERS.subscription.plans.map((p) => ({
+      "@type": "Offer",
+      name: `${OFFERS.subscription.name}: ${p.name}`,
+      description: `${p.line} ${p.term}. Flat, published, nothing on commission.`,
+      price: String(p.price),
+      priceCurrency: "USD",
+      priceSpecification: { "@type": "UnitPriceSpecification", price: String(p.price), priceCurrency: "USD", unitText: "month" },
+      url: `https://ramirezhospitality.com${OFFERS.subscription.path}`,
+    })),
+    {
+      "@type": "Offer",
+      name: OFFERS.plan.name,
+      description: "A hotel feasibility study for anyone buying, building or opening a hotel under 50 rooms. Flat, priced up front.",
+      price: String(OFFERS.plan.price),
+      priceCurrency: "USD",
+      url: `https://ramirezhospitality.com${OFFERS.plan.path}`,
     },
     {
       "@type": "Offer",
-      name: "Growth",
-      description: "For 30–80 key boutique hotels. Full OTA optimization, direct booking strategy, loyalty program.",
-      price: "1500",
-      priceCurrency: "USD",
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        price: "1500",
-        priceCurrency: "USD",
-        unitText: "month",
-      },
-    },
-    {
-      "@type": "Offer",
-      name: "Enterprise",
-      description: "For 80+ key properties and small portfolios. Fractional Director of Revenue.",
-      price: "2500",
-      priceCurrency: "USD",
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        price: "2500",
-        priceCurrency: "USD",
-        unitText: "month",
-      },
+      name: OFFERS.launch.name,
+      description: "The hands-on hotel opening or reopening engagement, ten phases, on site nationwide. Quoted per project after the Plan.",
+      url: `https://ramirezhospitality.com${OFFERS.launch.path}`,
     },
   ],
 };
 
-// ─── FAQ Data (rendered on page for GEO extractability) ─────────────────────
-
-const FAQ_ITEMS = [
-  {
-    q: "What does outsourced hotel revenue management include?",
-    a: "At Ramirez Hospitality Group, outsourced revenue management includes daily pricing and rate management, OTA optimization across Expedia, Booking.com, and Hotels.com, direct booking strategy, demand forecasting, comp-set monitoring, and monthly strategy calls. Enterprise clients also receive group sales strategy, channel-manager management, and quarterly on-site visits.",
-  },
-  {
-    q: "How much does hotel revenue management consulting cost?",
-    a: "Ramirez Hospitality Group subscriptions start at $850/month for properties with 10–40 keys (Essentials tier), $1,500/month for 30–80 key boutique hotels (Growth tier), and $2,500/month for 80+ key properties and portfolios (Enterprise tier). All plans are month-to-month with no long-term contracts.",
-  },
-  {
-    q: "Who is Adam Ramirez?",
-    a: "Adam Ramirez is a Palm Springs-based hotel operator and hospitality consultant with 10+ years of experience. He has opened 8 hotels from concept to ribbon-cutting, repositioned 4 others, managed over $10M in annual hotel revenue, and led teams of 120+. His properties have been featured in Travel & Leisure, Condé Nast Traveler, Forbes, and Modernism Magazine. He is the founder of Ramirez Hospitality Group.",
-  },
-  {
-    q: "What is The Modern Hotel Audit, and is it really free?",
-    a: "Yes, genuinely free. Every client starts here, whether they are buying a hotel, opening one, or running one. Seven dimensions of the property, each scored against what a well-run independent of your size can do, each finding tied to a timestamped exhibit and an annual dollar figure. The owner gets the full report and the two highest-value free moves whether or not the subscription ever happens.",
-  },
-];
+function Cta({ label, href, primary, internal }: { label: string; href: string; primary?: boolean; internal?: boolean }) {
+  const cls = primary ? "btn-brass" : "btn-ghost";
+  if (internal) {
+    return (
+      <Link href={href}>
+        <span className={cls}>
+          {label} <ArrowRight className="w-4 h-4" />
+        </span>
+      </Link>
+    );
+  }
+  return (
+    <a href={href} className={cls}>
+      {label} <ArrowRight className="w-4 h-4" />
+    </a>
+  );
+}
 
 export default function Home() {
   return (
     <PageLayout
-      title="Ramirez Hospitality Group — Hotel Revenue Management & Hospitality Consulting for Independent & Boutique Hotels"
-      description="Operator-led hospitality consulting and remote revenue management for independent hotels, boutique properties, and small hotel groups. Every client starts with The Modern Hotel Audit, free and scored across seven dimensions. Adam Ramirez — 10+ years opening and scaling boutique hotels. Subscriptions from $850/mo."
+      title="Revenue Management and Openings for Hotels Under 50 Rooms | Ramirez Hospitality Group"
+      description="Operator-led revenue and opening consultancy for independent hotels, motels and inns with fewer than 50 rooms. The Modern Hotel Audit is free. Plans from $1,250 a month, flat and published. The Modern Hotel Plan, $6,000. Palm Springs, nationwide."
       ogImage={IMAGES.hero}
-      jsonLd={[HOME_FAQ_SCHEMA, HOME_SERVICE_SCHEMA, ORGANIZATION_SCHEMA, PERSON_SCHEMA]}
+      jsonLd={[HOME_FAQ_SCHEMA, HOME_OFFER_CATALOG_SCHEMA, ORGANIZATION_SCHEMA, PERSON_SCHEMA]}
     >
-      {/* ───────── HERO ───────── */}
+      {/* ───────── I · HERO ───────── */}
       <section className="relative min-h-[100vh] flex items-end overflow-hidden">
-        {/* Background image */}
         <div className="absolute inset-0">
           <img
             src={IMAGES.hero}
@@ -271,7 +202,6 @@ export default function Home() {
           <div className="absolute inset-0 hero-vignette" />
         </div>
 
-        {/* Side rail brand line (desktop) */}
         <div className="hidden xl:block absolute left-12 top-1/2 -translate-y-1/2 z-10">
           <div className="rotate-[-90deg] origin-left translate-y-[3rem] flex items-center gap-3">
             <div className="h-px w-10 bg-brass/70" />
@@ -281,12 +211,11 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Hero content */}
         <div className="container relative z-10 pb-24 pt-40 lg:pb-32 lg:pt-44">
           <div className="grid lg:grid-cols-12 gap-10 items-end">
             <div className="lg:col-span-9 xl:col-span-8">
               <div className="animate-rise-in">
-                <Eyebrow numeral="I" label="The Modern Hotel Audit · Free. No strings." />
+                <Eyebrow numeral="I" label={`${OFFERS.audit.name} · Free`} />
               </div>
               <h1 className="mt-7 font-display font-medium text-[2.6rem] sm:text-5xl md:text-6xl lg:text-[4.4rem] xl:text-[5rem] leading-[1.02] text-cream tracking-[-0.025em] animate-rise-in delay-100">
                 Get the property scored
@@ -294,204 +223,56 @@ export default function Home() {
                 <span className="italic text-brass">before you decide.</span>
               </h1>
               <p className="mt-9 text-cream/80 text-lg md:text-xl leading-[1.55] max-w-2xl animate-rise-in delay-200">
-                Buying a hotel, opening one, or running one. The Modern Hotel Audit scores
-                the whole property across seven dimensions, puts a dollar figure on every
-                finding, and shows the evidence behind each. Every client starts here.
+                For hotels, motels and inns with fewer than 50 rooms, and for the people about to
+                buy, build or open one. Prices set every day. Booking sites worked. Groups priced
+                right. Openings run in the right order. Every price is flat and published, nothing
+                is on commission, and everything we build lives in your own accounts.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-5 animate-rise-in delay-300">
-                <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-brass">
-                  Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+                <a href={OFFERS.audit.formPath} className="btn-brass">
+                  {OFFERS.audit.cta} <ArrowRight className="w-4 h-4" />
                 </a>
-                <a href={BRAND.openingBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost">
-                  Opening a hotel? Book an Opening Consultation
-                </a>
+                <Link href={OFFERS.plan.path}>
+                  <span className="btn-ghost">Buying, building or opening? {OFFERS.plan.name}</span>
+                </Link>
               </div>
+              <p className="mt-10 text-[0.7rem] tracking-[0.2em] uppercase text-cream/55 animate-rise-in delay-400">
+                {TRACK_RECORD_LINE}
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 animate-rise-in delay-500">
           <span className="text-[0.6rem] tracking-[0.32em] uppercase text-cream/55">Scroll</span>
           <div className="w-px h-10 bg-gradient-to-b from-brass/70 to-transparent" />
         </div>
       </section>
 
-      {/* ───────── II · TRACK RECORD STATS + PROPERTY MARQUEE ───────── */}
+      {/* ───────── II · THREE OFFERS ───────── */}
       <section className="relative py-24 lg:py-32 bg-obsidian border-t border-brass/15">
         <div className="container">
-          <Reveal className="text-center max-w-3xl mx-auto">
-            <Eyebrow numeral="II" label="The Track Record" className="mx-auto" />
-            <h2 className="mt-6 font-display text-3xl md:text-4xl text-cream">
-              10+ years inside independent hotels.
+          <Reveal className="max-w-3xl mb-14">
+            <Eyebrow numeral="II" label="Three offers" />
+            <h2 className="mt-6 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] text-cream">
+              Where are you with the property?
               <br />
-              <span className="italic text-brass">Numbers that translate.</span>
+              <span className="italic text-brass">Start there.</span>
             </h2>
           </Reveal>
 
-          <div className="mt-20 grid md:grid-cols-3 gap-px bg-brass/15">
-            {[
-              { stat: "$10M+", label: "Managed in annual hotel revenue" },
-              { stat: "$1M+", label: "Single-property revenue lifts delivered" },
-              { stat: "120+", label: "Team members hired and led" },
-            ].map((s, i) => (
-              <Reveal key={s.stat} delay={i * 120} className="bg-obsidian px-6 py-12 lg:py-16">
-                <div className="text-center">
-                  <div className="font-display text-6xl md:text-[5rem] text-brass leading-none tracking-tight">
-                    {s.stat}
-                  </div>
-                  <div className="mt-6 text-cream/70 text-sm tracking-wide max-w-[16rem] mx-auto">
-                    {s.label}
-                  </div>
+          <div className="grid md:grid-cols-3 gap-px bg-brass/15 border border-brass/15">
+            {DOORS.map((d, i) => (
+              <Reveal key={d.title} delay={i * 100} className="bg-obsidian p-8 lg:p-9 flex flex-col gap-4">
+                <span className="text-[0.62rem] tracking-[0.32em] uppercase text-cream/50">{d.who}</span>
+                <h3 className="font-display text-2xl lg:text-[1.75rem] leading-tight text-cream">{d.title}</h3>
+                <div className="font-display text-lg text-brass-soft">{d.price}</div>
+                <p className="text-cream/75 text-sm leading-[1.7] flex-1">{d.body}</p>
+                <div className="pt-2">
+                  <Cta label={d.cta.label} href={d.cta.href} primary={d.cta.primary} />
                 </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-
-        {/* Property marquee */}
-        <div className="mt-24 lg:mt-28 overflow-hidden border-y border-brass/10">
-          <div className="py-7 flex items-center gap-3">
-            <div className="container">
-              <div className="text-[0.62rem] tracking-[0.32em] uppercase text-brass/80 mb-5">
-                Properties Worked With
-              </div>
-            </div>
-          </div>
-          <div className="overflow-hidden">
-            <div className="flex animate-marquee" style={{ width: "max-content" }}>
-              {[...PROPERTIES, ...PROPERTIES, ...PROPERTIES].map((p, i) => (
-                <div key={i} className="flex items-center px-10 lg:px-16">
-                  <span className="font-display text-2xl lg:text-3xl text-cream/55 tracking-wide whitespace-nowrap">
-                    {p}
-                  </span>
-                  <span className="text-brass/40 ml-10 lg:ml-16">◆</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="container py-6">
-            <div className="flex items-center gap-2 text-[0.62rem] tracking-[0.32em] uppercase text-cream/45">
-              <span className="text-brass/60">Featured in</span>
-              {PRESS.map((p, i) => (
-                <span key={p}>
-                  {i > 0 && <span className="text-brass/30 mx-2">·</span>}
-                  <span className="text-cream/65">{p}</span>
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ───────── III · WHY OWNERS HIRE ME (emerald) ───────── */}
-      <section className="relative py-24 lg:py-36 panel-emerald grain overflow-hidden">
-        <div className="container relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-            <div className="lg:col-span-5">
-              <Reveal>
-                <Eyebrow numeral="III" label="Why Owners Hire Me" />
-              </Reveal>
-              <Reveal delay={100}>
-                <h2 className="mt-7 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] text-cream">
-                  I run the strategy.
-                  <br />
-                  <span className="italic text-brass">The AI runs the math.</span>
-                  <br />
-                  You get both.
-                </h2>
-              </Reveal>
-            </div>
-            <div className="lg:col-span-7">
-              <Reveal delay={200}>
-                <p className="text-cream/85 text-lg leading-[1.7]">
-                  Most consultants will sell you a deck. I'll sell you a quarter.
-                </p>
-                <p className="mt-6 text-cream/70 text-base lg:text-lg leading-[1.75]">
-                  I've spent 10+ years inside independent hotels — opening them,
-                  renovating them, rescuing them, running them. I've opened 8 hotels from
-                  concept to ribbon-cutting, repositioned more than 4, and turned distressed
-                  properties into the press darlings of <em className="text-cream/90">Travel & Leisure</em> and{" "}
-                  <em className="text-cream/90">Condé Nast Traveler</em>.
-                </p>
-                <p className="mt-5 text-cream/70 text-base lg:text-lg leading-[1.75]">
-                  The work I do today is the same work I did then — only now I do it for
-                  owners who would rather not pay a six-figure salary to find out what good
-                  looks like. I pair operator instincts with the best AI-driven revenue
-                  tools on the market — Hotelitix, Duetto, Light House, Revinate — so the
-                  math is never the bottleneck. You get a real strategist on the phone, and
-                  a quiet machine in the background.
-                </p>
-                <div className="mt-10">
-                  <Link href="/about">
-                    <span className="link-brass pr-6">
-                      Read My Story <ArrowRight className="w-4 h-4" />
-                    </span>
-                  </Link>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ───────── IV · SIX PILLARS ───────── */}
-      <section className="relative py-24 lg:py-36 bg-obsidian">
-        <div className="container">
-          <div className="grid lg:grid-cols-12 gap-10 mb-16 lg:mb-20 items-end">
-            <div className="lg:col-span-7">
-              <Reveal>
-                <Eyebrow numeral="IV" label="The Seven Pillars" />
-              </Reveal>
-              <Reveal delay={100}>
-                <h2 className="mt-6 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] text-cream">
-                  Seven disciplines.
-                  <br />
-                  One operator.
-                  <br />
-                  <span className="italic text-brass">Every revenue lever in one place.</span>
-                </h2>
-              </Reveal>
-            </div>
-            <div className="lg:col-span-4 lg:col-start-9">
-              <Reveal delay={200}>
-                <p className="text-cream/65 text-base leading-[1.7]">
-                  Most consultants specialize in one. I've worked all seven — for 10+
-                  years, inside the buildings. My element of genius is driving revenue and
-                  opening hotels. Everything else exists to support those two things.
-                </p>
-              </Reveal>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-brass/15">
-            {PILLARS.map((p, i) => (
-              <Reveal
-                key={p.title}
-                delay={i * 80}
-                className={`group relative bg-obsidian p-8 lg:p-10 hover:bg-card transition-colors duration-500 ${
-                  p.flagship ? "ring-1 ring-brass/40" : ""
-                }`}
-              >
-                <Link href={p.href}>
-                  <div className="flex items-center justify-between mb-8">
-                    <span className="font-display italic text-brass text-2xl">{p.numeral}</span>
-                    <span className="text-[0.62rem] tracking-[0.32em] uppercase text-cream/55">
-                      {p.note}
-                    </span>
-                  </div>
-                  <h3 className="font-display text-2xl lg:text-[1.65rem] leading-tight text-cream mb-5 group-hover:text-brass transition-colors duration-300">
-                    {p.title}
-                  </h3>
-                  <p className="text-cream/65 text-sm leading-[1.7]">{p.description}</p>
-                  <div className="mt-8 flex items-center gap-2 text-brass text-xs tracking-[0.18em] uppercase font-semibold">
-                    Explore <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                  </div>
-                  {p.flagship && (
-                    <div className="absolute top-5 right-5 text-[0.55rem] tracking-[0.32em] uppercase text-brass border border-brass/40 px-2 py-1">
-                      Flagship
-                    </div>
-                  )}
+                <Link href={d.more.href}>
+                  <span className="link-brass pr-6 text-sm">{d.more.label}</span>
                 </Link>
               </Reveal>
             ))}
@@ -499,183 +280,116 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ───────── V · THREE FREE DOWNLOADS ───────── */}
-      <section className="relative py-24 lg:py-36 bg-background">
+      {/* ───────── III · THE MODERN HOTEL AUDIT ───────── */}
+      <AuditSection numeral="III" />
+
+      {/* ───────── IV · THE SUBSCRIPTION IN BRIEF ───────── */}
+      <PricingSection numeral="IV" />
+
+      {/* ───────── V · TRACK B: PLAN, THEN LAUNCH ───────── */}
+      <section className="relative py-24 lg:py-32 bg-obsidian">
         <div className="container">
-          <Reveal className="max-w-3xl mb-16">
-            <Eyebrow numeral="V" label="Where are you with the property?" />
+          <Reveal className="max-w-3xl mb-14">
+            <Eyebrow numeral="V" label="Before the property exists" />
             <h2 className="mt-6 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] text-cream">
-              Three questions owners ask me.
+              Know the numbers before you buy, build,
               <br />
-              <span className="italic text-brass">Three things you can download right now.</span>
+              <span className="italic text-brass">or open.</span>
             </h2>
           </Reveal>
-
-          <div className="grid md:grid-cols-3 gap-px bg-brass/15">
-            {DOWNLOADS.map((d, i) => (
-              <Reveal key={d.label} delay={i * 100} className="bg-obsidian p-8 lg:p-10 flex flex-col gap-4">
-                <span className="text-[0.62rem] tracking-[0.32em] uppercase text-brass">{d.stage}</span>
-                <h3 className="font-display text-2xl leading-tight text-cream">{d.question}</h3>
-                <p className="text-cream/70 text-sm leading-[1.7] flex-1">{d.description}</p>
-                <a
-                  href={d.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 text-brass font-semibold text-sm hover:text-brass-soft transition-colors"
-                >
-                  <Download className="w-3.5 h-3.5" strokeWidth={2} /> {d.label}
-                </a>
-                <p className="text-cream/45 text-xs">{d.note}</p>
+          <div className="grid md:grid-cols-3 gap-px bg-brass/15 border border-brass/15">
+            {TRACK_B.map((s, i) => (
+              <Reveal key={s.title} delay={i * 100} className="bg-card p-8 lg:p-9 flex flex-col">
+                <div className="font-display italic text-brass text-2xl mb-3">{s.n}</div>
+                <h3 className="font-display text-2xl text-cream mb-4">{s.title}</h3>
+                <p className="text-cream/75 text-sm leading-[1.7] flex-1">{s.body}</p>
+                <div className="mt-7">
+                  <Cta label={s.cta.label} href={s.cta.href} primary={s.cta.primary} internal={"internal" in s.cta && s.cta.internal} />
+                </div>
               </Reveal>
             ))}
           </div>
-
-          <Reveal delay={300} className="mt-10 text-cream/70 text-sm">
-            Every download ends where every client starts:{" "}
-            <a
-              href={BRAND.auditBookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-brass font-semibold hover:text-brass-soft transition-colors"
-            >
-              Book The Modern Hotel Audit
-            </a>
-            .
-          </Reveal>
         </div>
       </section>
 
-      {/* ───────── VI · THE MODERN HOTEL AUDIT ───────── */}
-      <AuditSection numeral="VI" />
-
-      {/* ───────── VII · PRICING ───────── */}
-      <PricingSection numeral="VII" />
-
-      {/* ───────── VIII · CASE STUDY HIGHLIGHT ───────── */}
-      <section className="relative py-24 lg:py-36 bg-obsidian">
-        <div className="container">
-          <div className="grid lg:grid-cols-12 gap-12 items-start mb-16">
-            <div className="lg:col-span-7">
-              <Reveal>
-                <Eyebrow numeral="VIII" label="The Results" />
-              </Reveal>
-              <Reveal delay={100}>
-                <h2 className="mt-6 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] text-cream">
-                  Numbers from
-                  <br />
-                  <span className="italic text-brass">real properties.</span>
-                </h2>
-              </Reveal>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-px bg-brass/15">
-            {[
-              {
-                property: "Twist Palm Springs",
-                result: "+$1M revenue lift",
-                detail: "+40% year-over-year · 60% direct bookings",
-              },
-              {
-                property: "Limón Palm Springs",
-                result: "$750K on six keys",
-                detail: "ADR $550+ · Six-key boutique",
-              },
-              {
-                property: "The Paloma Resort",
-                result: "$1.5M Year 1",
-                detail: "Opening from concept to ribbon-cutting",
-              },
-            ].map((c, i) => (
-              <Reveal key={c.property} delay={i * 120} className="bg-obsidian p-8 lg:p-10">
-                <div className="text-[0.62rem] tracking-[0.32em] uppercase text-brass mb-5">
-                  {c.property}
-                </div>
-                <div className="font-display text-3xl lg:text-4xl text-cream mb-4">
-                  {c.result}
-                </div>
-                <div className="text-cream/60 text-sm">{c.detail}</div>
+      {/* ───────── VI · PROOF ───────── */}
+      <section className="relative py-24 lg:py-32 panel-emerald grain border-y border-brass/15">
+        <div className="container relative z-10">
+          <Reveal className="max-w-3xl mb-14">
+            <Eyebrow numeral="VI" label="Proof" />
+            <h2 className="mt-6 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] text-cream">
+              Numbers from
+              <br />
+              <span className="italic text-brass">real properties.</span>
+            </h2>
+          </Reveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-brass/15 border border-brass/15">
+            {PROOF.map((p, i) => (
+              <Reveal key={p.who} delay={i * 100} className="bg-obsidian p-7 lg:p-8">
+                <div className="text-[0.62rem] tracking-[0.32em] uppercase text-brass mb-4">{p.who}</div>
+                <div className="font-display text-4xl text-cream leading-none">{p.v}</div>
+                <p className="mt-3 text-cream/65 text-[0.8125rem] leading-[1.55]">{p.l}</p>
               </Reveal>
             ))}
           </div>
-
-          <Reveal delay={300} className="mt-12 text-center">
+          <Reveal delay={400}>
+            <p className="mt-10 font-display italic text-xl lg:text-2xl text-cream/80 max-w-3xl leading-[1.45]">
+              Six funded hospitality projects with full pro formas and sensitivity scenarios. Eight
+              hotels opened from concept to ribbon-cutting, four repositioned, $10M+ in annual hotel
+              revenue managed.
+            </p>
+          </Reveal>
+          <Reveal delay={450} className="mt-8">
             <Link href="/case-studies">
               <span className="link-brass pr-6">
-                Browse Case Studies <ArrowRight className="w-4 h-4" />
+                Browse the case studies <ArrowRight className="w-4 h-4" />
               </span>
             </Link>
           </Reveal>
         </div>
       </section>
 
-      {/* ───────── IX · OPENING TEASER ───────── */}
-      <section className="relative py-24 lg:py-36 panel-emerald grain border-y border-brass/15 overflow-hidden">
-        <div className="container relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-            <div className="lg:col-span-6 order-2 lg:order-1">
+      {/* ───────── VII · WHO DOES THE WORK ───────── */}
+      <OperatorSection numeral="VII" />
+
+      {/* ───────── VIII · COMMON QUESTIONS ───────── */}
+      <section className="relative py-24 lg:py-32 bg-obsidian border-t border-brass/15" aria-label="Frequently Asked Questions">
+        <div className="container">
+          <div className="grid lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-4">
               <Reveal>
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={IMAGES.opening}
-                    alt="Hotel opening — ribbon cutting ceremony at a boutique Palm Springs property"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </Reveal>
-            </div>
-            <div className="lg:col-span-6 order-1 lg:order-2">
-              <Reveal>
-                <Eyebrow numeral="IX" label="Hotel Openings" />
-              </Reveal>
-              <Reveal delay={100}>
-                <h2 className="mt-7 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] text-cream">
-                  Eight hotels opened.
+                <Eyebrow numeral="VIII" label="Common questions" />
+                <h2 className="mt-6 font-display text-4xl md:text-5xl text-cream leading-[1.05]">
+                  Asked by owners,
                   <br />
-                  <span className="italic text-brass">Four repositioned.</span>
-                  <br />
-                  Zero missed deadlines.
+                  <span className="italic text-brass">answered plainly.</span>
                 </h2>
               </Reveal>
-              <Reveal delay={200}>
-                <p className="mt-8 text-cream/75 text-base lg:text-lg leading-[1.75]">
-                  Concept to ribbon-cutting. Pre-opening sales strategy, brand identity,
-                  staffing, OS&E, tech infrastructure, and soft-launch playbook — all under
-                  one operator who has done it eight times before. Openings start with The
-                  Modern Hotel Audit too: the pro forma is built on the same seven
-                  dimensions, before there is a property to score.
-                </p>
-              </Reveal>
-              <Reveal delay={300}>
-                <div className="mt-10 flex flex-wrap items-center gap-5">
-                  <a href={BRAND.openingBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-brass">
-                    Book an Opening Consultation <ArrowRight className="w-4 h-4" />
-                  </a>
-                  <Link href="/openings">
-                    <span className="btn-ghost">
-                      The Opening Process <ArrowRight className="w-4 h-4" />
-                    </span>
-                  </Link>
-                </div>
-              </Reveal>
+            </div>
+            <div className="lg:col-span-8">
+              {FAQ.map((item, i) => (
+                <Reveal key={item.q} delay={i * 50}>
+                  <div className={`py-7 border-b border-brass/15 ${i === 0 ? "border-t" : ""}`}>
+                    <h3 className="font-display text-xl lg:text-2xl text-cream mb-3 leading-snug">{item.q}</h3>
+                    <p className="text-cream/70 text-base leading-[1.75] max-w-3xl">{item.a}</p>
+                  </div>
+                </Reveal>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ───────── X · THE OPERATOR ───────── */}
-      <OperatorSection numeral="X" />
-
-      {/* ───────── XI · AUDIT CTA ───────── */}
-      <section className="relative py-24 lg:py-36 bg-obsidian">
+      {/* ───────── IX · NEXT STEP ───────── */}
+      <section className="relative py-24 lg:py-36 bg-obsidian border-t border-brass/15">
         <div className="absolute inset-0 opacity-20">
           <img src={IMAGES.audit} alt="" className="w-full h-full object-cover" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-obsidian via-obsidian/90 to-obsidian" />
         <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="max-w-3xl">
             <Reveal>
-              <Eyebrow numeral="XI" label="Next Step" className="mx-auto" />
+              <Eyebrow numeral="IX" label="Next step" />
             </Reveal>
             <Reveal delay={100}>
               <h2 className="mt-7 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] text-cream">
@@ -685,95 +399,25 @@ export default function Home() {
               </h2>
             </Reveal>
             <Reveal delay={200}>
-              <p className="mt-8 text-cream/75 text-lg leading-[1.75] max-w-xl mx-auto">
-                A 20-minute fit call, then the audit: a score, a dollar figure, and the
-                evidence behind both. Free. No strings.
+              <p className="mt-8 text-cream/75 text-lg leading-[1.75] max-w-xl">
+                Five fields, then pick a time for a 20-minute call. If it is not a fit, we will say
+                so.
               </p>
             </Reveal>
             <Reveal delay={300}>
-              <div className="mt-10 flex flex-wrap items-center justify-center gap-5">
-                <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-brass">
-                  Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <a href={OFFERS.audit.formPath} className="btn-brass">
+                  {OFFERS.audit.cta} <ArrowRight className="w-4 h-4" />
                 </a>
-                <a href={BRAND.openingBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost">
-                  Book an Opening Consultation
+                <a href={OFFERS.plan.formPath} className="btn-ghost">
+                  {OFFERS.plan.cta}
+                </a>
+                <a href={OFFERS.launch.formPath} className="btn-ghost">
+                  {OFFERS.launch.cta}
                 </a>
               </div>
             </Reveal>
           </div>
-        </div>
-      </section>
-
-      {/* ───────── XII · INSIGHTS TEASER ───────── */}
-      <section className="relative py-24 lg:py-32 panel-walnut grain border-t border-brass/15">
-        <div className="container relative z-10">
-          <div className="grid lg:grid-cols-12 gap-10 mb-14 items-end">
-            <div className="lg:col-span-7">
-              <Reveal>
-                <Eyebrow numeral="XII" label="The Notebook" />
-                <h2 className="mt-6 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] text-cream">
-                  Field notes from
-                  <br />
-                  <span className="italic text-brass">10+ years inside hotels.</span>
-                </h2>
-              </Reveal>
-            </div>
-          </div>
-
-          <Reveal delay={100}>
-            <article className="group border border-brass/20 bg-obsidian p-8 lg:p-10 hover:border-brass/50 transition-colors duration-500 max-w-3xl">
-              <div className="text-[0.62rem] tracking-[0.32em] uppercase text-brass mb-5">
-                Featured · 8 min read · April 2026
-              </div>
-              <h3 className="font-display text-3xl lg:text-4xl text-cream leading-[1.1] mb-5 group-hover:text-brass transition-colors duration-300">
-                Why Your RevPAR Is a Thing of the Past
-              </h3>
-              <p className="text-cream/70 text-base leading-[1.7] mb-8">
-                For two decades RevPAR was the headline number every owner asked for, every
-                revenue manager defended, and every brand reported in earnings. It is still
-                useful. But if RevPAR is the only number on your dashboard, you are running
-                your hotel on a snapshot, and the picture has already moved.
-              </p>
-              <Link href="/insights">
-                <span className="link-brass pr-6">
-                  Read the Notebook <ArrowRight className="w-4 h-4" />
-                </span>
-              </Link>
-            </article>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ───────── XIII · FAQ (GEO: AI search extraction + featured snippets) ───────── */}
-      <section className="relative py-24 lg:py-32 bg-obsidian border-t border-brass/15" aria-label="Frequently Asked Questions">
-        <div className="container">
-          <Reveal className="max-w-3xl mb-14">
-            <Eyebrow numeral="XIII" label="Common Questions" />
-            <h2 className="mt-6 font-display text-4xl md:text-5xl text-cream leading-[1.05]">
-              Questions from
-              <br />
-              <span className="italic text-brass">hotel owners.</span>
-            </h2>
-          </Reveal>
-
-          <div className="max-w-3xl space-y-0">
-            {FAQ_ITEMS.map((item, i) => (
-              <Reveal key={i} delay={i * 80}>
-                <div className="border-b border-brass/15 py-8">
-                  <h3 className="font-display text-xl lg:text-2xl text-cream mb-4 leading-snug">
-                    {item.q}
-                  </h3>
-                  <p className="text-cream/70 text-base leading-[1.75]">{item.a}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={400} className="mt-12">
-            <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="link-brass pr-6">
-              Have a different question? Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
-            </a>
-          </Reveal>
         </div>
       </section>
     </PageLayout>

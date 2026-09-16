@@ -244,13 +244,8 @@ export default function HotelOpeningConsultantLP() {
         {/* IV · WHAT IT COSTS AFTER YOU OPEN */}
         <PricingSection
           numeral="IV"
-          intro="Revenue management starts once you're open, and only if it fits. Flat monthly fee, no setup fee, no contract. Re-scored on a schedule we put in writing: the number has to move. You keep every login and every export."
-          checklist={[
-            "Runs inside the PMS you already have",
-            "Flat fee, no setup cost, no contract",
-            "Monthly strategy call and performance report",
-            "The Opening Strategy Call first, free, no strings",
-          ]}
+          intro="Revenue management starts once you are open, and only if it fits. Kind of work sets the plan; every plan runs at full effort. Flat monthly fee, published. One full cycle to start, then month to month. You keep every login and every export."
+          linkToPlans={false}
         />
 
         {/* V · THE OPERATOR */}
