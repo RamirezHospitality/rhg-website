@@ -11,7 +11,7 @@ import { PageLayout } from "@/components/PageLayout";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
 import { ORGANIZATION_SCHEMA } from "@/components/SEO";
-import { BRAND } from "@/lib/brand";
+import { OFFERS } from "@/lib/brand";
 
 const ARTICLE_SCHEMA = {
   "@context": "https://schema.org",
@@ -284,20 +284,19 @@ export default function ArticleMotelValuation() {
             <h2 className="mt-6 font-display text-3xl md:text-4xl text-cream leading-[1.1]">
               Bring the listing.
               <br />
-              <span className="italic text-brass">Book the Opening Consultation.</span>
+              <span className="italic text-brass">{OFFERS.plan.cta}.</span>
             </h2>
             <p className="mt-7 text-cream/75 leading-[1.7]">
-              Get the four-step walk done properly on the property you're actually looking
-              at, with lender-ready numbers and sensitivity scenarios.
+              Get the four-step walk done properly on the property you are actually looking at,
+              with lender-ready numbers and sensitivity scenarios. {OFFERS.plan.name} is{" "}
+              {OFFERS.plan.priceLabel}, flat, priced up front, and it is allowed to say no.
             </p>
-            <div className="mt-9">
-              <a
-                href={BRAND.openingBookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-brass"
-              >
-                Book the Opening Consultation <ArrowRight className="w-4 h-4" />
+            <div className="mt-9 flex flex-wrap items-center gap-5">
+              <a href={OFFERS.plan.formPath} className="btn-brass">
+                {OFFERS.plan.cta} <ArrowRight className="w-4 h-4" />
+              </a>
+              <a href={OFFERS.audit.formPath} className="link-brass pr-6">
+                Buying a hotel that is already open? {OFFERS.audit.cta}
               </a>
             </div>
           </Reveal>
