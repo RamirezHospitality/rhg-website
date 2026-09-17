@@ -65,7 +65,7 @@ const ROWS: OfferRow[] = [
     who: "If you are buying, building or converting",
     name: OFFERS.plan.name,
     price: `${OFFERS.plan.priceLabel}, flat, priced up front`,
-    body: "Know the numbers before you buy, build, or open. Is the demand real, does the math work, what is the property worth. The study, the model, and a clear yes, no, or not at this price. A broker's pro forma is a sales document; the Plan is allowed to say no.",
+    body: "Know the numbers before you buy, build, or open. Is the demand real, does the math work, what is the property worth. The study, the model, and every number made to make sense, so the decision is yours. A broker's pro forma is a sales document; the Plan is not trying to sell you anything.",
     cta: { label: OFFERS.plan.cta, href: OFFERS.plan.formPath },
     more: { label: "How the Plan works", href: OFFERS.plan.path },
     image: IMAGES.advisory,

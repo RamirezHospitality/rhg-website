@@ -38,7 +38,7 @@ const DOORS = [
     who: "You are buying, building or converting",
     title: OFFERS.plan.name,
     price: `${OFFERS.plan.priceLabel}, flat, priced up front`,
-    body: "Know the numbers before you buy, build, or open. Three questions in order: is the demand real, does the math work, what is the property worth. The study, the model, and a clear yes, no, or not at this price.",
+    body: "Know the numbers before you buy, build, or open. Three questions in order: is the demand real, does the math work, what is the property worth. The study, the model, and every number made to make sense, so the decision is yours.",
     cta: { label: OFFERS.plan.cta, href: OFFERS.plan.formPath, primary: false },
     more: { label: "How the Plan works", href: OFFERS.plan.path },
   },
@@ -56,7 +56,7 @@ const TRACK_B = [
   {
     n: "Step one",
     title: OFFERS.plan.name,
-    body: `${OFFERS.plan.priceLabel}, flat, priced up front. A feasibility study for anyone buying, building or opening a hotel. Is the demand real? Does the math work? What is the property worth, by income, by comparable sales and by cost, and which of the three does the lender believe? The study, the model, and a clear yes, no, or not at this price. A broker's pro forma is a sales document. The Plan is allowed to say no.`,
+    body: `${OFFERS.plan.priceLabel}, flat, priced up front. A feasibility study for anyone buying, building or opening a hotel. Is the demand real? Does the math work? What is the property worth, by income, by comparable sales and by cost, and which of the three does the lender believe? The study, the model, and every number made to make sense, so the decision is yours. A broker's pro forma is a sales document. The Plan is not trying to sell you anything.`,
     cta: { label: OFFERS.plan.cta, href: OFFERS.plan.formPath, primary: true },
   },
   {
@@ -100,7 +100,7 @@ const FAQ = [
   },
   {
     q: "My broker already gave me a pro forma.",
-    a: "A broker's pro forma is a sales document. The Plan answers three questions in order, from someone who has run the front desk and priced the rooms, and it is allowed to say no.",
+    a: "A broker's pro forma is a sales document. The Plan answers three questions in order, from someone who has run the front desk and priced the rooms, and it is not trying to sell you anything.",
   },
   {
     q: "I have a general manager for the opening.",

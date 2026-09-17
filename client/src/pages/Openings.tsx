@@ -22,6 +22,7 @@ import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
 import { CrmCaptureForm } from "@/components/lp/CrmCaptureForm";
 import { OperatorSection } from "@/components/OperatorSection";
+import { LaunchDeliverables } from "@/components/launch/LaunchDeliverables";
 import { IMAGES, OFFERS } from "@/lib/brand";
 import { ORGANIZATION_SCHEMA } from "@/components/SEO";
 
@@ -277,13 +278,41 @@ export default function Openings() {
         </div>
       </section>
 
-      {/* IV · THE RESET */}
+      {/* IV · WHAT YOU HOLD AT THE END */}
+      <section id="deliverables" className="py-24 lg:py-32 bg-obsidian border-t border-brass/15 scroll-mt-20">
+        <div className="container">
+          <div className="grid lg:grid-cols-12 gap-10 items-end mb-12">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow numeral="IV" label="What you hold at the end" />
+                <h2 className="mt-6 font-display text-4xl md:text-5xl lg:text-[3.4rem] leading-[1.05] text-cream">
+                  Everything documented,
+                  <br />
+                  <span className="italic text-brass">in your name.</span>
+                </h2>
+              </Reveal>
+            </div>
+            <div className="lg:col-span-5">
+              <Reveal delay={120}>
+                <p className="text-cream/70 leading-[1.7]">
+                  Every Launch produces the same shelf of documents, built on your property and
+                  kept live until the ribbon. Below, a sample status board and a sample opening
+                  budget from a project of this kind, and the shelf itself.
+                </p>
+              </Reveal>
+            </div>
+          </div>
+          <LaunchDeliverables />
+        </div>
+      </section>
+
+      {/* V · THE RESET */}
       <section className="py-24 lg:py-32 panel-walnut grain border-y border-brass/15">
         <div className="container relative z-10">
           <div className="grid lg:grid-cols-12 gap-14 items-start">
             <div className="lg:col-span-7">
               <Reveal>
-                <Eyebrow numeral="IV" label="Already open" />
+                <Eyebrow numeral="V" label="Already open" />
                 <h2 className="mt-6 font-display text-4xl md:text-5xl lg:text-[3.2rem] leading-[1.05] text-cream">
                   The reset that
                   <br />
@@ -323,11 +352,11 @@ export default function Openings() {
         </div>
       </section>
 
-      {/* V · HOW IT RUNS */}
+      {/* VI · HOW IT RUNS */}
       <section className="py-20 lg:py-28 bg-obsidian">
         <div className="container">
           <Reveal className="max-w-3xl mb-12">
-            <Eyebrow numeral="V" label="How it runs" />
+            <Eyebrow numeral="VI" label="How it runs" />
             <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
               Plan first. <span className="italic text-brass">Then the Launch.</span>
             </h2>
@@ -359,16 +388,16 @@ export default function Openings() {
         </div>
       </section>
 
-      {/* VI · WHO DOES THE WORK */}
-      <OperatorSection numeral="VI" />
+      {/* VII · WHO DOES THE WORK */}
+      <OperatorSection numeral="VII" />
 
-      {/* VII · QUESTIONS */}
+      {/* VIII · QUESTIONS */}
       <section className="py-24 lg:py-32 bg-obsidian border-t border-brass/15" aria-label="Frequently Asked Questions">
         <div className="container">
           <div className="grid lg:grid-cols-12 gap-12">
             <div className="lg:col-span-4">
               <Reveal>
-                <Eyebrow numeral="VII" label="Common questions" />
+                <Eyebrow numeral="VIII" label="Common questions" />
                 <h2 className="mt-6 font-display text-4xl md:text-5xl text-cream leading-[1.05]">
                   Asked by owners,
                   <br />
@@ -390,11 +419,11 @@ export default function Openings() {
         </div>
       </section>
 
-      {/* VIII · NEXT STEP */}
+      {/* IX · NEXT STEP */}
       <section className="py-24 lg:py-32 bg-obsidian border-t border-brass/15">
         <div className="container">
           <Reveal className="max-w-3xl">
-            <Eyebrow numeral="VIII" label="Next step" />
+            <Eyebrow numeral="IX" label="Next step" />
             <h2 className="mt-6 font-display text-4xl md:text-5xl text-cream leading-[1.05]">
               Tell me about
               <br />

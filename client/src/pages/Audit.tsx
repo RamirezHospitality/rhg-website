@@ -72,6 +72,9 @@ export default function Audit() {
                 is arithmetic, not a pitch. The catch, in full: at the end we ask whether you want
                 help fixing the three lowest scores. That is the whole catch.
               </p>
+              <p className="mt-5 text-cream/70 text-base leading-[1.65] max-w-2xl">
+                The audit is built for properties already bringing in around $500,000 a year, or within reach of it, whose owner is ready to make a change. If your rooms bring in $400,000 and there is $50,000 to $60,000 on the table, you are a candidate.
+              </p>
               <p className="mt-8 text-[0.7rem] tracking-[0.2em] uppercase text-cream/55">{TRACK_RECORD_LINE}</p>
               <p className="mt-6 text-cream/55 text-sm leading-[1.7] max-w-xl">
                 Buying, building or opening a hotel that is not running yet? There is nothing to

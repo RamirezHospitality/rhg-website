@@ -69,7 +69,7 @@ export const OFFERS = {
         priceLabel: "$1,250",
         term: "Four-month initial term, then month to month",
         prepay: "$500",
-        band: "Rooms bringing in roughly $300,000 to $750,000 a year",
+        band: "Rooms bringing in roughly $300,000 to $600,000 a year",
       },
       {
         key: "growth",

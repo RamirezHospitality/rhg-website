@@ -46,7 +46,7 @@ const PLANS: Plan[] = [
     line: ESSENTIALS.line,
     priceLabel: ESSENTIALS.priceLabel,
     start: true,
-    fit: "For one property, rooms bringing in roughly $300,000 to $750,000 a year, where nobody has ever run pricing as a job.",
+    fit: "For one property, rooms bringing in roughly $300,000 to $600,000 a year, where nobody has ever run pricing as a job.",
     outcome:
       "You stop guessing. Your rates move with demand every day, inside floors and ceilings you approve, so the festival weekend is never priced like a Tuesday in February and the slow Tuesday is never priced like a festival.",
     includes: [
@@ -90,8 +90,8 @@ const PLANS: Plan[] = [
     line: INHOUSE.line,
     priceLabel: INHOUSE.priceLabel,
     terms: [
-      "Six-month initial term: two build months, three months running, the first re-score. Then month to month on 30 days' notice.",
-      `Pay the six months up front and save ${INHOUSE.prepay}.`,
+      "A six-month commitment to start: two build months, three months running, the first re-score. Then month to month on 30 days' notice.",
+      `Settle the six months in one payment and it is ${INHOUSE.prepay} less.`,
     ],
     fit: "Built for rooms bringing in $1.2 million and up a year, 30-plus rooms, or meaningful group and event business. By application. Very large or multi-property situations are quoted individually.",
     outcome:
@@ -101,6 +101,7 @@ const PLANS: Plan[] = [
       "In your Duetto account five days a week, about an hour to an hour and a half a day.",
       "A weekly call and a weekly report.",
       "A landing page for your property, and Google Ads set up and taught to you.",
+      "A new website for your property, designed and built by us and hosted in your name, so the monthly website subscription goes away.",
       "Your group offer and your group rate card.",
       "Sales contract templates.",
       "Listings on the channels where group and negotiated business is found.",
@@ -122,6 +123,7 @@ const COMPARISON: [string, string, string, string][] = [
   ["Forecast and yearly budget", "Not included", "Rolling forecast, yearly budget", "Rolling forecast, yearly budget"],
   ["Booking sites worked as a cost line", "Listings scored and fixed", "Full program", "Full program"],
   ["Direct bookings", "Starter kit", "Booking engine and Google listing set up", "Plus a landing page and Google Ads, set up and taught"],
+  ["A new website for the property", "Not included", "Project work, quoted on its own", "Included, built and hosted in your name"],
   ["Group inquiries", "Not included", "Priced answers, templates", "Your group offer, rate card and contract templates; you are taught to answer RFPs and when to say no"],
   ["Listings where group and negotiated business is found", "Not included", "Not included", "Included"],
   ["Calls", "30 minutes monthly", "60 minutes every two weeks", "Weekly"],
@@ -129,7 +131,7 @@ const COMPARISON: [string, string, string, string][] = [
   ["Re-score against your audit", "On a schedule in writing", "On a schedule in writing", "On a schedule in writing"],
   ["On property", "Remote", "Remote", "Each quarter, travel and accommodations provided by you"],
   ["Initial term, then month to month", "Four months", "Four months", "Six months"],
-  ["Pay the term up front and save", ESSENTIALS.prepay, GROWTH.prepay, INHOUSE.prepay],
+  ["One payment for the term, if you prefer, saves", ESSENTIALS.prepay, GROWTH.prepay, INHOUSE.prepay],
 ];
 
 const MUTED_CELLS = new Set(["Weekly", "Shared desk", "Not included", "Remote"]);
@@ -141,11 +143,11 @@ const HOW_WE_CHARGE = [
   },
   {
     t: "Four months to start on Essentials and Growth",
-    p: `The first month is all setup: your pricing system configured, your rate plan built room by room, your audit carried into the systems. Then three months of running it, then your first re-score. That is one full cycle, and we ask for it up front. After that, month to month with thirty days' notice, and you leave with every login, listing and document. Pay the four months up front and save ${ESSENTIALS.prepay}.`,
+    p: `The first month is all setup: your pricing system configured, your rate plan built room by room, your audit carried into the systems. Then three months of running it, then your first re-score. That is one full cycle, and it is the commitment we ask for. After that, month to month with thirty days' notice, and you leave with every login, listing and document. If you would rather settle the four months in one payment, it is ${ESSENTIALS.prepay} less.`,
   },
   {
-    t: "Six months to start on In-House",
-    p: `Two build months, three months running, then the first re-score in month six. That is the In-House cycle, and we ask for it up front. After that, month to month with thirty days' notice, same as every plan, and everything built in your name stays yours. Pay the six months up front and save ${INHOUSE.prepay}. Project work is quoted before it starts.`,
+    t: "A six-month commitment on In-House",
+    p: `Two build months, three months running, then the first re-score in month six. That is the In-House cycle, and it is the commitment we ask for. After that, month to month with thirty days' notice, same as every plan, and everything built in your name stays yours. Settle the six months in one payment and it is ${INHOUSE.prepay} less. Project work is quoted before it starts.`,
   },
 ];
 
@@ -219,7 +221,7 @@ const RM_SERVICE_SCHEMA = {
   offers: OFFERS.subscription.plans.map((p) => ({
     "@type": "Offer",
     name: `${p.name}: ${p.line}`,
-    description: `${p.band}. ${p.term}. Pay the term up front and save ${p.prepay}.`,
+    description: `${p.band}. ${p.term}. One payment for the term saves ${p.prepay}.`,
     price: String(p.price),
     priceCurrency: "USD",
     priceSpecification: {

@@ -289,7 +289,7 @@ export default function ArticleMotelValuation() {
             <p className="mt-7 text-cream/75 leading-[1.7]">
               Get the four-step walk done properly on the property you are actually looking at,
               with lender-ready numbers and sensitivity scenarios. {OFFERS.plan.name} is{" "}
-              {OFFERS.plan.priceLabel}, flat, priced up front, and it is allowed to say no.
+              {OFFERS.plan.priceLabel}, flat, priced up front, and it is not selling you the property.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-5">
               <a href={OFFERS.plan.formPath} className="btn-brass">
