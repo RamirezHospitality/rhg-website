@@ -161,8 +161,8 @@ export function SiteFooter() {
         <div className="max-w-3xl" aria-label="About Ramirez Hospitality Group">
           <p className="text-cream/40 text-xs leading-[1.8]">
             <strong className="text-cream/55">Ramirez Hospitality Group</strong> is an
-            operator-led revenue and opening consultancy for independent hotels, motels and
-            inns with fewer than 50 rooms, based in Palm Springs, California and working
+            operator-led revenue and opening consultancy for independent and boutique hotels, motels and
+            inns, based in Palm Springs, California and working
             nationwide. Three offers: {OFFERS.audit.name} (free, the hotel scored out of 100
             across seven areas and sized in dollars); the revenue management subscription
             (Essentials {OFFERS.subscription.plans[0].priceLabel} a month, Growth{" "}

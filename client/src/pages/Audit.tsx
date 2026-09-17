@@ -24,7 +24,7 @@ const AUDIT_SERVICE_SCHEMA = {
   "@id": "https://ramirezhospitality.com/audit#service",
   name: "The Modern Hotel Audit",
   description:
-    "A free revenue audit for independent hotels, motels and inns with fewer than 50 rooms. The property is scored out of 100 across seven areas: reputation and rate-worthiness, direct booking engine, distribution and channel health, technology and automation, demand capture, pricing and rate strategy, and whole-property yield. Every finding is priced in dollars with the evidence behind it, and the two most valuable fixes are written out in full. Every finding is tagged to the cheapest subscription plan that captures it. The Lincoln, Marfa scored 41 out of 100 and found $55,000 to $185,000 on a $444,000 base.",
+    "A free revenue audit for independent and boutique hotels, motels and inns. The property is scored out of 100 across seven areas: reputation and rate-worthiness, direct booking engine, distribution and channel health, technology and automation, demand capture, pricing and rate strategy, and whole-property yield. Every finding is priced in dollars with the evidence behind it, and the two most valuable fixes are written out in full. Every finding is tagged to the cheapest subscription plan that captures it. The Lincoln, Marfa scored 41 out of 100 and found $55,000 to $185,000 on a $444,000 base.",
   provider: { "@id": "https://ramirezhospitality.com/#organization" },
   serviceType: "Hotel Revenue Audit",
   areaServed: { "@type": "Country", name: "United States" },

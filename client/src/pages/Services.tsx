@@ -54,7 +54,7 @@ const ROWS: OfferRow[] = [
     who: "Then, if it fits",
     name: OFFERS.subscription.name,
     price: `${ESSENTIALS.name} ${ESSENTIALS.priceLabel} a month. Three plans, flat.`,
-    body: "Your prices set every day. Your booking sites worked. Your groups priced right. The revenue department every big hotel has, for a hotel with fewer than 50 rooms, run by an operator inside rules you set. Nothing on commission. No software included in the fee.",
+    body: "Your prices set every day. Your booking sites worked. Your groups priced right. The revenue department every big hotel has, built for independent and boutique hoteliers, run by an operator inside rules you set. Nothing on commission. No software included in the fee.",
     cta: { label: OFFERS.audit.cta, href: OFFERS.audit.formPath },
     more: { label: "See the three plans", href: OFFERS.subscription.path },
     image: IMAGES.revenue,
@@ -106,7 +106,7 @@ const SERVICES_ITEMLIST_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Ramirez Hospitality Group: everything we do",
-  description: "Three offers for hotels under 50 rooms, in the order an owner meets them, with every price on the page. Project work quoted on its own.",
+  description: "Three offers for independent hotels, in the order an owner meets them, with every price on the page. Project work quoted on its own.",
   url: "https://ramirezhospitality.com/services",
   numberOfItems: 4,
   itemListElement: [
@@ -121,7 +121,7 @@ export default function Services() {
   return (
     <PageLayout
       title="What Ramirez Hospitality Group Does: Audit, Subscription, Plan, Launch"
-      description="Three offers for hotels under 50 rooms, in the order an owner meets them, with every price on the page: The Modern Hotel Audit (free), the revenue management subscription from $1,250 a month, The Modern Hotel Plan ($6,000) and The Modern Hotel Launch. Project work quoted on its own."
+      description="Three offers for independent hotels, in the order an owner meets them, with every price on the page: The Modern Hotel Audit (free), the revenue management subscription from $1,250 a month, The Modern Hotel Plan ($6,000) and The Modern Hotel Launch. Project work quoted on its own."
       canonical="/services"
       breadcrumbs={[{ name: "Everything we do", href: "/services" }]}
       jsonLd={[SERVICES_ITEMLIST_SCHEMA, ORGANIZATION_SCHEMA]}

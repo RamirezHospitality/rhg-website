@@ -56,7 +56,7 @@ const TRACK_B = [
   {
     n: "Step one",
     title: OFFERS.plan.name,
-    body: `${OFFERS.plan.priceLabel}, flat, priced up front. A feasibility study for anyone buying, building or opening a hotel under 50 rooms. Is the demand real? Does the math work? What is the property worth, by income, by comparable sales and by cost, and which of the three does the lender believe? The study, the model, and a clear yes, no, or not at this price. A broker's pro forma is a sales document. The Plan is allowed to say no.`,
+    body: `${OFFERS.plan.priceLabel}, flat, priced up front. A feasibility study for anyone buying, building or opening a hotel. Is the demand real? Does the math work? What is the property worth, by income, by comparable sales and by cost, and which of the three does the lender believe? The study, the model, and a clear yes, no, or not at this price. A broker's pro forma is a sales document. The Plan is allowed to say no.`,
     cta: { label: OFFERS.plan.cta, href: OFFERS.plan.formPath, primary: true },
   },
   {
@@ -147,7 +147,7 @@ const HOME_OFFER_CATALOG_SCHEMA = {
     {
       "@type": "Offer",
       name: OFFERS.plan.name,
-      description: "A hotel feasibility study for anyone buying, building or opening a hotel under 50 rooms. Flat, priced up front.",
+      description: "A hotel feasibility study for anyone buying, building or opening a hotel. Flat, priced up front.",
       price: String(OFFERS.plan.price),
       priceCurrency: "USD",
       url: `https://ramirezhospitality.com${OFFERS.plan.path}`,
@@ -182,8 +182,8 @@ function Cta({ label, href, primary, internal }: { label: string; href: string; 
 export default function Home() {
   return (
     <PageLayout
-      title="Revenue Management and Openings for Hotels Under 50 Rooms | Ramirez Hospitality Group"
-      description="Operator-led revenue and opening consultancy for independent hotels, motels and inns with fewer than 50 rooms. The Modern Hotel Audit is free. Plans from $1,250 a month, flat. The Modern Hotel Plan, $6,000. Palm Springs, nationwide."
+      title="Revenue Management and Openings for Independent Hotels | Ramirez Hospitality Group"
+      description="Operator-led revenue and opening consultancy for independent and boutique hotels, motels and inns. The Modern Hotel Audit is free. Plans from $1,250 a month, flat. The Modern Hotel Plan, $6,000. Palm Springs, nationwide."
       ogImage={IMAGES.hero}
       jsonLd={[HOME_FAQ_SCHEMA, HOME_OFFER_CATALOG_SCHEMA, ORGANIZATION_SCHEMA, PERSON_SCHEMA]}
     >
@@ -219,7 +219,7 @@ export default function Home() {
                 <span className="italic text-brass">before you decide.</span>
               </h1>
               <p className="mt-9 text-cream/80 text-lg md:text-xl leading-[1.55] max-w-2xl animate-rise-in delay-200">
-                For hotels, motels and inns with fewer than 50 rooms, and for the people about to
+                For independent hotels, motels and inns, and for the people about to
                 buy, build or open one. Prices set every day. Booking sites worked. Groups priced
                 right. Openings run in the right order. Every price is flat, nothing
                 is on commission, and everything we build lives in your own accounts.

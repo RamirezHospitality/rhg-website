@@ -278,7 +278,7 @@ export default function Insights() {
               <div className="hairline mt-10" />
               <p className="text-cream/65 text-base">
                 Adam Ramirez runs Ramirez Hospitality Group, an operator-led revenue and
-                opening consultancy for hotels with fewer than 50 rooms. Anyone running a hotel
+                opening consultancy for independent and boutique hotels. Anyone running a hotel
                 starts with{" "}
                 <a href={OFFERS.audit.formPath} className="text-brass underline">
                   {OFFERS.audit.name}

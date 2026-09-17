@@ -13,7 +13,7 @@ export const BRAND = {
   monogram: "RHG",
   byline: "By Adam Ramirez",
   tagline:
-    "Operator-led revenue and opening consultancy for independent hotels, motels and inns with fewer than 50 rooms.",
+    "Operator-led revenue and opening consultancy for independent and boutique hotels, motels and inns.",
   address: "351 E Via Carisma, Palm Springs, CA 92264",
   city: "Palm Springs, CA",
   reach: "Working nationwide",

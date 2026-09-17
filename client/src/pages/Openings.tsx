@@ -110,7 +110,7 @@ const LAUNCH_SERVICE_SCHEMA = {
   name: "The Modern Hotel Launch: hotel opening and reopening consulting",
   alternateName: "Hotel Opening Consultant",
   description:
-    "The hands-on hotel opening or reopening engagement for independent hotels, motels and inns under 50 rooms: brand and budget to first guest, ten phases (concept and positioning, brand identity, pre-opening budget and year-one model, systems, sales and distribution, hiring, standards and training, marketing launch, soft opening, public opening and handoff), on site nationwide. Also covers the reset for an open, underperforming property. Quoted per project. Every Launch starts with The Modern Hotel Plan. Eight hotels opened from concept to ribbon-cutting, four repositioned.",
+    "The hands-on hotel opening or reopening engagement for independent hotels, motels and inns: brand and budget to first guest, ten phases (concept and positioning, brand identity, pre-opening budget and year-one model, systems, sales and distribution, hiring, standards and training, marketing launch, soft opening, public opening and handoff), on site nationwide. Also covers the reset for an open, underperforming property. Quoted per project. Every Launch starts with The Modern Hotel Plan. Eight hotels opened from concept to ribbon-cutting, four repositioned.",
   provider: { "@id": "https://ramirezhospitality.com/#organization" },
   serviceType: "Hotel Opening Consulting",
   areaServed: { "@type": "Country", name: "United States" },

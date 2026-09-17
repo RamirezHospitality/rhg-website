@@ -97,7 +97,7 @@ export default function About() {
               <p className="mt-9 text-cream/80 text-lg md:text-xl leading-[1.55] max-w-xl">
                 I have spent 10+ years inside independent and boutique hotels: opening them,
                 renovating them, rescuing them, and running them. Today I do that work for
-                owners with fewer than 50 rooms who want the revenue department a big hotel
+                independent owners who want the revenue department a big hotel
                 has, without hiring for it.
               </p>
             </div>
