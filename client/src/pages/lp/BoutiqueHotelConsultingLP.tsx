@@ -155,8 +155,8 @@ export default function BoutiqueHotelConsultingLP() {
                 </h1>
                 <p className="mt-7 text-cream/85 text-lg md:text-xl leading-[1.55] max-w-2xl">
                   Revenue management, operations, and tech stack, run by an operator who has
-                  done it on his own properties. Plans from $1,250 a month, flat and
-                  published, nothing on commission.
+                  done it on his own properties. Plans from $1,250 a month, flat,
+                  nothing on commission.
                 </p>
 
                 {/* Proof point */}

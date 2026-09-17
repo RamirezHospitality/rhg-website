@@ -2,7 +2,7 @@
  * Ramirez Hospitality Group — The Reserve · HOME
  * Editorial dark mode. Audit-first, then the three offers as three doors.
  * Rebuilt 2026-09 to the September 9 offer brief: three offers, two tracks,
- * flat published prices, one CTA per offer, form first.
+ * flat prices, one CTA per offer, form first.
  *
  * Sections: Hero · Three offers · The Modern Hotel Audit (shared) · The
  * Subscription in brief (shared) · Track B: Plan then Launch · Proof ·
@@ -95,10 +95,6 @@ const FAQ = [
     a: "Yes, one system, on every plan, and it is not included in the fee. Duetto is our preferred system, and every client on every plan gets it at RHG's partner pricing: we are a contracted Duetto vendor, and the commission Duetto would pay us goes back to you as a lower rate than you could get on your own. It is your account and your data. The fee on the page is the whole fee; nothing is on commission.",
   },
   {
-    q: "It's you, Adam. What if you get busy or sell?",
-    a: "The method is the product and it lives in your own account: every rate plan, rule and piece of data belongs to you. A second contact is named on every account. If you wanted to take it over tomorrow, you could.",
-  },
-  {
     q: "How will I know it was you and not the market?",
     a: "Results are reported against your market, not just against last year, split into rate and occupancy, net of commission. The baseline is fixed in the audit before we change anything.",
   },
@@ -142,7 +138,7 @@ const HOME_OFFER_CATALOG_SCHEMA = {
     ...OFFERS.subscription.plans.map((p) => ({
       "@type": "Offer",
       name: `${OFFERS.subscription.name}: ${p.name}`,
-      description: `${p.line} ${p.term}. Flat, published, nothing on commission.`,
+      description: `${p.line} ${p.term}. Flat, nothing on commission.`,
       price: String(p.price),
       priceCurrency: "USD",
       priceSpecification: { "@type": "UnitPriceSpecification", price: String(p.price), priceCurrency: "USD", unitText: "month" },
@@ -187,7 +183,7 @@ export default function Home() {
   return (
     <PageLayout
       title="Revenue Management and Openings for Hotels Under 50 Rooms | Ramirez Hospitality Group"
-      description="Operator-led revenue and opening consultancy for independent hotels, motels and inns with fewer than 50 rooms. The Modern Hotel Audit is free. Plans from $1,250 a month, flat and published. The Modern Hotel Plan, $6,000. Palm Springs, nationwide."
+      description="Operator-led revenue and opening consultancy for independent hotels, motels and inns with fewer than 50 rooms. The Modern Hotel Audit is free. Plans from $1,250 a month, flat. The Modern Hotel Plan, $6,000. Palm Springs, nationwide."
       ogImage={IMAGES.hero}
       jsonLd={[HOME_FAQ_SCHEMA, HOME_OFFER_CATALOG_SCHEMA, ORGANIZATION_SCHEMA, PERSON_SCHEMA]}
     >
@@ -225,7 +221,7 @@ export default function Home() {
               <p className="mt-9 text-cream/80 text-lg md:text-xl leading-[1.55] max-w-2xl animate-rise-in delay-200">
                 For hotels, motels and inns with fewer than 50 rooms, and for the people about to
                 buy, build or open one. Prices set every day. Booking sites worked. Groups priced
-                right. Openings run in the right order. Every price is flat and published, nothing
+                right. Openings run in the right order. Every price is flat, nothing
                 is on commission, and everything we build lives in your own accounts.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-5 animate-rise-in delay-300">

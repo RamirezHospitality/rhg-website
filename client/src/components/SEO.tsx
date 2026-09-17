@@ -227,7 +227,7 @@ export const ORGANIZATION_SCHEMA = {
   name: "Ramirez Hospitality Group",
   alternateName: "RHG",
   description:
-    "Operator-led revenue and opening consultancy for independent hotels, motels and inns with fewer than 50 rooms. Three offers: The Modern Hotel Audit (free), the revenue management subscription (Essentials $1,250, Growth $2,000, In-House $5,000 a month; flat, published, nothing on commission), and The Modern Hotel Plan ($6,000 feasibility study) followed by The Modern Hotel Launch (opening and reopening, quoted per project). Founded by Adam Ramirez, Palm Springs, CA: 10+ years, 50+ hospitality properties, 20% average revenue lift.",
+    "Operator-led revenue and opening consultancy for independent hotels, motels and inns with fewer than 50 rooms. Three offers: The Modern Hotel Audit (free), the revenue management subscription (Essentials $1,250, Growth $2,000, In-House $5,000 a month; flat, nothing on commission), and The Modern Hotel Plan ($6,000 feasibility study) followed by The Modern Hotel Launch (opening and reopening, quoted per project). Founded by Adam Ramirez, Palm Springs, CA: 10+ years, 50+ hospitality properties, 20% average revenue lift.",
   url: SITE_URL,
   telephone: "+1-760-969-9249",
   email: "adam@ramirezhospitality.com",

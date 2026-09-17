@@ -167,7 +167,7 @@ export function SiteFooter() {
             across seven areas and sized in dollars); the revenue management subscription
             (Essentials {OFFERS.subscription.plans[0].priceLabel} a month, Growth{" "}
             {OFFERS.subscription.plans[1].priceLabel}, In-House{" "}
-            {OFFERS.subscription.plans[2].priceLabel}; flat, published, nothing on commission,
+            {OFFERS.subscription.plans[2].priceLabel}; flat, nothing on commission,
             no software included in the fee); and {OFFERS.plan.name} ({OFFERS.plan.priceLabel}{" "}
             flat feasibility study) followed by {OFFERS.launch.name} (the opening and
             reopening engagement, quoted per project). Founded by Adam Ramirez:{" "}

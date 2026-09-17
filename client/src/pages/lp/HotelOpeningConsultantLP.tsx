@@ -107,7 +107,7 @@ const FAQ = [
   },
   {
     q: "What happens after we open?",
-    a: "Revenue management continues as the Subscription, plans from $1,250 a month, flat and published, so daily pricing and the booking sites never lapse the day the Launch ends.",
+    a: "Revenue management continues as the Subscription, plans from $1,250 a month, flat, so daily pricing and the booking sites never lapse the day the Launch ends.",
   },
 ];
 
@@ -244,7 +244,7 @@ export default function HotelOpeningConsultantLP() {
         {/* IV · WHAT IT COSTS AFTER YOU OPEN */}
         <PricingSection
           numeral="IV"
-          intro="Revenue management starts once you are open, and only if it fits. Kind of work sets the plan; every plan runs at full effort. Flat monthly fee, published. One full cycle to start, then month to month. You keep every login and every export."
+          intro="Revenue management starts once you are open, and only if it fits. Kind of work sets the plan. One flat monthly fee. One full cycle to start, then month to month. You keep every login and every export."
           linkToPlans={false}
         />
 

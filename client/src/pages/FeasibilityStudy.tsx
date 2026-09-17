@@ -3,9 +3,8 @@
  * Route: /feasibility-study (the slug carries the search phrase "hotel
  * feasibility study"; /the-modern-hotel-plan and /plan redirect here).
  *
- * The feasibility study, productized per the September 9, 2026 offer brief:
- * $6,000, flat, priced up front, for anyone buying, building or opening a
- * hotel under 50 rooms. Three questions in order. The CTA is "Book The
+ * The feasibility study, productized per the September 9, 2026 offer brief: * $6,000, flat, priced up front, for anyone buying, building or opening a
+ * hotel, whatever its size. Three questions in order. The CTA is "Book The
  * Modern Hotel Plan" throughout and lands on the capture form on this page.
  * No audit block and no subscription block here: a property that is not open
  * yet has nothing to audit. The turnaround is stated on the call, never here.
@@ -28,18 +27,27 @@ const QUESTIONS = [
   {
     n: "One",
     title: "Is the demand real?",
-    body: "The hotels you would compete with, what actually drives people to the market, the seasons, and a rate and occupancy projection for the property's real positioning, not the positioning the seller wants you to see.",
+    body: "Everyone arrives with a vision. The Plan gets the whole concept out of your head and tests it against the market: the hotels you would compete with, what actually drives people there, the seasons, and whether the market can carry the concept at the rate it needs, whether that is luxury boutique, extended stay, select service or highly designed mid-scale. Then a rate and occupancy projection for the property's real positioning, not the one the seller wants you to see.",
   },
   {
     n: "Two",
     title: "Does the math work?",
-    body: "Purchase or build cost, the money you borrow and what it costs, a stabilized year-by-year model, and what happens to your loan coverage if rate or occupancy is off by ten percent.",
+    body: "Purchase or build cost, the money you borrow and what it costs, a stabilized year-by-year model, and what happens to your loan coverage if rate or occupancy is off by ten percent. The model is interactive and yours: move labor, marketing or rate yourself and watch the bottom line move in real time.",
   },
   {
     n: "Three",
     title: "What is the property worth?",
     body: "Valued three ways, by income, by comparable sales and by cost, reconciled to one number and a range. And which of the three your lender will actually believe.",
   },
+];
+
+const FINISHED_PLAN = [
+  "One integrated model. Every path the owner was weighing (keep it as it is, convert it, expand it, sell it whole, sell it down) run on the same assumptions so they compare directly.",
+  "Capital required, the year-one operating result and the year-one cash flow on separate lines, because the year you spend the capital is not the year you judge the hotel.",
+  "The stabilized year, after every cost, for each path.",
+  "A self-managed comparison, so the owner sees what the property earns with us and without us.",
+  "Every input sourced, every unconfirmed assumption marked in the workbook, and all of it live and editable.",
+  "Unlevered and pre-tax, so your lender and your accountant can layer their own terms on top.",
 ];
 
 const STEPS = [
@@ -90,7 +98,7 @@ const FAQ = [
   },
   {
     q: "How much does a hotel feasibility study cost?",
-    a: `The Modern Hotel Plan is ${OFFERS.plan.priceLabel}, flat, priced up front, for a hotel under 50 rooms. Very large or unusual projects are quoted individually on the call.`,
+    a: `The Modern Hotel Plan is ${OFFERS.plan.priceLabel}, flat, priced up front, for one property of any size. Portfolios and unusual projects are quoted individually on the call.`,
   },
   {
     q: "What is the difference between the Plan and the free audit?",
@@ -102,7 +110,11 @@ const FAQ = [
   },
   {
     q: "What if the answer is no?",
-    a: `Then you have paid ${OFFERS.plan.priceLabel} to not commit the rest. The model is yours, and the next listing can be run through it.`,
+    a: `Then you have paid ${OFFERS.plan.priceLabel} to not commit the rest, which is the cheapest no in this business. The model is yours. Plug the next listing into it and run it again.`,
+  },
+  {
+    q: "I am looking at more than one property.",
+    a: "Good. The model is built once and it is yours to keep. Every listing after the first is a new set of inputs in the same model, so shopping two or three properties means paying for the model once, and the comparison across them is where the decision gets easy.",
   },
 ];
 
@@ -115,7 +127,7 @@ const PLAN_SERVICE_SCHEMA = {
   name: "The Modern Hotel Plan: hotel feasibility study",
   alternateName: "Hotel Feasibility Study",
   description:
-    "A hotel feasibility study for anyone buying, building or opening a hotel under 50 rooms. Three questions in order: is the demand real (market, competitive set, rate and occupancy projection), does the math work (cost, financing, stabilized model, sensitivity), what is the property worth (income, comparable sales and cost approaches, reconciled). The deliverable is the study, the working model, and a clear yes, no, or not at this price. $6,000, flat, priced up front.",
+    "A hotel feasibility study for anyone buying, building or opening a hotel, whatever its size. Three questions in order: is the demand real (market, competitive set, rate and occupancy projection), does the math work (cost, financing, stabilized model, sensitivity), what is the property worth (income, comparable sales and cost approaches, reconciled). The deliverable is the study, the working model, and a clear yes, no, or not at this price. $6,000, flat, priced up front.",
   provider: { "@id": "https://ramirezhospitality.com/#organization" },
   serviceType: "Hotel Feasibility Study",
   areaServed: { "@type": "Country", name: "United States" },
@@ -123,7 +135,7 @@ const PLAN_SERVICE_SCHEMA = {
   offers: {
     "@type": "Offer",
     name: OFFERS.plan.name,
-    description: "Flat, priced up front, for a hotel under 50 rooms. Very large or unusual projects quoted individually.",
+    description: "Flat, priced up front, for one property of any size. Portfolios and unusual projects quoted individually.",
     price: String(OFFERS.plan.price),
     priceCurrency: "USD",
     url: "https://ramirezhospitality.com/feasibility-study",
@@ -144,7 +156,7 @@ export default function FeasibilityStudy() {
   return (
     <PageLayout
       title="Hotel Feasibility Study, $6,000 Flat: The Modern Hotel Plan | Ramirez Hospitality Group"
-      description="Know the numbers before you buy, build or open a hotel under 50 rooms. Is the demand real, does the math work, what is it worth. The study, the model, and a clear yes, no, or not at this price. $6,000, priced up front."
+      description="Know the numbers before you buy, build or open a hotel. Is the demand real, does the math work, what is it worth. The written study, an interactive model you change yourself, and a clear yes, no, or not at this price. $6,000, priced up front."
       canonical="/feasibility-study"
       breadcrumbs={[{ name: OFFERS.plan.name, href: "/feasibility-study" }]}
       jsonLd={[PLAN_SERVICE_SCHEMA, PLAN_FAQ_SCHEMA, ORGANIZATION_SCHEMA]}
@@ -165,10 +177,10 @@ export default function FeasibilityStudy() {
                 <span className="italic text-brass">or open.</span>
               </h1>
               <p className="mt-9 text-cream/85 text-lg md:text-xl leading-[1.55] max-w-2xl">
-                A feasibility study for anyone buying, building or opening a hotel under 50
-                rooms. Three questions in order: is the demand real, does the math work, what is
-                the property worth. The study, the model, and a clear yes, no, or not at this
-                price. {OFFERS.plan.priceLabel}, flat, priced up front.
+                A feasibility study for anyone buying, building or opening a hotel. Three questions in
+                order: is the demand real, does the math work, what is the property worth. The
+                written study, a model you can change yourself, and a clear yes, no, or not at
+                this price. {OFFERS.plan.priceLabel}, flat, priced up front.
               </p>
               <div className="mt-9 flex flex-wrap items-center gap-5">
                 <a href="#lead-form" className="btn-brass">
@@ -267,9 +279,25 @@ export default function FeasibilityStudy() {
           <Reveal delay={300} className="mt-8 border border-brass/25 p-6 max-w-3xl">
             <div className="text-[0.62rem] tracking-[0.28em] uppercase text-brass mb-2">What you get</div>
             <p className="text-cream/75 text-sm leading-[1.7]">
-              The written study, the working model you can change yourself, and a clear yes, no,
-              or not at this price. The turnaround is stated on the call.
+              The written study and the working model, built for you to change yourself: every input
+              is live, every assumption carries its source, and the unconfirmed ones are marked.
+              Move labor, marketing, rate or occupancy and watch the bottom line move. When the next
+              listing comes along, plug in its numbers and run it again. And a clear yes, no, or not
+              at this price. The turnaround is stated on the call.
+            </p>          </Reveal>
+          <Reveal delay={350} className="mt-8 border border-brass/25 bg-card p-6 lg:p-8 max-w-3xl">
+            <div className="text-[0.62rem] tracking-[0.28em] uppercase text-brass mb-3">What a finished Plan looks like</div>
+            <p className="text-cream/65 text-sm leading-[1.6] mb-4">
+              From a Plan delivered in September 2026 for an owner weighing five paths on one property.
             </p>
+            <ul className="space-y-2.5">
+              {FINISHED_PLAN.map((f) => (
+                <li key={f} className="flex gap-3 text-cream/75 text-sm leading-[1.6]">
+                  <span className="mt-[0.55em] h-1 w-1 shrink-0 bg-brass" aria-hidden="true" />
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
           </Reveal>
         </div>
       </section>
