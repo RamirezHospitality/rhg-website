@@ -46,7 +46,7 @@ const PLANS: Plan[] = [
     line: ESSENTIALS.line,
     priceLabel: ESSENTIALS.priceLabel,
     start: true,
-    fit: "For one property, rooms bringing in roughly $300,000 to $750,000 a year, where nobody has ever run pricing as a job.",
+    fit: "For one property, rooms bringing in roughly $300,000 to $600,000 a year, where nobody has ever run pricing as a job.",
     outcome:
       "You stop guessing. Your rates move with demand every day, inside floors and ceilings you approve, so the festival weekend is never priced like a Tuesday in February and the slow Tuesday is never priced like a festival.",
     includes: [
@@ -69,7 +69,7 @@ const PLANS: Plan[] = [
     priceLabel: GROWTH.priceLabel,
     fit: "For one or two properties, rooms bringing in roughly $600,000 to $1.2 million a year, or any owner who wants the daily attention and a forecast to plan around.",
     outcome:
-      "You get the revenue department a 200-room hotel has. A forecast you can staff and budget against, the right mix of booking sites, more guests booking direct, and a disciplined, priced answer ready when a group calls.",
+      "The strategies the big chains run, brought to your hotel. A forecast you can staff and budget against, the right mix of booking sites, more guests booking direct, and a disciplined, priced answer ready when a group calls.",
     plusLabel: "Everything in Essentials, plus",
     includes: [
       "A named revenue manager who knows your property. The person on your calls is the person moving your rates.",
@@ -90,8 +90,8 @@ const PLANS: Plan[] = [
     line: INHOUSE.line,
     priceLabel: INHOUSE.priceLabel,
     terms: [
-      "Six-month initial term: two build months, three months running, the first re-score. Then month to month on 30 days' notice.",
-      `Pay the six months up front and save ${INHOUSE.prepay}.`,
+      "A six-month commitment to start: two build months, three months running, the first re-score. Then month to month on 30 days' notice.",
+      `Settle the six months in one payment and it is ${INHOUSE.prepay} less.`,
     ],
     fit: "Built for rooms bringing in $1.2 million and up a year, 30-plus rooms, or meaningful group and event business. By application. Very large or multi-property situations are quoted individually.",
     outcome:
@@ -101,6 +101,7 @@ const PLANS: Plan[] = [
       "In your Duetto account five days a week, about an hour to an hour and a half a day.",
       "A weekly call and a weekly report.",
       "A landing page for your property, and Google Ads set up and taught to you.",
+      "A new website for your property, designed and built by us and hosted in your name, so the monthly website subscription goes away.",
       "Your group offer and your group rate card.",
       "Sales contract templates.",
       "Listings on the channels where group and negotiated business is found.",
@@ -122,6 +123,7 @@ const COMPARISON: [string, string, string, string][] = [
   ["Forecast and yearly budget", "Not included", "Rolling forecast, yearly budget", "Rolling forecast, yearly budget"],
   ["Booking sites worked as a cost line", "Listings scored and fixed", "Full program", "Full program"],
   ["Direct bookings", "Starter kit", "Booking engine and Google listing set up", "Plus a landing page and Google Ads, set up and taught"],
+  ["A new website for the property", "Not included", "Project work, quoted on its own", "Included, built and hosted in your name"],
   ["Group inquiries", "Not included", "Priced answers, templates", "Your group offer, rate card and contract templates; you are taught to answer RFPs and when to say no"],
   ["Listings where group and negotiated business is found", "Not included", "Not included", "Included"],
   ["Calls", "30 minutes monthly", "60 minutes every two weeks", "Weekly"],
@@ -129,7 +131,7 @@ const COMPARISON: [string, string, string, string][] = [
   ["Re-score against your audit", "On a schedule in writing", "On a schedule in writing", "On a schedule in writing"],
   ["On property", "Remote", "Remote", "Each quarter, travel and accommodations provided by you"],
   ["Initial term, then month to month", "Four months", "Four months", "Six months"],
-  ["Pay the term up front and save", ESSENTIALS.prepay, GROWTH.prepay, INHOUSE.prepay],
+  ["One payment for the term, if you prefer, saves", ESSENTIALS.prepay, GROWTH.prepay, INHOUSE.prepay],
 ];
 
 const MUTED_CELLS = new Set(["Weekly", "Shared desk", "Not included", "Remote"]);
@@ -141,11 +143,11 @@ const HOW_WE_CHARGE = [
   },
   {
     t: "Four months to start on Essentials and Growth",
-    p: `The first month is all setup: your pricing system configured, your rate plan built room by room, your audit carried into the systems. Then three months of running it, then your first re-score. That is one full cycle, and we ask for it up front. After that, month to month with thirty days' notice, and you leave with every login, listing and document. Pay the four months up front and save ${ESSENTIALS.prepay}.`,
+    p: `The first month is all setup: your pricing system configured, your rate plan built room by room, your audit carried into the systems. Then three months of running it, then your first re-score. That is one full cycle, and it is the commitment we ask for. After that, month to month with thirty days' notice, and you leave with every login, listing and document. If you would rather settle the four months in one payment, it is ${ESSENTIALS.prepay} less.`,
   },
   {
-    t: "Six months to start on In-House",
-    p: `Two build months, three months running, then the first re-score in month six. That is the In-House cycle, and we ask for it up front. After that, month to month with thirty days' notice, same as every plan, and everything built in your name stays yours. Pay the six months up front and save ${INHOUSE.prepay}. Project work is quoted before it starts.`,
+    t: "A six-month commitment on In-House",
+    p: `Two build months, three months running, then the first re-score in month six. That is the In-House cycle, and it is the commitment we ask for. After that, month to month with thirty days' notice, same as every plan, and everything built in your name stays yours. Settle the six months in one payment and it is ${INHOUSE.prepay} less. Project work is quoted before it starts.`,
   },
 ];
 
@@ -175,7 +177,7 @@ const FAQ = [
   },
   {
     q: "Software does this for a fraction of the price. Why you?",
-    a: "We run the tool for you and do what it cannot: work the booking sites as a cost line, build your group offer and rate card, teach you how to answer the wedding inquiry and when to say no, pick up the phone. Compare the fee to your hours, not to the software.",
+    a: "Duetto will price your rooms well, if someone sits in it every day, reads what booked overnight and turns it into action. The software is a tool for the person using it, and it is only as good as the discipline behind it. You are already running the front desk, the housekeeping schedule and the guests. Let the revenue work be ours: you focus on your guests, we focus on the revenue, so you can keep being the hotelier. One flat monthly fee, nothing on commission.",
   },
   {
     q: "Do you take a commission?",
@@ -188,10 +190,6 @@ const FAQ = [
   {
     q: "Do I need new software?",
     a: "Yes, one, on every plan: a revenue management system. It is not included in the fee. Duetto is our preferred system, and every client on every plan gets it at specially negotiated pricing, a lower rate than you could get by contacting Duetto yourself, because we are a contracted Duetto vendor and pass the commission Duetto would pay us back to you instead of keeping it. We set it up and run it. Everything we build inside it, the rate plans, the rules and the data, is in your account and belongs to you. Already running a system you prefer? Tell us on the call and we will consider working inside it.",
-  },
-  {
-    q: "It's you, Adam. What if you get busy or sell?",
-    a: "The method is the product and it lives in your own account: every rate plan, rule and piece of data belongs to you. A second contact is named on every account. If you wanted to take it over tomorrow, you could.",
   },
   {
     q: "What is the catch with the free audit?",
@@ -215,7 +213,7 @@ const RM_SERVICE_SCHEMA = {
   "@id": "https://ramirezhospitality.com/revenue-management#service",
   name: "Hotel Revenue Management Subscription",
   description:
-    "Revenue management for independent hotels, motels and inns with fewer than 50 rooms: prices set every day inside floors and ceilings the owner sets, booking sites worked as a cost line, groups priced right. Three plans, flat and published: Essentials $1,250, Growth $2,000, In-House $5,000 a month. Nothing on commission. No software included in the fee; Duetto is the preferred revenue management system, available to every client at negotiated pricing. One full cycle to start (four months, six on In-House), then month to month.",
+    "Revenue management for independent and boutique hotels, motels and inns: prices set every day inside floors and ceilings the owner sets, booking sites worked as a cost line, groups priced right. Three plans, flat: Essentials $1,250, Growth $2,000, In-House $5,000 a month. Nothing on commission. No software included in the fee; Duetto is the preferred revenue management system, available to every client at negotiated pricing. One full cycle to start (four months, six on In-House), then month to month.",
   provider: { "@id": "https://ramirezhospitality.com/#organization" },
   serviceType: "Hotel Revenue Management",
   areaServed: { "@type": "Country", name: "United States" },
@@ -223,7 +221,7 @@ const RM_SERVICE_SCHEMA = {
   offers: OFFERS.subscription.plans.map((p) => ({
     "@type": "Offer",
     name: `${p.name}: ${p.line}`,
-    description: `${p.band}. ${p.term}. Pay the term up front and save ${p.prepay}.`,
+    description: `${p.band}. ${p.term}. One payment for the term saves ${p.prepay}.`,
     price: String(p.price),
     priceCurrency: "USD",
     priceSpecification: {
@@ -257,7 +255,7 @@ export default function RevenueManagement() {
   return (
     <PageLayout
       title="Hotel Revenue Management Subscription: Essentials, Growth, In-House | Ramirez Hospitality Group"
-      description="Your prices set every day, your booking sites worked, your groups priced right. Essentials $1,250, Growth $2,000, In-House $5,000 a month. Flat, published, nothing on commission. Starts with the free Modern Hotel Audit."
+      description="Your prices set every day, your booking sites worked, your groups priced right. Essentials $1,250, Growth $2,000, In-House $5,000 a month. Flat, nothing on commission. Starts with the free Modern Hotel Audit."
       canonical="/revenue-management"
       breadcrumbs={[{ name: "The Subscription", href: "/revenue-management" }]}
       jsonLd={[RM_SERVICE_SCHEMA, RM_FAQ_SCHEMA, ORGANIZATION_SCHEMA]}
@@ -279,9 +277,9 @@ export default function RevenueManagement() {
               <span className="italic text-brass">Your groups priced right.</span>
             </h1>
             <p className="mt-9 text-cream/80 text-lg md:text-xl leading-[1.55] max-w-2xl">
-              The revenue department every big hotel has, for a hotel with fewer than 50 rooms.
-              Run by an operator, inside rules you set. Flat monthly fee, published. No software
-              is included in the fee. One full cycle to start, then month to month.
+              The revenue department every big hotel has, built for independent and boutique hoteliers.
+              Run by an operator, inside rules you set. One flat monthly fee. No software is
+              included in the fee. One full cycle to start, then month to month.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-5">
               <a href={OFFERS.audit.formPath} className="btn-brass">
@@ -355,11 +353,11 @@ export default function RevenueManagement() {
               <h2 className="mt-6 font-display text-4xl md:text-5xl lg:text-[3.4rem] leading-[1.05] text-cream">
                 Kind of work sets the plan.
                 <br />
-                <span className="italic text-brass">Every plan runs at full effort.</span>
+                <span className="italic text-brass">Not the size of the hotel.</span>
               </h2>
               <p className="mt-7 text-cream/75 leading-[1.7] max-w-2xl">
-                The difference between plans is what gets done and how often, never how hard we
-                try. Project work is quoted on its own so the monthly fee stays honest.
+                The difference between plans is what gets done and how often. Project work is
+                quoted on its own so the monthly fee stays honest.
               </p>
             </Reveal>
           </div>
@@ -453,7 +451,7 @@ export default function RevenueManagement() {
           <Reveal className="max-w-3xl mb-12">
             <Eyebrow numeral="IV" label="How we charge" />
             <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
-              Flat. Published.
+              One flat fee.
               <br />
               <span className="italic text-brass">One full cycle to start.</span>
             </h2>

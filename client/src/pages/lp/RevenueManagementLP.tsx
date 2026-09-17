@@ -118,7 +118,7 @@ export default function RevenueManagementLP() {
     <div className="relative min-h-screen flex flex-col bg-background text-foreground pb-20 lg:pb-0">
       <SEO
         title="Hotel Revenue Management Consultant for Independent Hotels | Ramirez Hospitality Group"
-        description="Hotel revenue management consultant for independent and boutique hotels. Every client starts with The Modern Hotel Audit: free, scored, sized in dollars. Daily pricing, OTA management, and direct booking growth. Plans from $1,250 a month, flat and published."
+        description="Hotel revenue management consultant for independent and boutique hotels. Every client starts with The Modern Hotel Audit: free, scored, sized in dollars. Daily pricing, OTA management, and direct booking growth. Plans from $1,250 a month, flat."
         canonical="/lp/revenue-management"
         noindex
       />
@@ -149,7 +149,7 @@ export default function RevenueManagementLP() {
                 </h1>
                 <p className="mt-7 text-cream/85 text-lg md:text-xl leading-[1.55] max-w-2xl">
                   Daily pricing, OTA management, and direct booking growth, run by an operator
-                  who has done it on his own properties. Plans from $1,250 a month, flat and published.
+                  who has done it on his own properties. Plans from $1,250 a month, flat.
                 </p>
 
                 {/* Proof point */}

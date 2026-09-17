@@ -23,7 +23,7 @@ const SAME_ON_EVERY_PLAN = [
 ];
 
 const DEFAULT_INTRO =
-  "The subscription starts after The Modern Hotel Audit, and only if it fits. Kind of work sets the plan; every plan runs at full effort. Flat monthly fee, published. One full cycle to start, then month to month.";
+  "The subscription starts after The Modern Hotel Audit, and only if it fits. Kind of work sets the plan. One flat monthly fee. One full cycle to start, then month to month.";
 
 interface PricingSectionProps {
   /** Roman numeral shown in the section eyebrow — differs by page. */

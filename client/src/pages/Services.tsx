@@ -53,8 +53,8 @@ const ROWS: OfferRow[] = [
     id: "subscription",
     who: "Then, if it fits",
     name: OFFERS.subscription.name,
-    price: `${ESSENTIALS.name} ${ESSENTIALS.priceLabel} a month. Three plans, flat and published.`,
-    body: "Your prices set every day. Your booking sites worked. Your groups priced right. The revenue department every big hotel has, for a hotel with fewer than 50 rooms, run by an operator inside rules you set. Nothing on commission. No software included in the fee.",
+    price: `${ESSENTIALS.name} ${ESSENTIALS.priceLabel} a month. Three plans, flat.`,
+    body: "Your prices set every day. Your booking sites worked. Your groups priced right. The revenue department every big hotel has, built for independent and boutique hoteliers, run by an operator inside rules you set. Nothing on commission. No software included in the fee.",
     cta: { label: OFFERS.audit.cta, href: OFFERS.audit.formPath },
     more: { label: "See the three plans", href: OFFERS.subscription.path },
     image: IMAGES.revenue,
@@ -65,7 +65,7 @@ const ROWS: OfferRow[] = [
     who: "If you are buying, building or converting",
     name: OFFERS.plan.name,
     price: `${OFFERS.plan.priceLabel}, flat, priced up front`,
-    body: "Know the numbers before you buy, build, or open. Is the demand real, does the math work, what is the property worth. The study, the model, and a clear yes, no, or not at this price. A broker's pro forma is a sales document; the Plan is allowed to say no.",
+    body: "Know the numbers before you buy, build, or open. Is the demand real, does the math work, what is the property worth. The study, the model, and every number made to make sense, so the decision is yours. A broker's pro forma is a sales document; the Plan is not trying to sell you anything.",
     cta: { label: OFFERS.plan.cta, href: OFFERS.plan.formPath },
     more: { label: "How the Plan works", href: OFFERS.plan.path },
     image: IMAGES.advisory,
@@ -106,7 +106,7 @@ const SERVICES_ITEMLIST_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Ramirez Hospitality Group: everything we do",
-  description: "Three offers for hotels under 50 rooms, in the order an owner meets them, with every price published. Project work quoted on its own.",
+  description: "Three offers for independent hotels, in the order an owner meets them, with every price on the page. Project work quoted on its own.",
   url: "https://ramirezhospitality.com/services",
   numberOfItems: 4,
   itemListElement: [
@@ -121,7 +121,7 @@ export default function Services() {
   return (
     <PageLayout
       title="What Ramirez Hospitality Group Does: Audit, Subscription, Plan, Launch"
-      description="Three offers for hotels under 50 rooms, in the order an owner meets them, with every price published: The Modern Hotel Audit (free), the revenue management subscription from $1,250 a month, The Modern Hotel Plan ($6,000) and The Modern Hotel Launch. Project work quoted on its own."
+      description="Three offers for independent hotels, in the order an owner meets them, with every price on the page: The Modern Hotel Audit (free), the revenue management subscription from $1,250 a month, The Modern Hotel Plan ($6,000) and The Modern Hotel Launch. Project work quoted on its own."
       canonical="/services"
       breadcrumbs={[{ name: "Everything we do", href: "/services" }]}
       jsonLd={[SERVICES_ITEMLIST_SCHEMA, ORGANIZATION_SCHEMA]}
@@ -137,7 +137,7 @@ export default function Services() {
               <span className="italic text-brass">in the order an owner meets them.</span>
             </h1>
             <p className="mt-9 text-cream/75 text-lg md:text-xl leading-[1.55] max-w-2xl">
-              Every price is flat and published. Nothing is on commission. Everything we build
+              Every price is flat. Nothing is on commission. Everything we build
               lives in your own accounts. Anything outside the three offers is project work,
               quoted before it starts.
             </p>
