@@ -11,7 +11,7 @@ import { PageLayout } from "@/components/PageLayout";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
 import { ORGANIZATION_SCHEMA } from "@/components/SEO";
-import { BRAND } from "@/lib/brand";
+import { OFFERS } from "@/lib/brand";
 
 const TECHSTACK_SERVICE_SCHEMA = {
   "@context": "https://schema.org",
@@ -47,8 +47,8 @@ const TECH_CATEGORIES: TechCategory[] = [
     intro:
       "The engine of dynamic pricing. These platforms analyze comp-set data, demand signals, and booking pace to recommend — or automate — the right rate at the right time.",
     tools: [
-      { name: "Hotelitix", description: "AI-powered revenue management for independent hotels. My primary RMS — deployed across multiple properties.", badge: "Primary" },
-      { name: "Duetto", description: "Enterprise-grade RMS used by luxury and lifestyle brands. Deep demand forecasting and group pricing." },
+      { name: "Duetto", description: "Our preferred revenue management system, required on every subscription plan and available to every client at specially negotiated pricing. Deep demand forecasting and group pricing, held in the client's own account.", badge: "Preferred" },
+      { name: "Hotelitix", description: "AI-powered revenue management for independent hotels. Deployed across multiple properties." },
       { name: "Light House (formerly OTA Insight)", description: "Comp-set intelligence, rate shopping, and market data. Runs alongside any RMS as the market-intelligence layer." },
       { name: "IDeaS", description: "Automated revenue management with deep PMS integration. Strong for full-service properties." },
     ],
@@ -92,7 +92,7 @@ const TECH_CATEGORIES: TechCategory[] = [
       { name: "Profitroom", description: "Booking engine + CRM suite with strong direct booking conversion tools." },
       { name: "Mailchimp", description: "Email marketing for smaller properties without a dedicated hospitality CRM." },
       { name: "Klaviyo", description: "Advanced email and SMS automation. Strong for properties with a retail or F&B component." },
-      { name: "HubSpot", description: "CRM and marketing automation for group sales, corporate accounts, and consulting lead management." },
+      { name: "HubSpot", description: "CRM and marketing automation for group sales, corporate accounts, and client management." },
     ],
   },
   {
@@ -113,7 +113,7 @@ const TECH_CATEGORIES: TechCategory[] = [
     category: "HR, Scheduling & Operations",
     label: "Operations",
     intro:
-      "The back-of-house systems that keep the team running. Labor is the largest controllable cost in a hotel — the right scheduling and HR platform pays for itself in the first quarter.",
+      "The back-of-house systems that keep the team running. Labor is the largest controllable cost in a hotel, and the right scheduling and HR platform is one of the first places the savings show up.",
     tools: [
       { name: "7shifts", description: "Restaurant and hospitality scheduling. Simple, mobile-first, and integrates with most POS systems.", badge: "Preferred" },
       { name: "HotSchedules (Fourth)", description: "Enterprise-grade scheduling and labor management for larger properties and groups." },
@@ -128,7 +128,7 @@ export default function TechStack() {
   return (
     <PageLayout
       title="Hotel Technology Consulting — PMS, RMS, Channel Manager & CRM for Independent Hotels | Ramirez Hospitality Group"
-      description="Hotel technology consulting for independent and boutique hotels. Adam Ramirez has configured and deployed Hotelitix, Duetto, Light House, Mews, SiteMinder, Revinate, Salto, and 7shifts across boutique hotels and small portfolios. Free tech audit available."
+      description="Hotel technology consulting for independent and boutique hotels. Duetto is the preferred revenue management system; Adam Ramirez has also configured and deployed Mews, SiteMinder, Revinate, Salto and 7shifts across boutique hotels and small portfolios. The Modern Hotel Audit includes a systems review."
       canonical="/tech-stack"
       breadcrumbs={[{ name: "Hotel Tech Stack", href: "/tech-stack" }]}
       jsonLd={[TECHSTACK_SERVICE_SCHEMA, ORGANIZATION_SCHEMA]}
@@ -239,8 +239,8 @@ export default function TechStack() {
               replace.
             </p>
             <div className="mt-10 flex flex-wrap gap-5 items-center">
-              <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-brass">
-                Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+              <a href={OFFERS.audit.formPath} className="btn-brass">
+                {OFFERS.audit.cta} <ArrowRight className="w-4 h-4" />
               </a>
               <Link href="/contact">
                 <span className="link-brass pr-6">

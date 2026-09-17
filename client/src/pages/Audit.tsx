@@ -24,7 +24,7 @@ const AUDIT_SERVICE_SCHEMA = {
   "@id": "https://ramirezhospitality.com/audit#service",
   name: "The Modern Hotel Audit",
   description:
-    "A free revenue audit for independent hotels, motels and inns with fewer than 50 rooms. The property is scored out of 100 across seven areas: reputation and rate-worthiness, direct booking engine, distribution and channel health, technology and automation, demand capture, pricing and rate strategy, and whole-property yield. Every finding is priced in dollars with the evidence behind it, and the two most valuable fixes are written out in full. Every finding is tagged to the cheapest subscription plan that captures it. The Lincoln, Marfa scored 41 out of 100 and found $55,000 to $185,000 on a $444,000 base.",
+    "A free revenue audit for independent and boutique hotels, motels and inns. The property is scored out of 100 across seven areas: reputation and rate-worthiness, direct booking engine, distribution and channel health, technology and automation, demand capture, pricing and rate strategy, and whole-property yield. Every finding is priced in dollars with the evidence behind it, and the two most valuable fixes are written out in full. Every finding is tagged to the cheapest subscription plan that captures it. The Lincoln, Marfa scored 41 out of 100 and found $55,000 to $185,000 on a $444,000 base.",
   provider: { "@id": "https://ramirezhospitality.com/#organization" },
   serviceType: "Hotel Revenue Audit",
   areaServed: { "@type": "Country", name: "United States" },
@@ -71,6 +71,9 @@ export default function Audit() {
                 Every finding is tagged to the cheapest plan that captures it, so the plan decision
                 is arithmetic, not a pitch. The catch, in full: at the end we ask whether you want
                 help fixing the three lowest scores. That is the whole catch.
+              </p>
+              <p className="mt-5 text-cream/70 text-base leading-[1.65] max-w-2xl">
+                The audit is built for properties already bringing in around $500,000 a year, or within reach of it, whose owner is ready to make a change. If your rooms bring in $400,000 and there is $50,000 to $60,000 on the table, you are a candidate.
               </p>
               <p className="mt-8 text-[0.7rem] tracking-[0.2em] uppercase text-cream/55">{TRACK_RECORD_LINE}</p>
               <p className="mt-6 text-cream/55 text-sm leading-[1.7] max-w-xl">

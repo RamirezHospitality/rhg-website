@@ -145,6 +145,9 @@ export function AuditSection({ numeral = "II" }: AuditSectionProps) {
               decision is arithmetic, not a pitch. The catch, in full: at the end we ask
               whether you want help fixing the three lowest scores. That is the whole catch.
             </p>
+            <p className="mt-4 leading-[1.7] max-w-xl text-cream/80">
+              The audit is built for properties already bringing in around $500,000 a year, or within reach of it, whose owner is ready to make a change. If your rooms bring in $400,000 and there is $50,000 to $60,000 on the table, you are a candidate.
+            </p>
           </div>
           <div className="lg:col-span-5 grid grid-cols-3 gap-px bg-brass/15 border border-brass/15 self-end">
             {SCOPES.map((s) => (

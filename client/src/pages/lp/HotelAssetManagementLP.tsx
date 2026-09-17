@@ -86,7 +86,7 @@ const STEPS: Step[] = [
   {
     n: "03",
     t: "The subscription, if it fits",
-    p: "System access, comp set, and a pricing plan we agree on together, then it runs daily. Month to month, re-scored on a schedule we put in writing. You keep every login.",
+    p: "System access, comp set, and a pricing plan we agree on together, then it runs daily. One full cycle to start, then month to month, re-scored against your audit on a schedule we put in writing. You keep every login.",
   },
 ];
 
@@ -101,15 +101,15 @@ const FAQ = [
   },
   {
     q: "Do I need new software?",
-    a: "Usually not to start. I work inside the PMS and channel manager you already have. If a revenue management system would pay for itself, I will show you the math before recommending one.",
+    a: "Yes, one, on every plan: a revenue management system. It is not included in the fee. Duetto is our preferred system, and every client on every plan gets it at specially negotiated pricing. We set it up and run it, and everything we build inside it belongs to you. Already running a system you prefer? Tell us on the call and we will consider working inside it.",
   },
   {
-    q: "How is this different from the OTA account manager who calls me?",
-    a: "They are paid by the OTA. I am paid by you. The advice tends to differ.",
+    q: "Do you take a commission?",
+    a: "No. A flat monthly fee, published on the site. Nothing on commission.",
   },
   {
     q: "What if the subscription does not work for us?",
-    a: "Month to month, no lock-in. If the numbers are not there, you stop. I would rather earn the next month than lock you into it.",
+    a: "One full cycle to start: four months on Essentials and Growth, six on In-House, because the first month is setup and the last is your re-score. After that, month to month with thirty days' notice, and you leave with every login, listing and document. We would rather earn the next month than lock you into it.",
   },
 ];
 

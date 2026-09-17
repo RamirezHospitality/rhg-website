@@ -2,7 +2,7 @@
  * Ramirez Hospitality Group — The Reserve · HOME
  * Editorial dark mode. Audit-first, then the three offers as three doors.
  * Rebuilt 2026-09 to the September 9 offer brief: three offers, two tracks,
- * flat published prices, one CTA per offer, form first.
+ * flat prices, one CTA per offer, form first.
  *
  * Sections: Hero · Three offers · The Modern Hotel Audit (shared) · The
  * Subscription in brief (shared) · Track B: Plan then Launch · Proof ·
@@ -38,7 +38,7 @@ const DOORS = [
     who: "You are buying, building or converting",
     title: OFFERS.plan.name,
     price: `${OFFERS.plan.priceLabel}, flat, priced up front`,
-    body: "Know the numbers before you buy, build, or open. Three questions in order: is the demand real, does the math work, what is the property worth. The study, the model, and a clear yes, no, or not at this price.",
+    body: "Know the numbers before you buy, build, or open. Three questions in order: is the demand real, does the math work, what is the property worth. The study, the model, and every number made to make sense, so the decision is yours.",
     cta: { label: OFFERS.plan.cta, href: OFFERS.plan.formPath, primary: false },
     more: { label: "How the Plan works", href: OFFERS.plan.path },
   },
@@ -56,7 +56,7 @@ const TRACK_B = [
   {
     n: "Step one",
     title: OFFERS.plan.name,
-    body: `${OFFERS.plan.priceLabel}, flat, priced up front. A feasibility study for anyone buying, building or opening a hotel under 50 rooms. Is the demand real? Does the math work? What is the property worth, by income, by comparable sales and by cost, and which of the three does the lender believe? The study, the model, and a clear yes, no, or not at this price. A broker's pro forma is a sales document. The Plan is allowed to say no.`,
+    body: `${OFFERS.plan.priceLabel}, flat, priced up front. A feasibility study for anyone buying, building or opening a hotel. Is the demand real? Does the math work? What is the property worth, by income, by comparable sales and by cost, and which of the three does the lender believe? The study, the model, and every number made to make sense, so the decision is yours. A broker's pro forma is a sales document. The Plan is not trying to sell you anything.`,
     cta: { label: OFFERS.plan.cta, href: OFFERS.plan.formPath, primary: true },
   },
   {
@@ -95,16 +95,12 @@ const FAQ = [
     a: "Yes, one system, on every plan, and it is not included in the fee. Duetto is our preferred system, and every client on every plan gets it at RHG's partner pricing: we are a contracted Duetto vendor, and the commission Duetto would pay us goes back to you as a lower rate than you could get on your own. It is your account and your data. The fee on the page is the whole fee; nothing is on commission.",
   },
   {
-    q: "It's you, Adam. What if you get busy or sell?",
-    a: "The method is the product and it lives in your own account: every rate plan, rule and piece of data belongs to you. A second contact is named on every account. If you wanted to take it over tomorrow, you could.",
-  },
-  {
     q: "How will I know it was you and not the market?",
     a: "Results are reported against your market, not just against last year, split into rate and occupancy, net of commission. The baseline is fixed in the audit before we change anything.",
   },
   {
     q: "My broker already gave me a pro forma.",
-    a: "A broker's pro forma is a sales document. The Plan answers three questions in order, from someone who has run the front desk and priced the rooms, and it is allowed to say no.",
+    a: "A broker's pro forma is a sales document. The Plan answers three questions in order, from someone who has run the front desk and priced the rooms, and it is not trying to sell you anything.",
   },
   {
     q: "I have a general manager for the opening.",
@@ -142,7 +138,7 @@ const HOME_OFFER_CATALOG_SCHEMA = {
     ...OFFERS.subscription.plans.map((p) => ({
       "@type": "Offer",
       name: `${OFFERS.subscription.name}: ${p.name}`,
-      description: `${p.line} ${p.term}. Flat, published, nothing on commission.`,
+      description: `${p.line} ${p.term}. Flat, nothing on commission.`,
       price: String(p.price),
       priceCurrency: "USD",
       priceSpecification: { "@type": "UnitPriceSpecification", price: String(p.price), priceCurrency: "USD", unitText: "month" },
@@ -151,7 +147,7 @@ const HOME_OFFER_CATALOG_SCHEMA = {
     {
       "@type": "Offer",
       name: OFFERS.plan.name,
-      description: "A hotel feasibility study for anyone buying, building or opening a hotel under 50 rooms. Flat, priced up front.",
+      description: "A hotel feasibility study for anyone buying, building or opening a hotel. Flat, priced up front.",
       price: String(OFFERS.plan.price),
       priceCurrency: "USD",
       url: `https://ramirezhospitality.com${OFFERS.plan.path}`,
@@ -186,8 +182,8 @@ function Cta({ label, href, primary, internal }: { label: string; href: string; 
 export default function Home() {
   return (
     <PageLayout
-      title="Revenue Management and Openings for Hotels Under 50 Rooms | Ramirez Hospitality Group"
-      description="Operator-led revenue and opening consultancy for independent hotels, motels and inns with fewer than 50 rooms. The Modern Hotel Audit is free. Plans from $1,250 a month, flat and published. The Modern Hotel Plan, $6,000. Palm Springs, nationwide."
+      title="Revenue Management and Openings for Independent Hotels | Ramirez Hospitality Group"
+      description="Operator-led revenue and opening consultancy for independent and boutique hotels, motels and inns. The Modern Hotel Audit is free. Plans from $1,250 a month, flat. The Modern Hotel Plan, $6,000. Palm Springs, nationwide."
       ogImage={IMAGES.hero}
       jsonLd={[HOME_FAQ_SCHEMA, HOME_OFFER_CATALOG_SCHEMA, ORGANIZATION_SCHEMA, PERSON_SCHEMA]}
     >
@@ -223,9 +219,9 @@ export default function Home() {
                 <span className="italic text-brass">before you decide.</span>
               </h1>
               <p className="mt-9 text-cream/80 text-lg md:text-xl leading-[1.55] max-w-2xl animate-rise-in delay-200">
-                For hotels, motels and inns with fewer than 50 rooms, and for the people about to
+                For independent hotels, motels and inns, and for the people about to
                 buy, build or open one. Prices set every day. Booking sites worked. Groups priced
-                right. Openings run in the right order. Every price is flat and published, nothing
+                right. Openings run in the right order. Every price is flat, nothing
                 is on commission, and everything we build lives in your own accounts.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-5 animate-rise-in delay-300">
