@@ -21,6 +21,7 @@ import { Reveal } from "@/components/Reveal";
 import { CrmCaptureForm } from "@/components/lp/CrmCaptureForm";
 import { OperatorSection } from "@/components/OperatorSection";
 import { PlanModelDemo } from "@/components/plan/PlanModelDemo";
+import { PlanAncillary, PlanPaths } from "@/components/plan/PlanPaths";
 import { IMAGES, OFFERS, TRACK_RECORD_LINE } from "@/lib/brand";
 import { ORGANIZATION_SCHEMA } from "@/components/SEO";
 
@@ -169,7 +170,7 @@ export default function FeasibilityStudy() {
   return (
     <PageLayout
       title="Hotel Feasibility Study, $6,000 Flat: The Modern Hotel Plan | Ramirez Hospitality Group"
-      description="Know the numbers before you buy, build or open a hotel. Is the demand real, does the math work, what is it worth. The written study, an interactive model you change yourself, and every number made to make sense so the decision is yours. $6,000, priced up front."
+      description="Know the numbers before you buy, build or open a hotel. Is the demand real, does the math work, what is it worth. See a delivered Plan's model on the page: $3.4M stabilized revenue, $1.6M owner NOI, five paths compared, and move the inputs yourself. $6,000, priced up front."
       canonical="/feasibility-study"
       breadcrumbs={[{ name: OFFERS.plan.name, href: "/feasibility-study" }]}
       jsonLd={[PLAN_SERVICE_SCHEMA, PLAN_FAQ_SCHEMA, ORGANIZATION_SCHEMA]}
@@ -249,9 +250,9 @@ export default function FeasibilityStudy() {
                   </div>
                   <div className="mt-5 grid sm:grid-cols-3 gap-px bg-brass/15 border border-brass/15">
                     {[
-                      { v: "75%", l: "occupancy assumed in a pro forma, in a market running 58%" },
-                      { v: "3", l: "ways to value the same property: income, comparable sales, cost. The lender believes one of them." },
-                      { v: "1", l: "model, yours to keep. Change the inputs for the next listing and run it again." },
+                      { v: "$1.17M", l: "the year-one cash outlay behind a year-one NOI of $38K, on the same property. The Plan shows both lines." },
+                      { v: "$492K", l: "a year of income beyond the room rate, found on one property walk and priced from local benchmarks." },
+                      { v: "5", l: "paths on one set of assumptions: keep it, convert it, expand it, sell it whole, sell it down. Compared on one page." },
                     ].map((s) => (
                       <div key={s.v} className="bg-obsidian p-5">
                         <div className="font-display text-3xl text-cream">{s.v}</div>
@@ -261,7 +262,7 @@ export default function FeasibilityStudy() {
                   </div>
                   <p className="mt-5 border-l border-brass pl-4 text-cream/65 text-sm leading-[1.6]">
                     Six funded hospitality projects with full pro formas and sensitivity scenarios.
-                    Named cases are shared on the call once approved.
+                    The numbers from the most recent one are on this page, below.
                   </p>
                 </div>
               </Reveal>
@@ -320,10 +321,11 @@ export default function FeasibilityStudy() {
             <div className="lg:col-span-5">
               <Reveal delay={120}>
                 <p className="text-cream/70 leading-[1.7]">
-                  This is a slice of it. Move the rooms, the rate, the occupancy, the labor and
-                  the marketing, and watch the year, the months and the value move with them.
-                  The one you keep does this on your property, with about sixty inputs, each
-                  with its source, and it is yours for the next listing too.
+                  This is a slice of a delivered one, starting from its real numbers. Move the
+                  rooms, the rate, the occupancy, the labor and the income beyond the room, and
+                  watch the year, the months and the value move with them. The one you keep does
+                  this on your property, with about sixty inputs, each with its source, and it is
+                  yours for the next listing too.
                 </p>
               </Reveal>
             </div>
@@ -331,6 +333,15 @@ export default function FeasibilityStudy() {
           <Reveal delay={150}>
             <PlanModelDemo />
           </Reveal>
+
+          <div className="mt-8 grid lg:grid-cols-12 gap-8 lg:gap-10">
+            <Reveal className="lg:col-span-7 min-w-0">
+              <PlanPaths />
+            </Reveal>
+            <Reveal delay={120} className="lg:col-span-5 min-w-0">
+              <PlanAncillary />
+            </Reveal>
+          </div>
 
           <div className="mt-16 grid lg:grid-cols-12 gap-10 lg:gap-14">
             <div className="lg:col-span-5">
@@ -358,7 +369,7 @@ export default function FeasibilityStudy() {
                   ))}
                 </div>
                 <p className="mt-4 text-cream/45 text-xs leading-[1.6]">
-                  The structure of a Plan delivered in September 2026 for an owner weighing five paths on one property.
+                  The workbook behind the numbers above: a Plan delivered in September 2026 for an owner weighing five paths on one property, shared with the owner's permission and without the property's name.
                 </p>
               </Reveal>
             </div>

@@ -1,36 +1,46 @@
 /*
  * Ramirez Hospitality Group — The Reserve · PLAN MODEL DEMO
- * An illustrative, interactive slice of the Modern Hotel Plan's financial
- * model: six inputs an owner can move, a stabilized-year P&L, a monthly
- * rooms-revenue chart on a desert seasonal curve, and a rate-by-occupancy
- * sensitivity grid. Every figure is computed in the browser from the sliders.
- * Sample property only; a real Plan runs on the owner's numbers and sources.
+ * An interactive slice of the Modern Hotel Plan's financial model. The
+ * starting numbers are the stabilized-year, self-managed projection from a
+ * Plan delivered in September 2026 for a 38-key conversion in the California
+ * desert, shared with the owner's permission and without the property's
+ * name. Six inputs an owner can move, a stabilized-year P&L, the monthly
+ * rooms revenue on the property's real seasonal curve, and a rate-by-
+ * occupancy sensitivity grid. Everything is computed in the browser.
  */
 
 import { useMemo, useState } from "react";
 
 const MONTHS = ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"];
-// Desert seasonality: index 1.0 = the blended year. Peak is spring, trough is deep summer.
-const SEASON_ADR = [0.95, 1.05, 1.0, 1.15, 1.3, 1.35, 1.4, 1.05, 0.7, 0.6, 0.6, 0.75];
-const SEASON_OCC = [0.95, 1.05, 0.95, 1.15, 1.25, 1.3, 1.3, 1.05, 0.7, 0.6, 0.6, 0.8];
-const DAYS = [31, 30, 31, 31, 28, 31, 30, 31, 30, 31, 31, 30];
+// Monthly rooms revenue from the delivered model, in $K, October to September. Used as the seasonal shape.
+const SEASON_SHAPE = [436, 401, 301, 226, 253, 233, 210, 211, 100, 94, 75, 82];
+const SHAPE_TOTAL = SEASON_SHAPE.reduce((a, b) => a + b, 0);
 
 const INPUTS = [
   { key: "keys", label: "Rooms", min: 10, max: 80, step: 1, fmt: (v: number) => `${v}` },
-  { key: "adr", label: "Average daily rate", min: 120, max: 450, step: 5, fmt: (v: number) => `$${v}` },
+  { key: "adr", label: "Blended average daily rate", min: 120, max: 450, step: 1, fmt: (v: number) => `$${v}` },
   { key: "occ", label: "Blended occupancy", min: 40, max: 85, step: 1, fmt: (v: number) => `${v}%` },
-  { key: "labor", label: "Labor, all in", min: 200_000, max: 900_000, step: 10_000, fmt: (v: number) => `$${Math.round(v / 1000)}K` },
-  { key: "mkt", label: "Sales and marketing", min: 2, max: 10, step: 0.5, fmt: (v: number) => `${v}%` },
+  { key: "labor", label: "Labor, with burden", min: 200_000, max: 900_000, step: 5_000, fmt: (v: number) => `$${Math.round(v / 1000)}K` },
+  { key: "anc", label: "Ancillary income, net", min: 0, max: 800_000, step: 5_000, fmt: (v: number) => `$${Math.round(v / 1000)}K` },
   { key: "cap", label: "Capitalization rate", min: 6, max: 10, step: 0.25, fmt: (v: number) => `${v}%` },
 ] as const;
 
 type Key = (typeof INPUTS)[number]["key"];
 type Inputs = Record<Key, number>;
 
-const DEFAULTS: Inputs = { keys: 36, adr: 245, occ: 62, labor: 540_000, mkt: 5, cap: 8 };
+// The delivered projection: 38 keys, $284 blended ADR, 66% occupancy, $585K labor, $492K ancillary, 8% cap.
+const DEFAULTS: Inputs = { keys: 38, adr: 284, occ: 66, labor: 585_000, anc: 492_000, cap: 8 };
+const BASIS = 8_000_000;
+const IMPROVEMENTS = 786_500;
 
 function usd(n: number, k = false) {
-  if (k) return `$${Math.round(n / 1000).toLocaleString()}K`;
+  if (k) {
+    const a = Math.abs(n);
+    const sign = n < 0 ? "-" : "";
+    if (a >= 10_000_000) return `${sign}$${(a / 1_000_000).toFixed(1)}M`;
+    if (a >= 1_000_000) return `${sign}$${(a / 1_000_000).toFixed(2)}M`;
+    return `${sign}$${Math.round(a / 1000).toLocaleString()}K`;
+  }
   return `$${Math.round(n).toLocaleString()}`;
 }
 
@@ -39,25 +49,27 @@ function model(i: Inputs, adrMult = 1, occMult = 1) {
   const adr = i.adr * adrMult;
   const nights = i.keys * 365 * occ;
   const rooms = nights * adr;
-  const resort = nights * 25;
-  const ancillary = rooms * 0.1;
+  const resort = nights * 27;
+  const ancillary = i.anc;
   const revenue = rooms + resort + ancillary;
   const ota = rooms * 0.4 * 0.18;
   const roomCosts = nights * 16;
   const ag = revenue * 0.06;
-  const mkt = revenue * (i.mkt / 100);
+  const mkt = revenue * 0.05;
   const utilities = i.keys * 3_500;
-  const insurance = i.keys * 900;
+  const common = i.keys * 2_500;
   const tech = 8_400;
-  const tax = i.keys * 2_400;
+  const insurance = i.keys * 900;
+  const tax = BASIS * 0.011;
   const ffe = revenue * 0.04;
-  const expenses = ota + roomCosts + i.labor + ag + mkt + utilities + insurance + tech + tax + ffe;
+  const expenses = ota + roomCosts + i.labor + ag + mkt + utilities + common + tech + insurance + tax + ffe;
   const noi = revenue - expenses;
   return {
-    nights, rooms, resort, ancillary, revenue, ota, roomCosts, ag, mkt, utilities, insurance, tech, tax, ffe, expenses, noi,
+    nights, rooms, resort, ancillary, revenue, ota, roomCosts, ag, mkt, utilities, common, tech, insurance, tax, ffe, expenses, noi,
     revpar: rooms / (i.keys * 365),
     margin: revenue ? noi / revenue : 0,
     value: i.cap ? noi / (i.cap / 100) : 0,
+    yieldOnBasis: noi / (BASIS + IMPROVEMENTS),
   };
 }
 
@@ -67,14 +79,7 @@ export function PlanModelDemo() {
   const [inputs, setInputs] = useState<Inputs>(DEFAULTS);
   const m = useMemo(() => model(inputs), [inputs]);
 
-  const monthly = useMemo(() => {
-    const raw = MONTHS.map((_, k) => {
-      const occ = Math.min(0.97, (inputs.occ / 100) * SEASON_OCC[k]);
-      return inputs.keys * DAYS[k] * occ * inputs.adr * SEASON_ADR[k];
-    });
-    const scale = m.rooms / raw.reduce((a, b) => a + b, 0);
-    return raw.map((v) => v * scale);
-  }, [inputs, m.rooms]);
+  const monthly = useMemo(() => SEASON_SHAPE.map((v) => (v / SHAPE_TOTAL) * m.rooms), [m.rooms]);
   const peak = Math.max(...monthly);
 
   const grid = useMemo(() => SENS.map((a) => SENS.map((o) => model(inputs, a, o).noi)), [inputs]);
@@ -85,18 +90,19 @@ export function PlanModelDemo() {
 
   const pl: [string, number, boolean?][] = [
     ["Rooms revenue", m.rooms],
-    ["Resort fee", m.resort],
+    ["Resort fee, $27 per occupied night", m.resort],
     ["Ancillary income, net", m.ancillary],
     ["Total revenue", m.revenue, true],
-    ["Booking-site commissions", -m.ota],
-    ["Room costs", -m.roomCosts],
+    ["Booking-site commissions, 40% of bookings at 18%", -m.ota],
+    ["Room costs, $16 per occupied night", -m.roomCosts],
     ["Labor", -inputs.labor],
-    ["Administrative and general", -m.ag],
-    ["Sales and marketing", -m.mkt],
-    ["Utilities, insurance, technology", -(m.utilities + m.insurance + m.tech)],
-    ["Property tax", -m.tax],
-    ["Furniture and equipment reserve", -m.ffe],
-    ["Owner NOI", m.noi, true],
+    ["Administrative and general, 6%", -m.ag],
+    ["Sales and marketing, 5%", -m.mkt],
+    ["Utilities and common areas, $6,000 per key", -(m.utilities + m.common)],
+    ["Technology and insurance", -(m.tech + m.insurance)],
+    ["Property tax, 1.1% of an $8M basis", -m.tax],
+    ["Furniture and equipment reserve, 4%", -m.ffe],
+    ["Owner NOI, self-managed", m.noi, true],
   ];
 
   return (
@@ -110,7 +116,7 @@ export function PlanModelDemo() {
             onClick={() => setInputs(DEFAULTS)}
             className="text-[0.7rem] tracking-[0.18em] uppercase text-cream/55 hover:text-cream transition-colors underline underline-offset-4 decoration-brass/40"
           >
-            Reset
+            Back to the delivered numbers
           </button>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
@@ -137,12 +143,12 @@ export function PlanModelDemo() {
       </div>
 
       {/* Headline */}
-      <div className="grid sm:grid-cols-4 gap-px bg-brass/15 border-b border-brass/15">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-brass/15 border-b border-brass/15">
         {[
           ["Total revenue", usd(m.revenue, true)],
           ["Owner NOI", usd(m.noi, true)],
           ["RevPAR", usd(m.revpar)],
-          ["Implied value", usd(m.value, true)],
+          [`Value at ${inputs.cap}% cap`, usd(m.value, true)],
         ].map(([l, v]) => (
           <div key={l} className="bg-obsidian p-5">
             <div className="text-[0.6rem] tracking-[0.24em] uppercase text-cream/55">{l}</div>
@@ -160,7 +166,7 @@ export function PlanModelDemo() {
               {pl.map(([l, v, bold]) => (
                 <tr key={l} className={bold ? "border-t border-brass/30 text-cream" : "text-cream/70"}>
                   <td className={`py-1.5 pr-3 ${bold ? "font-medium" : ""}`}>{l}</td>
-                  <td className={`py-1.5 text-right tabular-nums ${bold ? "font-display text-base text-brass" : ""}`}>
+                  <td className={`py-1.5 text-right tabular-nums whitespace-nowrap ${bold ? "font-display text-base text-brass" : ""}`}>
                     {v < 0 ? `(${usd(-v)})` : usd(v)}
                   </td>
                 </tr>
@@ -168,14 +174,14 @@ export function PlanModelDemo() {
             </tbody>
           </table>
           <p className="mt-4 text-cream/45 text-xs leading-[1.6]">
-            Margin {Math.round(m.margin * 100)}% of revenue. Unlevered, pre-tax, before any management fee.
+            Margin {Math.round(m.margin * 100)}% of revenue. NOI yield on the $8M basis plus the $787K improvements program: {(m.yieldOnBasis * 100).toFixed(1)}%. Unlevered, pre-tax, before any management fee.
           </p>
         </div>
 
         {/* Chart + sensitivity */}
         <div className="lg:col-span-7 min-w-0 p-6 lg:p-8">
-          <div className="text-[0.62rem] tracking-[0.32em] uppercase text-brass mb-4">Monthly rooms revenue, on a desert season</div>
-          <div className="flex items-end gap-[6px] h-40" role="img" aria-label="Monthly rooms revenue across the fiscal year, highest in spring and lowest in deep summer">
+          <div className="text-[0.62rem] tracking-[0.32em] uppercase text-brass mb-4">Monthly rooms revenue, on the property's real season</div>
+          <div className="flex items-end gap-[6px] h-40" role="img" aria-label="Monthly rooms revenue across the fiscal year, highest in October and spring, lowest in deep summer">
             {monthly.map((v, k) => (
               <div key={MONTHS[k]} className="flex-1 min-w-0 flex flex-col items-center justify-end h-full group" title={`${MONTHS[k]}: ${usd(v, true)}`}>
                 <span className="w-full truncate text-center text-[0.6rem] text-cream/55 tabular-nums mb-1 opacity-0 group-hover:opacity-100 transition-opacity">{usd(v, true)}</span>
@@ -184,6 +190,9 @@ export function PlanModelDemo() {
               </div>
             ))}
           </div>
+          <p className="mt-3 text-cream/45 text-xs leading-[1.6]">
+            October to September, the desert's fiscal year. The peak is the festival spring; deep summer runs at a third of it. A model that averages the year misses both.
+          </p>
 
           <div className="mt-8 text-[0.62rem] tracking-[0.32em] uppercase text-brass mb-3">Owner NOI if rate and occupancy move</div>
           <div className="overflow-x-auto">
@@ -223,7 +232,7 @@ export function PlanModelDemo() {
       </div>
 
       <p className="px-6 lg:px-8 py-4 border-t border-brass/15 text-cream/45 text-xs leading-[1.6]">
-        Illustrative. A sample conversion on rounded industry costs, computed in your browser. Your Plan runs on your property, your market and sourced inputs, and the model you keep has about sixty of them.
+        The starting numbers are the stabilized-year, self-managed projection from a Plan delivered in September 2026 for a 38-key conversion in the California desert, shared with the owner's permission and without the property's name. The full model carries about sixty inputs, each with its source; this slice holds the operating ones at the delivered values and lets you move the six that matter most.
       </p>
     </div>
   );

@@ -296,8 +296,10 @@ export default function Openings() {
               <Reveal delay={120}>
                 <p className="text-cream/70 leading-[1.7]">
                   Every Launch produces the same shelf of documents, built on your property and
-                  kept live until the ribbon. Below, a sample status board and a sample opening
-                  budget from a project of this kind, and the shelf itself.
+                  kept live until the ribbon. Below, a sample status board, and the real
+                  improvements program, labor budget and city brief from a Plan delivered in
+                  September 2026, shared with the owner's permission and without the property's
+                  name. Then the shelf itself.
                 </p>
               </Reveal>
             </div>
