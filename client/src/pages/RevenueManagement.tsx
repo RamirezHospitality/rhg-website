@@ -1,15 +1,211 @@
 /*
- * Ramirez Hospitality Group — The Reserve · REVENUE MANAGEMENT
- * Flagship subscription page. Anchor comparison, three tiers,
- * differentiator block, tech stack strip.
+ * Ramirez Hospitality Group — The Reserve · THE SUBSCRIPTION
+ * Route: /revenue-management (the slug carries the search phrase; the
+ * product name /the-subscription redirects here).
+ *
+ * Copy is the September 9, 2026 subscription page Adam approved, with two
+ * later clarifications: no software is included in the fee, and Duetto is
+ * the preferred system (required on every plan, with the footnote) at
+ * negotiated pricing with no price shown. Prices, terms and plan names read
+ * from OFFERS in lib/brand.ts.
+ *
+ * Sections: hero · where every client starts · three plans + comparison ·
+ * how we charge · what you control · proof · questions · next step.
+ * Structured data: Service with three Offers, FAQPage from the questions.
  */
 
-import { ArrowRight, Check, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
-import { BRAND, IMAGES } from "@/lib/brand";
+import { OperatorSection } from "@/components/OperatorSection";
+import { IMAGES, OFFERS, SOFTWARE, TRACK_RECORD_LINE } from "@/lib/brand";
 import { ORGANIZATION_SCHEMA } from "@/components/SEO";
+
+const [ESSENTIALS, GROWTH, INHOUSE] = OFFERS.subscription.plans;
+
+interface Plan {
+  key: string;
+  name: string;
+  line: string;
+  priceLabel: string;
+  start?: boolean;
+  terms?: string[];
+  fit: string;
+  outcome: string;
+  plusLabel?: string;
+  includes: string[];
+  notAtThisLevel: string;
+  hireLine?: string;
+}
+
+const PLANS: Plan[] = [
+  {
+    key: ESSENTIALS.key,
+    name: ESSENTIALS.name,
+    line: ESSENTIALS.line,
+    priceLabel: ESSENTIALS.priceLabel,
+    start: true,
+    fit: "For one property, rooms bringing in roughly $300,000 to $600,000 a year, where nobody has ever run pricing as a job.",
+    outcome:
+      "You stop guessing. Your rates move with demand every day, inside floors and ceilings you approve, so the festival weekend is never priced like a Tuesday in February and the slow Tuesday is never priced like a festival.",
+    includes: [
+      "Your rates reviewed and updated every day, on every site you sell on, inside a floor and a ceiling you approve for each room type. Nothing goes below your floor without your sign-off.",
+      "Every event, festival and holiday in your market on a calendar, priced before it sells out.",
+      "A weekly check that your own website is never more expensive than the booking sites.",
+      "A weekly look at the hotels you compete with: when they move, and what to do about it.",
+      "Your booking-site listings scored and fixed: photos, descriptions, amenities, the facts that decide whether you show up.",
+      "The direct-booking starter kit: your booking engine checked, and three fixes that move more guests onto your own site.",
+      "A one-page report every month you can read on your phone in five minutes, and a 30-minute call to decide what happens next.",
+      "Re-scored against your audit on a schedule we put in writing. The number has to move.",
+    ],
+    notAtThisLevel:
+      "answering group inquiries, running paid ads, or building a loyalty program. If the audit finds group business worth chasing, that is Growth or In-House.",
+  },
+  {
+    key: GROWTH.key,
+    name: GROWTH.name,
+    line: GROWTH.line,
+    priceLabel: GROWTH.priceLabel,
+    fit: "For one or two properties, rooms bringing in roughly $600,000 to $1.2 million a year, or any owner who wants the daily attention and a forecast to plan around.",
+    outcome:
+      "The strategies the big chains run, brought to your hotel. A forecast you can staff and budget against, the right mix of booking sites, more guests booking direct, and a disciplined, priced answer ready when a group calls.",
+    plusLabel: "Everything in Essentials, plus",
+    includes: [
+      "A named revenue manager who knows your property. The person on your calls is the person moving your rates.",
+      "Every morning we look at what booked overnight and act on the dates booking too fast or too slow.",
+      "A rolling forecast of occupancy and revenue, and a yearly budget built with you.",
+      "Your booking sites worked as a cost line: which ones earn their commission, which promotions to run and which to turn off, and how to keep your direct share climbing.",
+      "Your booking engine and your Google hotel listing set up so direct bookings win.",
+      "Group-ready pricing: floors for group blocks, plain-language rules for when a group is worth displacing your regular guests, and quote templates so a wedding or buyout inquiry gets a priced answer instead of a guess.",
+      "Your business sorted into segments (regular guests, groups, negotiated accounts, extended stays) and reported every month.",
+      "A 60-minute call every two weeks. Same monthly report, same re-score.",
+    ],
+    notAtThisLevel:
+      "a call and a written report every week, your landing page and ads, or the group offer, contracts and listings built in your name (that is In-House). Project work like a loyalty program, guest database and email, a website rebuild, or renegotiating booking-site commissions is quoted on its own.",
+  },
+  {
+    key: INHOUSE.key,
+    name: INHOUSE.name,
+    line: INHOUSE.line,
+    priceLabel: INHOUSE.priceLabel,
+    terms: [
+      "A six-month commitment to start: two build months, three months running, the first re-score. Then month to month on 30 days' notice.",
+      `Settle the six months in one payment and it is ${INHOUSE.prepay} less.`,
+    ],
+    fit: "Built for rooms bringing in $1.2 million and up a year, 30-plus rooms, or meaningful group and event business. By application. Very large or multi-property situations are quoted individually.",
+    outcome:
+      "Done for you, done with you. We work inside your own Duetto account five days a week, make the pricing decisions daily, and build your property's demand infrastructure in your name, while you are taught the decisions as we go. A team member without the payroll, HR, insurance or taxes.",
+    plusLabel: "Everything in Growth, plus",
+    includes: [
+      "In your Duetto account five days a week, about an hour to an hour and a half a day.",
+      "A weekly call and a weekly report.",
+      "A landing page for your property, and Google Ads set up and taught to you.",
+      "A new website for your property, designed and built by us and hosted in your name, so the monthly website subscription goes away.",
+      "Your group offer and your group rate card.",
+      "Sales contract templates.",
+      "Listings on the channels where group and negotiated business is found.",
+      "You are taught the decisions: how to answer an RFP, how to compare a group piece of business against the transient rates it displaces, and when to say no.",
+      "Quarterly on-site visits, with travel and accommodations provided by you.",
+    ],
+    notAtThisLevel: "outbound selling on your behalf, and nothing on commission. Project work is quoted on its own.",
+    hireLine:
+      "A full-time salary pays for a seat. The property needs 25 to 30 hours a month of the actual work, and that is what this plan is priced on.",
+  },
+];
+
+const COMPARISON: [string, string, string, string][] = [
+  ["Rates reviewed and updated, inside your floors and ceilings", "Every day", "Every day", "Every day, in your own Duetto account"],
+  ["Duetto, our preferred revenue management system", "Not included in the fee. Yours, at negotiated pricing", "Not included in the fee. Yours, at negotiated pricing", "Not included in the fee. Yours, at negotiated pricing"],
+  ["What booked overnight, reviewed and acted on", "Weekly", "Every morning", "Every morning, five days a week in your account"],
+  ["A named revenue manager on your account", "Shared desk", "Yes", "Yes, on your team"],
+  ["Website never more expensive than the booking sites", "Weekly check", "Weekly check", "Weekly check"],
+  ["Forecast and yearly budget", "Not included", "Rolling forecast, yearly budget", "Rolling forecast, yearly budget"],
+  ["Booking sites worked as a cost line", "Listings scored and fixed", "Full program", "Full program"],
+  ["Direct bookings", "Starter kit", "Booking engine and Google listing set up", "Plus a landing page and Google Ads, set up and taught"],
+  ["A new website for the property", "Not included", "Project work, quoted on its own", "Included, built and hosted in your name"],
+  ["Group inquiries", "Not included", "Priced answers, templates", "Your group offer, rate card and contract templates; you are taught to answer RFPs and when to say no"],
+  ["Listings where group and negotiated business is found", "Not included", "Not included", "Included"],
+  ["Calls", "30 minutes monthly", "60 minutes every two weeks", "Weekly"],
+  ["Report", "One page, monthly", "Monthly, with segments", "Weekly"],
+  ["Re-score against your audit", "On a schedule in writing", "On a schedule in writing", "On a schedule in writing"],
+  ["On property", "Remote", "Remote", "Each quarter, travel and accommodations provided by you"],
+  ["Initial term, then month to month", "Four months", "Four months", "Six months"],
+  ["One payment for the term, if you prefer, saves", ESSENTIALS.prepay, GROWTH.prepay, INHOUSE.prepay],
+];
+
+const MUTED_CELLS = new Set(["Weekly", "Shared desk", "Not included", "Remote"]);
+
+const HOW_WE_CHARGE = [
+  {
+    t: "One flat monthly fee",
+    p: "No setup fee. No percentage of your revenue. Nothing on commission. The number on this page is the number on the invoice. Compare it to what you paid the booking sites last month, or to one housekeeper's wages. No software is included in the fee. The one cost beside it is your own Duetto subscription, our preferred system, and every client on every plan gets it at specially negotiated pricing: a lower rate than you could get on your own, because we pass our Duetto vendor commission back to you. You hold it and you keep it.",
+  },
+  {
+    t: "Four months to start on Essentials and Growth",
+    p: `The first month is all setup: your pricing system configured, your rate plan built room by room, your audit carried into the systems. Then three months of running it, then your first re-score. That is one full cycle, and it is the commitment we ask for. After that, month to month with thirty days' notice, and you leave with every login, listing and document. If you would rather settle the four months in one payment, it is ${ESSENTIALS.prepay} less.`,
+  },
+  {
+    t: "A six-month commitment on In-House",
+    p: `Two build months, three months running, then the first re-score in month six. That is the In-House cycle, and it is the commitment we ask for. After that, month to month with thirty days' notice, same as every plan, and everything built in your name stays yours. Settle the six months in one payment and it is ${INHOUSE.prepay} less. Project work is quoted before it starts.`,
+  },
+];
+
+const CONTROLS = [
+  "You set the floors and ceilings for every room type. Nothing goes below your floor without your sign-off.",
+  "Any change reversed on request.",
+  "You see the reasoning behind every move in a shared log. The monthly report shows each win on its own line.",
+  "Your regulars get a protected rate. We manage everyone else.",
+  "Results are reported against your market, not just against last year, so a soft season is never dressed up and a good one is never claimed twice.",
+  "Named users, role-scoped logins, and access that ends the day you do.",
+  "On In-House, a weekly call and a weekly report, and a visit on property each quarter, with travel and lodging provided by you.",
+  "A revenue management system is required on every plan and is not included in the fee. Duetto is our preferred system, and every RHG client gets it at specially negotiated pricing: we are a contracted Duetto vendor, and the commission Duetto would pay us goes back to you as a lower rate than you could get by contacting Duetto yourself. Every rate plan, rule and piece of data we build lives in your account and belongs to you. If you wanted to take it over tomorrow, you could.",
+  "After the first cycle, thirty days' notice ends the agreement. No renewal to sign, no term to re-up.",
+];
+
+const PROOF = [
+  { v: "41", l: "out of 100, grade D. The Lincoln, Marfa, Texas." },
+  { v: "$55K", l: "to $185,000 in annual revenue opportunity identified on a $444,000 base." },
+  { v: "270", l: "more room nights sold in year two, at lower rates, for the same revenue. Pricing by feel." },
+  { v: "1", l: "review out of 66 mentioned price. The guests did not think the hotel was cheap. Only the rate sheet did." },
+];
+
+const FAQ = [
+  {
+    q: "Will you price me out of my own market?",
+    a: "You set the floor and the ceiling for every room type. Nothing goes below your floor without your sign-off, and every change is logged with the reason. Your regulars get a protected rate.",
+  },
+  {
+    q: "Software does this for a fraction of the price. Why you?",
+    a: "Duetto will price your rooms well, if someone sits in it every day, reads what booked overnight and turns it into action. The software is a tool for the person using it, and it is only as good as the discipline behind it. You are already running the front desk, the housekeeping schedule and the guests. Let the revenue work be ours: you focus on your guests, we focus on the revenue, so you can keep being the hotelier. One flat monthly fee, nothing on commission.",
+  },
+  {
+    q: "Do you take a commission?",
+    a: "No. A flat monthly fee, printed on this page. Nothing on commission.",
+  },
+  {
+    q: "How will I know it was you and not the market?",
+    a: "Your results are reported against your market, not just against last year: your share of the market's revenue, split into rate and occupancy, net of commission. The baseline is fixed in the audit before we change anything.",
+  },
+  {
+    q: "Do I need new software?",
+    a: "Yes, one, on every plan: a revenue management system. It is not included in the fee. Duetto is our preferred system, and every client on every plan gets it at specially negotiated pricing, a lower rate than you could get by contacting Duetto yourself, because we are a contracted Duetto vendor and pass the commission Duetto would pay us back to you instead of keeping it. We set it up and run it. Everything we build inside it, the rate plans, the rules and the data, is in your account and belongs to you. Already running a system you prefer? Tell us on the call and we will consider working inside it.",
+  },
+  {
+    q: "What is the catch with the free audit?",
+    a: "At the end we ask whether you want help fixing the three lowest scores. The report is yours either way, including the two most valuable fixes written out in full.",
+  },
+  {
+    q: "Why a four-month start, and six on In-House?",
+    a: "Because the first month is all setup and the fourth is your re-score. On In-House the build takes two months, so the first re-score lands in month six. Judging the work before the first cycle is complete would be judging the setup, not the result. After that it is month to month with thirty days' notice, and we would rather earn the next month than lock you into it.",
+  },
+  {
+    q: "What if it does not work for us?",
+    a: "You see the reasoning behind every rate move as it happens, and your first re-score puts a number on it. After the first cycle, thirty days' notice ends the agreement and you leave with every login, listing and document.",
+  },
+];
+
+// ─── Structured data ─────────────────────────────────────────────────────────
 
 const RM_SERVICE_SCHEMA = {
   "@context": "https://schema.org",
@@ -17,148 +213,54 @@ const RM_SERVICE_SCHEMA = {
   "@id": "https://ramirezhospitality.com/revenue-management#service",
   name: "Hotel Revenue Management Subscription",
   description:
-    "A flat-fee, month-to-month revenue management subscription for independent and boutique hotels. Includes daily pricing management, OTA optimization, direct booking strategy, and rewards program development. Three tiers: Essentials ($850/mo), Growth ($1,500/mo), Enterprise ($2,500/mo).",
+    "Revenue management for independent and boutique hotels, motels and inns: prices set every day inside floors and ceilings the owner sets, booking sites worked as a cost line, groups priced right. Three plans, flat: Essentials $1,250, Growth $2,000, In-House $5,000 a month. Nothing on commission. No software included in the fee; Duetto is the preferred revenue management system, available to every client at negotiated pricing. One full cycle to start (four months, six on In-House), then month to month.",
   provider: { "@id": "https://ramirezhospitality.com/#organization" },
   serviceType: "Hotel Revenue Management",
   areaServed: { "@type": "Country", name: "United States" },
   url: "https://ramirezhospitality.com/revenue-management",
-  offers: [
-    {
-      "@type": "Offer",
-      name: "Essentials — Revenue Management Subscription",
-      description: "For 10–40 key properties. Daily pricing management, OTA optimization, comp-set monitoring, monthly strategy call, direct booking starter kit.",
-      price: "850",
+  offers: OFFERS.subscription.plans.map((p) => ({
+    "@type": "Offer",
+    name: `${p.name}: ${p.line}`,
+    description: `${p.band}. ${p.term}. One payment for the term saves ${p.prepay}.`,
+    price: String(p.price),
+    priceCurrency: "USD",
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      price: String(p.price),
       priceCurrency: "USD",
-      priceSpecification: { "@type": "UnitPriceSpecification", price: "850", priceCurrency: "USD", unitText: "month" },
+      unitText: "month",
     },
-    {
-      "@type": "Offer",
-      name: "Growth — Revenue Management Subscription",
-      description: "For 30–80 key boutique hotels. Full OTA optimization, direct booking strategy, loyalty program development, group sales playbook.",
-      price: "1500",
-      priceCurrency: "USD",
-      priceSpecification: { "@type": "UnitPriceSpecification", price: "1500", priceCurrency: "USD", unitText: "month" },
-    },
-    {
-      "@type": "Offer",
-      name: "Enterprise — Revenue Management Subscription",
-      description: "For 80+ key properties and small portfolios. Fractional Director of Revenue, full group sales, quarterly on-site visits, portfolio dashboards.",
-      price: "2500",
-      priceCurrency: "USD",
-      priceSpecification: { "@type": "UnitPriceSpecification", price: "2500", priceCurrency: "USD", unitText: "month" },
-    },
-  ],
+  })),
 };
 
 const RM_FAQ_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "What is included in the hotel revenue management subscription?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "All three tiers include: RMS access at preferred rates (Hotelitix or comparable), dynamic pricing management driven by AI plus operator oversight, comp-set monitoring, weekly rate-parity audits across all OTAs, monthly performance reports, OTA content scoring and listing optimization, and a direct-booking starter kit. Growth and Enterprise tiers add full OTA performance optimization, direct booking strategy, loyalty program development, and group sales playbooks.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Is there a long-term contract for the revenue management subscription?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "No. All Ramirez Hospitality Group revenue management subscriptions are month-to-month with no long-term contracts. You can cancel at any time.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What size hotels does the revenue management subscription serve?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "The Essentials tier is designed for 10–40 key properties including inns, motels, and small boutiques. The Growth tier serves 30–80 key boutique and independent hotels. The Enterprise tier serves 80+ key properties, small portfolios, and management companies.",
-      },
-    },
-  ],
+  mainEntity: FAQ.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
 };
 
-const TIERS = [
-  {
-    name: "Essentials",
-    subtitle: "Pricing Discipline",
-    price: "$850",
-    cadence: "/ month",
-    pricePrefix: "Starting at",
-    description:
-      "For 10–40 keys. Inns, motels, small boutiques, and owner-operators who want a real revenue strategist setting prices every day.",
-    features: [
-      "RMS access included at preferred rates (Hotelitix or comparable)",
-      "Dynamic pricing management driven by AI + my oversight",
-      "Comp-set monitoring + weekly rate-parity audit across all OTAs",
-      "Monthly 30-minute revenue strategy call",
-      "Monthly performance report",
-      "OTA content scoring + listing optimization (photos, descriptions, amenities, property facts)",
-      "Direct-booking starter kit: booking-engine audit + three concrete conversion recommendations",
-      "Ad-hoc email support, business hours",
-    ],
-  },
-  {
-    name: "Growth",
-    subtitle: "Revenue Operating System",
-    price: "$1,500",
-    cadence: "/ month",
-    pricePrefix: "Starting at",
-    description:
-      "For 30–80 keys. Boutique and independent hotels ready to lift RevPAR, grow direct bookings, and build a repeat-guest engine.",
-    featured: true,
-    badge: "Most Popular",
-    features: [
-      "Everything in Essentials, plus:",
-      "Daily pricing management and optimization",
-      "Demand forecasting, pace reporting, and monthly budgeting",
-      "Full OTA Performance Optimization — rate-parity policing, visibility-algorithm tuning (Expedia, Booking, Hotels.com), commissions renegotiation, Preferred Partner & Genius management, OTA promotional builds",
-      "Direct Booking Strategy build — metasearch bidding (Google Hotel Ads, Kayak, Trivago), website conversion optimization, book-direct incentive architecture, CRM/email integration (Revinate or comparable)",
-      "Rewards & Loyalty Program development — tier design, repeat-guest workflows, partner-perk stacking",
-      "Group Sales Playbook (basic) — group-rate recommendations, lead capture scripts, basic displacement analysis",
-      "Bi-weekly 60-minute revenue strategy calls",
-      "Segmentation and channel-mix analysis",
-    ],
-  },
-  {
-    name: "Enterprise",
-    subtitle: "Embedded Revenue Team",
-    price: "$2,500",
-    cadence: "/ month",
-    pricePrefix: "Starting at",
-    description:
-      "For 80+ keys, small portfolios, and management companies that want a fractional Director of Revenue who shows up like an in-house executive.",
-    suffix: "Performance incentive available",
-    features: [
-      "Everything in Growth, plus:",
-      "Full RMS build-out and ongoing oversight — Hotelitix, Duetto, or Light House selected to fit the property",
-      "Full Group Sales Playbook — strategy, advanced displacement analysis, contract negotiation, corporate and wholesale agreement management",
-      "Full access to my expertise and strategies — nothing held back",
-      "Sales Strategy Consulting — positioning, packaging, rate-fence design, channel strategy, seasonal campaigns, partnerships",
-      "Targeted Ad Spend Consulting — metasearch and paid-search strategy, budget allocation, ROI reporting (Google Hotel Ads, paid social, programmatic)",
-      "Channel-manager management and distribution-cost engineering",
-      "True one-on-one client relationship — weekly 60-minute calls, priority phone and text access during business hours",
-      "Quarterly on-site visits (travel and lodging expensed to client at cost)",
-      "Portfolio-level dashboards for multi-property operators",
-      "Direct involvement in annual budget process and ownership reporting",
-      "Performance incentive available — base retainer + % of incremental RevPAR lift above baseline",
-    ],
-  },
-];
+function AuditCta({ ghost = false }: { ghost?: boolean }) {
+  return (
+    <a href={OFFERS.audit.formPath} className={ghost ? "btn-ghost w-full justify-center" : "btn-brass w-full justify-center"}>
+      {OFFERS.audit.cta} <ArrowRight className="w-4 h-4" />
+    </a>
+  );
+}
 
 export default function RevenueManagement() {
   return (
     <PageLayout
-      title="Hotel Revenue Management Subscription for Independent & Boutique Hotels | Ramirez Hospitality Group"
-      description="Flat-fee, month-to-month revenue management for independent and boutique hotels. Daily pricing, OTA optimization, direct booking strategy, and loyalty program development. Three tiers: Essentials ($850/mo), Growth ($1,500/mo), Enterprise ($2,500/mo). No long-term contracts."
+      title="Hotel Revenue Management Subscription: Essentials, Growth, In-House | Ramirez Hospitality Group"
+      description="Your prices set every day, your booking sites worked, your groups priced right. Essentials $1,250, Growth $2,000, In-House $5,000 a month. Flat, nothing on commission. Starts with the free Modern Hotel Audit."
       canonical="/revenue-management"
-      breadcrumbs={[{ name: "Revenue Management Subscription", href: "/revenue-management" }]}
+      breadcrumbs={[{ name: "The Subscription", href: "/revenue-management" }]}
       jsonLd={[RM_SERVICE_SCHEMA, RM_FAQ_SCHEMA, ORGANIZATION_SCHEMA]}
     >
-      {/* HERO */}
+      {/* I · HERO */}
       <section className="relative pt-44 pb-24 lg:pt-56 lg:pb-32 overflow-hidden bg-obsidian">
         <div className="absolute inset-0 opacity-25">
           <img src={IMAGES.revenue} alt="" className="w-full h-full object-cover" />
@@ -166,274 +268,300 @@ export default function RevenueManagement() {
         <div className="absolute inset-0 bg-gradient-to-b from-obsidian via-obsidian/85 to-obsidian" />
         <div className="container relative z-10">
           <div className="max-w-4xl">
-            <Eyebrow numeral="I" label="Revenue Management" />
+            <Eyebrow numeral="I" label={OFFERS.subscription.name} />
             <h1 className="mt-7 font-display font-medium text-4xl md:text-6xl lg:text-[4.5rem] leading-[1.04] text-cream tracking-[-0.025em]">
-              Daily pricing discipline.
+              Your prices set every day.
               <br />
-              Monthly clarity.
+              Your booking sites worked.
               <br />
-              <span className="italic text-brass">Annual revenue that actually grows.</span>
+              <span className="italic text-brass">Your groups priced right.</span>
             </h1>
             <p className="mt-9 text-cream/80 text-lg md:text-xl leading-[1.55] max-w-2xl">
-              A revenue management subscription built for independent hotels, boutique
-              properties, and small portfolios. Operator-led. AI-powered. Month to month.
+              The revenue department every big hotel has, built for independent and boutique hoteliers.
+              Run by an operator, inside rules you set. One flat monthly fee. No software is
+              included in the fee. One full cycle to start, then month to month.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-5">
-              <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-brass">
-                Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+              <a href={OFFERS.audit.formPath} className="btn-brass">
+                {OFFERS.audit.cta} <ArrowRight className="w-4 h-4" />
               </a>
-              <a href="#tiers" className="link-brass pr-6">
-                See the Three Tiers <ArrowRight className="w-4 h-4" />
+              <a href="#plans" className="link-brass pr-6">
+                See the three plans <ArrowRight className="w-4 h-4" />
               </a>
+            </div>
+            <p className="mt-10 text-[0.7rem] tracking-[0.2em] uppercase text-cream/55">{TRACK_RECORD_LINE}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* II · WHERE EVERY CLIENT STARTS */}
+      <section className="py-20 lg:py-28 panel-walnut grain border-y border-brass/15">
+        <div className="container relative z-10">
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
+            <div className="lg:col-span-5">
+              <Reveal>
+                <Eyebrow numeral="II" label="Where every client starts" />
+                <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
+                  One audit. The whole property, scored,
+                  <br />
+                  <span className="italic text-brass">and sized in dollars.</span>
+                </h2>
+                <p className="mt-7 text-cream/80 leading-[1.7] max-w-xl">
+                  Free. Your property scored out of 100 across seven areas, every finding priced
+                  in dollars, and the evidence behind each number. The two most valuable fixes are
+                  written out in full, yours to keep whether we work together or not. Every finding
+                  is tagged to the cheapest plan that captures it, so the plan decision is
+                  arithmetic, not a pitch.
+                </p>
+              </Reveal>
+            </div>
+            <div className="lg:col-span-7">
+              <Reveal delay={150}>
+                <div className="border border-brass/30 bg-card p-7 lg:p-8">
+                  <div className="text-[0.62rem] tracking-[0.32em] uppercase text-brass">
+                    The Lincoln, Marfa, Texas
+                  </div>
+                  <div className="mt-5 grid sm:grid-cols-3 gap-px bg-brass/15 border border-brass/15">
+                    {[
+                      { v: "41", l: "out of 100, grade D, on a property guests love" },
+                      { v: "$55,000", l: "to $185,000 identified, on a $444,000 base" },
+                      { v: "$59", l: "more a night guests paid on Expedia than on the hotel's own site" },
+                    ].map((s) => (
+                      <div key={s.v} className="bg-obsidian p-5">
+                        <div className="font-display text-3xl text-cream">{s.v}</div>
+                        <div className="mt-1 text-cream/65 text-[0.8125rem] leading-[1.5]">{s.l}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="mt-5 border-l border-brass pl-4 text-cream/65 text-sm leading-[1.6]">
+                    The catch, in full: at the end we ask whether you want help fixing the three
+                    lowest scores. That is the whole catch.
+                  </p>
+                </div>
+              </Reveal>
             </div>
           </div>
         </div>
       </section>
 
-      {/* II · THE MATH */}
-      <section className="py-24 lg:py-32 panel-walnut grain border-y border-brass/15">
-        <div className="container relative z-10">
-          <div className="max-w-3xl mb-14">
+      {/* III · THREE PLANS */}
+      <section id="plans" className="py-24 lg:py-36 bg-obsidian scroll-mt-20">
+        <div className="container">
+          <div className="max-w-3xl mb-12">
             <Reveal>
-              <Eyebrow numeral="II" label="The Math" />
+              <Eyebrow numeral="III" label="Three plans" />
               <h2 className="mt-6 font-display text-4xl md:text-5xl lg:text-[3.4rem] leading-[1.05] text-cream">
-                An in-house revenue manager costs
+                Kind of work sets the plan.
                 <br />
-                <span className="text-brass">$85,000</span> a year.
-                <br />
-                <span className="italic">Mine starts at $850 a month.</span>
+                <span className="italic text-brass">Not the size of the hotel.</span>
               </h2>
+              <p className="mt-7 text-cream/75 leading-[1.7] max-w-2xl">
+                The difference between plans is what gets done and how often. Project work is
+                quoted on its own so the monthly fee stays honest.
+              </p>
             </Reveal>
           </div>
 
-          <Reveal delay={150}>
-            <div className="grid md:grid-cols-2 gap-px bg-brass/15 border border-brass/15">
-              <div className="bg-obsidian/85 p-8 lg:p-10">
-                <div className="text-[0.62rem] tracking-[0.32em] uppercase text-cream/55 mb-6">
-                  In-House Revenue Manager
+          <div className="grid lg:grid-cols-3 gap-px bg-brass/15 border border-brass/15 items-stretch">
+            {PLANS.map((plan, i) => (
+              <Reveal
+                key={plan.key}
+                delay={i * 100}
+                className={`relative flex flex-col p-8 lg:p-9 ${plan.start ? "panel-emerald" : "bg-obsidian"}`}
+              >
+                {plan.start && (
+                  <div className="absolute -top-3 left-8 bg-brass text-obsidian text-[0.6rem] tracking-[0.26em] uppercase font-bold px-3 py-1.5">
+                    Where most hotels start
+                  </div>
+                )}
+                <div className="text-[0.62rem] tracking-[0.32em] uppercase text-brass">{plan.name}</div>
+                <div className="mt-3 font-display italic text-2xl text-cream leading-[1.25]">{plan.line}</div>
+                <div className="mt-5 flex items-baseline gap-2">
+                  <span className="font-display text-4xl lg:text-5xl text-cream">{plan.priceLabel}</span>
+                  <span className="text-cream/50 text-sm">a month</span>
                 </div>
-                <ul className="space-y-4 text-cream/75">
-                  {[
-                    "$85,000+ salary, plus benefits, taxes, and PTO",
-                    "One person. One skill set.",
-                    "2–3 years average tenure before turnover",
-                    "Slow ramp. Slower results.",
-                    "No launch, renovation, or acquisition expertise",
-                  ].map((line) => (
+                {plan.terms?.map((t) => (
+                  <p key={t} className="mt-2.5 text-brass-soft text-[0.8125rem] leading-[1.55]">{t}</p>
+                ))}
+                <p className="mt-4 text-cream/65 text-[0.8125rem] leading-[1.6]">{plan.fit}</p>
+                <p className="mt-4 text-cream text-[0.9rem] leading-[1.6]">{plan.outcome}</p>
+                {plan.plusLabel && (
+                  <div className="mt-6 text-[0.62rem] tracking-[0.28em] uppercase text-brass">{plan.plusLabel}</div>
+                )}
+                <ul className={`${plan.plusLabel ? "mt-3" : "mt-6"} space-y-2.5 text-[0.8375rem] text-cream/80 leading-[1.55]`}>
+                  {plan.includes.map((line) => (
                     <li key={line} className="flex gap-3">
-                      <span className="text-cream/30 mt-1.5">—</span>
+                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-brass shrink-0" />
                       <span>{line}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
-              <div className="bg-obsidian p-8 lg:p-10 ring-1 ring-brass/30">
-                <div className="text-[0.62rem] tracking-[0.32em] uppercase text-brass mb-6">
-                  Ramirez Hospitality Group
+                <p className="mt-6 pt-4 border-t border-brass/15 text-cream/50 text-[0.8rem] leading-[1.6]">
+                  <span className="text-cream/65 font-medium">Not at this level:</span> {plan.notAtThisLevel}
+                </p>
+                {plan.hireLine && (
+                  <p className="mt-4 pt-3 border-t border-dashed border-brass/30 text-brass-soft text-[0.8rem] italic leading-[1.55]">
+                    {plan.hireLine}
+                  </p>
+                )}
+                <div className="mt-auto pt-7">
+                  <AuditCta ghost={!plan.start} />
                 </div>
-                <ul className="space-y-4 text-cream/85">
-                  {[
-                    "Starting at $850 / month",
-                    "Operator + AI-driven tech stack — Hotelitix, Duetto, Light House, Revinate",
-                    "Month to month. No lock-in.",
-                    "The Modern Hotel Audit first, free, no strings.",
-                    "10+ years launching and scaling independents.",
-                  ].map((line) => (
-                    <li key={line} className="flex gap-3">
-                      <Check className="w-4 h-4 text-brass mt-1 shrink-0" />
-                      <span>{line}</span>
-                    </li>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Comparison table */}
+          <Reveal delay={200} className="mt-10 overflow-x-auto">
+            <table className="w-full border-collapse text-[0.8375rem] min-w-[720px]">
+              <thead>
+                <tr>
+                  {["What gets done", ESSENTIALS.name, GROWTH.name, INHOUSE.name].map((h) => (
+                    <th key={h} className="text-left px-4 py-3.5 border-b border-brass/20 text-[0.62rem] tracking-[0.28em] uppercase text-brass font-semibold">
+                      {h}
+                    </th>
                   ))}
-                </ul>
-              </div>
-            </div>
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARISON.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, ci) => (
+                      <td
+                        key={ci}
+                        className={`px-4 py-3.5 border-b border-brass/10 align-top leading-[1.5] ${
+                          ci === 0 ? "text-cream w-[30%]" : MUTED_CELLS.has(cell) ? "text-cream/45" : "text-cream/80"
+                        }`}
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </Reveal>
+          <p className="mt-5 text-cream/45 text-xs leading-[1.6] max-w-3xl">{SOFTWARE.footnote}</p>
+        </div>
+      </section>
+
+      {/* IV · HOW WE CHARGE */}
+      <section className="py-24 lg:py-32 panel-walnut grain border-y border-brass/15">
+        <div className="container relative z-10">
+          <Reveal className="max-w-3xl mb-12">
+            <Eyebrow numeral="IV" label="How we charge" />
+            <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
+              One flat fee.
+              <br />
+              <span className="italic text-brass">One full cycle to start.</span>
+            </h2>
+          </Reveal>
+          <div className="grid md:grid-cols-3 gap-px bg-brass/15 border border-brass/15">
+            {HOW_WE_CHARGE.map((c, i) => (
+              <Reveal key={c.t} delay={i * 100} className="bg-card p-7 lg:p-8">
+                <h3 className="font-display text-2xl text-cream mb-4">{c.t}</h3>
+                <p className="text-cream/75 text-[0.875rem] leading-[1.7]">{c.p}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* V · WHAT YOU CONTROL */}
+      <section className="py-24 lg:py-32 bg-obsidian">
+        <div className="container">
+          <Reveal className="max-w-3xl mb-12">
+            <Eyebrow numeral="V" label="What you control" />
+            <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
+              Your rules. <span className="italic text-brass">Our desk.</span>
+            </h2>
+          </Reveal>
+          <div className="grid md:grid-cols-2 gap-x-12 gap-y-4 max-w-5xl">
+            {CONTROLS.map((line, i) => (
+              <Reveal key={line} delay={i * 60} className="flex gap-4 text-cream/80 text-[0.9375rem] leading-[1.65]">
+                <span className="mt-3 h-px w-4 bg-brass shrink-0" />
+                <span>{line}</span>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* VI · PROOF */}
+      <section className="py-24 lg:py-32 panel-emerald grain border-y border-brass/15">
+        <div className="container relative z-10">
+          <Reveal className="max-w-3xl mb-12">
+            <Eyebrow numeral="VI" label="Proof" />
+            <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
+              A hotel guests love, <span className="italic text-brass">scored a D.</span>
+            </h2>
+          </Reveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-brass/15 border border-brass/15">
+            {PROOF.map((p, i) => (
+              <Reveal key={p.v} delay={i * 100} className="bg-obsidian p-7">
+                <div className="font-display text-4xl lg:text-5xl text-cream leading-none">{p.v}</div>
+                <p className="mt-3 text-cream/65 text-[0.8125rem] leading-[1.55]">{p.l}</p>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={400}>
+            <p className="mt-10 font-display italic text-2xl text-cream/80 max-w-3xl leading-[1.45]">
+              A D on a well-reviewed property is not an insult. It is an A-grade asset with no
+              revenue function yet, the cheapest problem in hospitality to fix.
+            </p>
           </Reveal>
         </div>
       </section>
 
-      {/* III · THE THREE TIERS */}
-      <section id="tiers" className="py-24 lg:py-36 bg-obsidian">
+      {/* VII · WHO DOES THE WORK */}
+      <OperatorSection numeral="VII" />
+
+      {/* VIII · QUESTIONS */}
+      <section className="py-24 lg:py-32 bg-obsidian border-t border-brass/15" aria-label="Frequently Asked Questions">
         <div className="container">
-          <div className="max-w-3xl mb-16">
-            <Reveal>
-              <Eyebrow numeral="III" label="The Three Tiers" />
-              <h2 className="mt-6 font-display text-4xl md:text-5xl lg:text-[3.4rem] leading-[1.05] text-cream">
-                Three subscriptions.
-                <br />
-                <span className="italic text-brass">All month-to-month.</span>
-                <br />
-                All built to outperform their cost.
-              </h2>
-            </Reveal>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-            {TIERS.map((tier, i) => (
-              <Reveal
-                key={tier.name}
-                delay={i * 120}
-                className={`relative flex flex-col border ${
-                  tier.featured
-                    ? "border-brass/60 bg-card lg:-translate-y-4 lg:scale-[1.02] shadow-[0_30px_80px_-30px_rgba(212,176,98,0.35)]"
-                    : "border-brass/15 bg-card/60"
-                }`}
-              >
-                {tier.badge && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brass text-obsidian text-[0.62rem] tracking-[0.32em] uppercase font-bold px-4 py-1.5 flex items-center gap-2">
-                    <Star className="w-3 h-3 fill-obsidian" /> {tier.badge}
-                  </div>
-                )}
-                <div className="p-8 lg:p-10 flex-1 flex flex-col">
-                  <div className="text-[0.62rem] tracking-[0.32em] uppercase text-brass">
-                    {tier.subtitle}
-                  </div>
-                  <h3 className="mt-3 font-display text-3xl lg:text-4xl text-cream">
-                    {tier.name}
-                  </h3>
-                  <div className="mt-6 flex items-baseline gap-2">
-                    <span className="text-cream/55 text-xs tracking-wider uppercase">
-                      {tier.pricePrefix}
-                    </span>
-                    <span className="font-display text-4xl lg:text-5xl text-brass">
-                      {tier.price}
-                    </span>
-                    <span className="text-cream/65 text-sm">{tier.cadence}</span>
-                  </div>
-                  {tier.suffix && (
-                    <div className="mt-2 text-[0.7rem] tracking-[0.18em] uppercase text-brass/85">
-                      {tier.suffix}
-                    </div>
-                  )}
-                  <p className="mt-6 text-cream/70 text-sm leading-[1.7]">
-                    {tier.description}
-                  </p>
-
-                  <div className="hairline my-8 opacity-40" />
-
-                  <ul className="space-y-3.5 text-sm text-cream/80 flex-1">
-                    {tier.features.map((f, idx) => (
-                      <li
-                        key={idx}
-                        className={`flex gap-3 ${
-                          f.endsWith("plus:") ? "font-semibold text-cream pt-1" : ""
-                        }`}
-                      >
-                        {!f.endsWith("plus:") && (
-                          <Check className="w-3.5 h-3.5 text-brass mt-1 shrink-0" />
-                        )}
-                        <span className="leading-[1.55]">{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="mt-10">
-                    <a
-                      href={BRAND.auditBookingUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={
-                        tier.featured ? "btn-brass w-full justify-center" : "btn-ghost w-full justify-center"
-                      }
-                    >
-                      Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
-                    </a>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <div className="mt-12 text-center text-cream/55 text-sm">
-            All tiers are month-to-month. Cancel anytime. RMS access included at preferred
-            rates on every tier.
-          </div>
-        </div>
-      </section>
-
-      {/* IV · DIFFERENTIATORS */}
-      <section className="py-24 lg:py-36 panel-emerald grain">
-        <div className="container relative z-10">
-          <div className="max-w-3xl mb-16">
-            <Reveal>
-              <Eyebrow numeral="IV" label="The Differentiators" />
-              <h2 className="mt-6 font-display text-4xl md:text-5xl lg:text-[3.2rem] leading-[1.05] text-cream">
-                Three things every independent hotel needs.
-                <br />
-                <span className="italic text-brass">One subscription that includes them all.</span>
-              </h2>
-            </Reveal>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-px bg-brass/20">
-            {[
-              {
-                n: "I",
-                t: "OTA Performance Optimization",
-                p: "Most consultants bury OTA work inside 'distribution.' I make it a named service. Rate-parity policing, content scoring, visibility-algorithm tuning, commissions renegotiation, Preferred Partner and Genius program management. Real moves on Expedia, Booking, and Hotels.com — not screenshots in a deck.",
-              },
-              {
-                n: "II",
-                t: "Direct Booking Strategy (Built)",
-                p: "The brands have direct-booking budgets. Independents have to earn it. I build the metasearch bids, the rate fences, the email sequences, and the booking-engine flow that pulls bookings off the OTAs and onto your own site. Sixty percent direct at Twist. We can do it again.",
-              },
-              {
-                n: "III",
-                t: "Rewards & Loyalty Program Development",
-                p: "Marriott has Bonvoy. Hilton has Honors. Independents need an answer. I design the tiers, the perks, the partner stacks, and the email automations that turn one-time guests into a repeat-revenue engine.",
-              },
-            ].map((d, i) => (
-              <Reveal
-                key={d.t}
-                delay={i * 120}
-                className="bg-obsidian/70 p-8 lg:p-10"
-              >
-                <div className="font-display italic text-3xl text-brass mb-6">{d.n}</div>
-                <h3 className="font-display text-2xl text-cream mb-5 leading-snug">{d.t}</h3>
-                <p className="text-cream/75 text-sm leading-[1.75]">{d.p}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* V · TECH STACK */}
-      <section className="py-24 lg:py-32 bg-obsidian border-t border-brass/15">
-        <div className="container">
-          <div className="grid lg:grid-cols-12 gap-12 items-end mb-14">
-            <div className="lg:col-span-7">
+          <div className="grid lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-4">
               <Reveal>
-                <Eyebrow numeral="V" label="The Tech Stack" />
-                <h2 className="mt-6 font-display text-4xl md:text-5xl text-cream leading-[1.05]">
-                  I run on the best tools in the industry.
+                <Eyebrow numeral="VIII" label="Common questions" />
+                <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] text-cream">
+                  Asked by owners,
                   <br />
-                  <span className="italic text-brass">So you don't have to learn them.</span>
+                  <span className="italic text-brass">answered plainly.</span>
                 </h2>
               </Reveal>
             </div>
-            <div className="lg:col-span-5">
-              <Reveal delay={150}>
-                <p className="text-cream/65 leading-[1.7]">
-                  Every subscription tier includes RMS access at preferred rates — typically
-                  Hotelitix, but selected to fit the property. The same goes for the rest of
-                  the stack. You don't pay full retail. I do the integration, the
-                  configuration, and the maintenance.
-                </p>
-              </Reveal>
+            <div className="lg:col-span-8">
+              {FAQ.map((item, i) => (
+                <Reveal key={item.q} delay={i * 50}>
+                  <div className={`py-7 border-b border-brass/15 ${i === 0 ? "border-t" : ""}`}>
+                    <h3 className="font-display text-xl lg:text-2xl text-cream mb-3 leading-snug">{item.q}</h3>
+                    <p className="text-cream/70 text-base leading-[1.75] max-w-3xl">{item.a}</p>
+                  </div>
+                </Reveal>
+              ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          <Reveal delay={300}>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-brass/15 border border-brass/15">
-              {["Hotelitix", "Duetto", "Light House", "Revinate", "OpenAI", "GPT"].map((t) => (
-                <div
-                  key={t}
-                  className="bg-obsidian px-6 py-10 flex items-center justify-center"
-                >
-                  <span className="font-display text-2xl text-cream/75 tracking-wide">
-                    {t}
-                  </span>
-                </div>
-              ))}
+      {/* IX · NEXT STEP */}
+      <section className="py-24 lg:py-32 bg-obsidian border-t border-brass/15">
+        <div className="container">
+          <Reveal className="max-w-3xl">
+            <Eyebrow numeral="IX" label="Next step" />
+            <h2 className="mt-6 font-display text-4xl md:text-5xl text-cream leading-[1.05]">
+              Get the property scored
+              <br />
+              <span className="italic text-brass">before you decide.</span>
+            </h2>
+            <p className="mt-7 text-cream/75 leading-[1.7] max-w-md">
+              Five fields, then pick a time for a 20-minute call. If it is not a fit, we will say
+              so.
+            </p>
+            <div className="mt-9">
+              <a href={OFFERS.audit.formPath} className="btn-brass">
+                {OFFERS.audit.cta} <ArrowRight className="w-4 h-4" />
+              </a>
             </div>
           </Reveal>
         </div>

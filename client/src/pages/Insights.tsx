@@ -9,7 +9,7 @@ import { PageLayout } from "@/components/PageLayout";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Reveal } from "@/components/Reveal";
 import { ORGANIZATION_SCHEMA } from "@/components/SEO";
-import { BRAND } from "@/lib/brand";
+import { OFFERS } from "@/lib/brand";
 
 const ARTICLE_SCHEMA = {
   "@context": "https://schema.org",
@@ -277,18 +277,13 @@ export default function Insights() {
               </p>
               <div className="hairline mt-10" />
               <p className="text-cream/65 text-base">
-                — Adam Ramirez runs Ramirez Hospitality Group, a revenue management and
-                hospitality consulting practice for independent and boutique hotels. Every
-                client starts with{" "}
-                <a
-                  href={BRAND.auditBookingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-brass underline"
-                >
-                  The Modern Hotel Audit
+                Adam Ramirez runs Ramirez Hospitality Group, an operator-led revenue and
+                opening consultancy for independent and boutique hotels. Anyone running a hotel
+                starts with{" "}
+                <a href={OFFERS.audit.formPath} className="text-brass underline">
+                  {OFFERS.audit.name}
                 </a>
-                , free and no strings.
+                , free.
               </p>
             </article>
           </div>

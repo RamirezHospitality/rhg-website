@@ -1,1 +1,12 @@
+# Product-name aliases. The search-phrase slugs are canonical; the product
+# names redirect permanently so they work in print, ads and conversation.
+/the-modern-hotel-audit   /audit               301
+/the-modern-hotel-plan    /feasibility-study   301
+/plan                     /feasibility-study   301
+/the-modern-hotel-launch  /openings            301
+/launch                   /openings            301
+/the-subscription         /revenue-management  301
+/plans                    /revenue-management  301
+
+# SPA fallback (must stay last)
 /*    /index.html   200

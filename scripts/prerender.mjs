@@ -6,7 +6,7 @@
  * (Google Ads API review, AI search engines, social scrapers).
  *
  * Usage:
- *   pnpm build:prerender        (vite build + this script)
+ *   npm run build:prerender        (vite build + this script)
  *   node scripts/prerender.mjs  (after an existing vite build)
  *
  * One-time setup on a new machine/CI:
@@ -25,8 +25,7 @@ import path from "node:path";
 
 const DIST = path.resolve(process.cwd(), "dist", "public");
 
-// All live routes. /privacy and /terms are intentionally excluded until
-// those pages exist — today they render the 404 component.
+// All indexable routes. The /lp pages and /dashboard are noindex and stay out.
 const ROUTES = [
   "/",
   "/revenue-management",
@@ -38,6 +37,11 @@ const ROUTES = [
   "/contact",
   "/audit",
   "/tech-stack",
+  "/feasibility-study",
+  "/downloads",
+  "/insights/what-is-a-motel-making-250k-a-year-actually-worth",
+  "/privacy",
+  "/terms",
 ];
 
 async function main() {

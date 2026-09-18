@@ -88,7 +88,7 @@ const STEPS: Step[] = [
   {
     n: "03",
     t: "The subscription, if it fits",
-    p: "System access, comp set, and a pricing plan we agree on together, then it runs daily. Month to month, re-scored on a schedule we put in writing. You keep every login.",
+    p: "System access, comp set, and a pricing plan we agree on together, then it runs daily. One full cycle to start, then month to month, re-scored against your audit on a schedule we put in writing. You keep every login.",
   },
 ];
 
@@ -103,15 +103,15 @@ const FAQ = [
   },
   {
     q: "Do I need new software?",
-    a: "Usually not to start. I work inside the PMS and channel manager you already have. If a revenue management system would pay for itself, I will show you the math before recommending one.",
+    a: "Yes, one, on every plan: a revenue management system. It is not included in the fee. Duetto is our preferred system, and every client on every plan gets it at specially negotiated pricing. We set it up and run it, and everything we build inside it belongs to you. Already running a system you prefer? Tell us on the call and we will consider working inside it.",
   },
   {
-    q: "How is this different from the OTA account manager who calls me?",
-    a: "They are paid by the OTA. I am paid by you. The advice tends to differ.",
+    q: "Do you take a commission?",
+    a: "No. A flat monthly fee, published on the site. Nothing on commission.",
   },
   {
     q: "What if the subscription does not work for us?",
-    a: "Month to month, no lock-in. If the numbers are not there, you stop. I would rather earn the next month than lock you into it.",
+    a: "One full cycle to start: four months on Essentials and Growth, six on In-House, because the first month is setup and the last is your re-score. After that, month to month with thirty days' notice, and you leave with every login, listing and document. We would rather earn the next month than lock you into it.",
   },
 ];
 
@@ -155,22 +155,22 @@ export default function BoutiqueHotelConsultingLP() {
                 </h1>
                 <p className="mt-7 text-cream/85 text-lg md:text-xl leading-[1.55] max-w-2xl">
                   Revenue management, operations, and tech stack, run by an operator who has
-                  done it on his own properties. Month to month, from $850 a month, no long
-                  contracts.
+                  done it on his own properties. Plans from $1,250 a month, flat,
+                  nothing on commission.
                 </p>
 
                 {/* Proof point */}
                 <div className="mt-9 grid sm:grid-cols-2 gap-px bg-brass/15 border border-brass/15 max-w-2xl">
                   <div className="bg-card p-6">
-                    <div className="font-display text-4xl text-brass leading-none">+$1M</div>
+                    <div className="font-display text-4xl text-brass leading-none">41</div>
                     <div className="mt-3 text-cream/75 text-sm leading-[1.6]">
-                      Annual revenue lift at a boutique Palm Springs property
+                      out of 100 for a hotel guests love. $55,000 to $185,000 found on a $444,000 base.
                     </div>
                   </div>
                   <div className="bg-card p-6">
-                    <div className="font-display text-4xl text-brass leading-none">$750K</div>
+                    <div className="font-display text-4xl text-brass leading-none">60%</div>
                     <div className="mt-3 text-cream/75 text-sm leading-[1.6]">
-                      Incremental revenue on a six-key independent property
+                      direct booking rate after a distressed Palm Springs turnaround, Booking score 6.4 to 9.1
                     </div>
                   </div>
                 </div>

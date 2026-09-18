@@ -1,11 +1,15 @@
 /*
  * Ramirez Hospitality Group — The Reserve
  * Persistent CTA bar + obsidian editorial footer with three columns.
+ *
+ * The phone number is plain text here and on the Contact page. It is never a
+ * tel: link (locked rule). Every button is one of the three offer CTAs and
+ * goes to that offer's capture form.
  */
 
 import { Link } from "wouter";
 import { ArrowRight, Phone, Mail, MapPin } from "lucide-react";
-import { BRAND } from "@/lib/brand";
+import { BRAND, OFFERS, TRACK_RECORD_LINE } from "@/lib/brand";
 
 export function PersistentCTA() {
   return (
@@ -20,22 +24,23 @@ export function PersistentCTA() {
       <div className="container relative py-20 lg:py-24">
         <div className="grid lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-8">
-            <span className="eyebrow">The Modern Hotel Audit</span>
+            <span className="eyebrow">{OFFERS.audit.name}</span>
             <h2 className="mt-5 font-display text-4xl md:text-5xl lg:text-[3.4rem] leading-[1.05] text-cream">
-              Let me show you what
-              <span className="italic text-brass"> your property is leaving on the table.</span>
+              Get the property scored
+              <span className="italic text-brass"> before you decide.</span>
             </h2>
             <p className="mt-6 text-cream/70 text-lg max-w-2xl leading-relaxed">
-              Every client starts here, whether they are buying a hotel, opening one, or
-              running one. Free, scored across seven dimensions, sized in dollars. No strings.
+              Free. Your hotel scored out of 100 across seven areas, every finding priced in
+              dollars, the two most valuable fixes written out in full. Buying, building or
+              opening instead? Start with {OFFERS.plan.name}.
             </p>
           </div>
           <div className="lg:col-span-4 flex flex-col gap-3">
-            <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-brass w-full justify-center">
-              Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+            <a href={OFFERS.audit.formPath} className="btn-brass w-full justify-center">
+              {OFFERS.audit.cta} <ArrowRight className="w-4 h-4" />
             </a>
-            <a href={BRAND.openingBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost w-full justify-center">
-              Opening a hotel? Book an Opening Consultation
+            <a href={OFFERS.plan.formPath} className="btn-ghost w-full justify-center">
+              {OFFERS.plan.cta}
             </a>
           </div>
         </div>
@@ -43,6 +48,23 @@ export function PersistentCTA() {
     </section>
   );
 }
+
+const OFFER_LINKS = [
+  { label: OFFERS.audit.name, href: OFFERS.audit.path },
+  { label: OFFERS.subscription.name, href: OFFERS.subscription.path },
+  { label: OFFERS.plan.name, href: OFFERS.plan.path },
+  { label: OFFERS.launch.name, href: OFFERS.launch.path },
+  { label: "Everything we do", href: "/services" },
+  { label: "The hotel tech stack", href: "/tech-stack" },
+];
+
+const GROUP_LINKS = [
+  { label: "About Adam", href: "/about" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "Insights", href: "/insights" },
+  { label: "Free downloads", href: "/downloads" },
+  { label: "Contact", href: "/contact" },
+];
 
 export function SiteFooter() {
   return (
@@ -66,13 +88,10 @@ export function SiteFooter() {
               {BRAND.tagline}
             </p>
             <div className="mt-8 inline-flex flex-col gap-3">
-              <a
-                href={BRAND.phoneHref}
-                className="flex items-center gap-3 text-cream/75 hover:text-brass transition-colors"
-              >
+              <div className="flex items-center gap-3 text-cream/75">
                 <Phone className="w-4 h-4" strokeWidth={1.5} />
                 <span className="text-sm tracking-wide">{BRAND.phone}</span>
-              </a>
+              </div>
               <a
                 href={BRAND.emailHref}
                 className="flex items-center gap-3 text-cream/75 hover:text-brass transition-colors"
@@ -87,21 +106,13 @@ export function SiteFooter() {
             </div>
           </div>
 
-          {/* Practice column */}
+          {/* Offers column */}
           <div className="lg:col-span-3">
             <div className="text-[0.62rem] tracking-[0.32em] uppercase text-brass mb-6">
-              The Practice
+              The Offers
             </div>
             <ul className="flex flex-col gap-3">
-              {[
-                { label: "Revenue Management", href: "/revenue-management" },
-                { label: "Hotel Openings", href: "/openings" },
-                { label: "Hotel Tech & Systems", href: "/services" },
-                { label: "Operations & SOPs", href: "/services" },
-                { label: "Renovations", href: "/services" },
-                { label: "Acquisition Advisory", href: "/services" },
-                { label: "Feasibility Study", href: "/feasibility-study" },
-              ].map((l) => (
+              {OFFER_LINKS.map((l) => (
                 <li key={l.label}>
                   <Link href={l.href}>
                     <span className="text-cream/70 hover:text-brass transition-colors text-sm">
@@ -119,12 +130,7 @@ export function SiteFooter() {
               The Group
             </div>
             <ul className="flex flex-col gap-3">
-              {[
-                { label: "About Adam", href: "/about" },
-                { label: "Case Studies", href: "/case-studies" },
-                { label: "Insights", href: "/insights" },
-                { label: "Contact", href: "/contact" },
-              ].map((l) => (
+              {GROUP_LINKS.map((l) => (
                 <li key={l.label}>
                   <Link href={l.href}>
                     <span className="text-cream/70 hover:text-brass transition-colors text-sm">
@@ -141,8 +147,8 @@ export function SiteFooter() {
             <div className="text-[0.62rem] tracking-[0.32em] uppercase text-brass mb-6">
               Begin
             </div>
-            <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-brass w-full justify-center">
-              Book The Audit
+            <a href={OFFERS.audit.formPath} className="btn-brass w-full justify-center text-center">
+              {OFFERS.audit.cta}
             </a>
             <p className="text-cream/45 text-xs mt-4 leading-relaxed">
               {BRAND.hours}
@@ -154,7 +160,20 @@ export function SiteFooter() {
         <div className="hairline mt-16 mb-10" />
         <div className="max-w-3xl" aria-label="About Ramirez Hospitality Group">
           <p className="text-cream/40 text-xs leading-[1.8]">
-            <strong className="text-cream/55">Ramirez Hospitality Group</strong> is an operator-led hospitality consulting and remote revenue management practice for independent hotels, boutique properties, and small hotel groups, founded by Adam Ramirez in Palm Springs, California. Services include hotel revenue management subscriptions (from $850/month), hotel opening and reopening consulting, hotel technology stack consulting (PMS, RMS, channel manager, CRM), operations and SOP development, renovation oversight, asset and acquisition advisory, and full-property event production. Adam Ramirez has opened 8 hotels from concept to ribbon-cutting, repositioned 4+ properties, managed $10M+ in annual hotel revenue, and led teams of 120+. Properties worked with include The Paloma Resort, Twist Palm Springs, Limón Palm Springs, Sands Hotel & Spa, Dunes Palm Springs, and others. Press coverage includes Travel & Leisure, Condé Nast Traveler, Forbes, and Modernism Magazine. Available nationwide from a base in Palm Springs, CA.
+            <strong className="text-cream/55">Ramirez Hospitality Group</strong> is an
+            operator-led revenue and opening consultancy for independent and boutique hotels, motels and
+            inns, based in Palm Springs, California and working
+            nationwide. Three offers: {OFFERS.audit.name} (free, the hotel scored out of 100
+            across seven areas and sized in dollars); the revenue management subscription
+            (Essentials {OFFERS.subscription.plans[0].priceLabel} a month, Growth{" "}
+            {OFFERS.subscription.plans[1].priceLabel}, In-House{" "}
+            {OFFERS.subscription.plans[2].priceLabel}; flat, nothing on commission,
+            no software included in the fee); and {OFFERS.plan.name} ({OFFERS.plan.priceLabel}{" "}
+            flat feasibility study) followed by {OFFERS.launch.name} (the opening and
+            reopening engagement, quoted per project). Founded by Adam Ramirez:{" "}
+            {TRACK_RECORD_LINE}; eight hotels opened from concept to ribbon-cutting, four
+            repositioned, $10M+ in annual hotel revenue managed, six funded feasibility
+            projects.
           </p>
         </div>
         <div className="hairline mt-6 mb-6" />

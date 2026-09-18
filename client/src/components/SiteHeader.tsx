@@ -2,12 +2,17 @@
  * Ramirez Hospitality Group — The Reserve
  * Sticky editorial top nav. Translucent obsidian, brass hairline beneath,
  * brass underline draws on hover. Mobile drawer.
+ *
+ * The one button goes to the audit page's capture form (form first, then the
+ * calendar LeadConnector offers after submission). It is a plain anchor on
+ * purpose: from another page it loads /audit and the form scrolls into view;
+ * on /audit itself it is an in-page jump.
  */
 
 import { Link, useLocation } from "wouter";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { BRAND, NAV_LINKS } from "@/lib/brand";
+import { NAV_LINKS, OFFERS } from "@/lib/brand";
 import { Monogram } from "./Monogram";
 
 export function SiteHeader() {
@@ -40,13 +45,13 @@ export function SiteHeader() {
         <div className="flex items-center justify-between h-[78px]">
           <Monogram />
 
-          <nav className="hidden lg:flex items-center gap-9">
+          <nav className="hidden lg:flex items-center gap-8">
             {NAV_LINKS.map((link) => {
               const isActive = location === link.href;
               return (
                 <Link key={link.href} href={link.href}>
                   <span
-                    className={`relative text-[0.78rem] tracking-[0.16em] uppercase font-medium transition-colors duration-300 ${
+                    className={`relative text-[0.76rem] tracking-[0.16em] uppercase font-medium transition-colors duration-300 ${
                       isActive ? "text-brass" : "text-cream/85 hover:text-cream"
                     } group`}
                   >
@@ -63,8 +68,8 @@ export function SiteHeader() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-4">
-            <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-brass">
-              Book The Modern Hotel Audit
+            <a href={OFFERS.audit.formPath} className="btn-brass">
+              {OFFERS.audit.cta}
             </a>
           </div>
 
@@ -94,13 +99,8 @@ export function SiteHeader() {
             </Link>
           ))}
           <div className="pt-4 flex flex-col gap-3">
-            <a
-              href={BRAND.auditBookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-brass w-full justify-center"
-            >
-              Book The Modern Hotel Audit
+            <a href={OFFERS.audit.formPath} className="btn-brass w-full justify-center">
+              {OFFERS.audit.cta}
             </a>
           </div>
         </div>

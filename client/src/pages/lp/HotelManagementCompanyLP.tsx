@@ -109,7 +109,7 @@ const STEPS: Step[] = [
   {
     n: "03",
     t: "The management engagement, scoped and quoted",
-    p: "Scope of authority, a base fee plus a performance incentive, and a transition plan from your current operator to RHG — quoted after the audit, based on the property.",
+    p: "Scope of authority, a flat monthly management fee, and a transition plan from your current operator to RHG, quoted after the audit, based on the property.",
   },
 ];
 
@@ -120,11 +120,11 @@ const FAQ = [
   },
   {
     q: "How is a management contract different from the revenue management subscription?",
-    a: "The subscription is advisory — you keep running the hotel day to day, RHG sets pricing and strategy, you approve and execute. A management contract is RHG actually running the property: staffing, operations, and full P&L accountability, not recommendations.",
+    a: "The subscription is the revenue department: RHG sets and moves your prices inside rules you set, works the booking sites and prices your groups, while you keep running the hotel. A management contract is RHG actually running the property: staffing, operations, and full P&L accountability.",
   },
   {
     q: "How are management fees structured?",
-    a: "Per engagement, typically a base management fee plus a performance incentive tied to results. There's no standard rate card for a full takeover — scope, property size, and current condition all move the number, which is why it's quoted after the audit, not before it.",
+    a: "Per engagement, as a flat monthly fee. Nothing on commission and no percentage of revenue. There is no standard rate card for a full takeover: scope, property size and current condition all move the number, which is why it is quoted after the audit, not before it.",
   },
   {
     q: "Who's actually on property running things?",
@@ -186,15 +186,15 @@ export default function HotelManagementCompanyLP() {
                 {/* Proof point */}
                 <div className="mt-9 grid sm:grid-cols-2 gap-px bg-brass/15 border border-brass/15 max-w-2xl">
                   <div className="bg-card p-6">
-                    <div className="font-display text-4xl text-brass leading-none">15</div>
+                    <div className="font-display text-4xl text-brass leading-none">10+</div>
                     <div className="mt-3 text-cream/75 text-sm leading-[1.6]">
-                      Years running hotels, on property
+                      Years opening, repositioning and running independent hotels, on property
                     </div>
                   </div>
                   <div className="bg-card p-6">
-                    <div className="font-display text-4xl text-brass leading-none">75+</div>
+                    <div className="font-display text-4xl text-brass leading-none">50+</div>
                     <div className="mt-3 text-cream/75 text-sm leading-[1.6]">
-                      Hotels touched — openings, revenue, and operations
+                      Hospitality properties worked with: openings, revenue and operations
                     </div>
                   </div>
                 </div>

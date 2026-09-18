@@ -6,7 +6,7 @@
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
-import { BRAND } from "@/lib/brand";
+import { OFFERS } from "@/lib/brand";
 
 export default function NotFound() {
   return (
@@ -37,8 +37,8 @@ export default function NotFound() {
                   Back to Home <ArrowRight className="w-4 h-4" />
                 </span>
               </Link>
-              <a href={BRAND.auditBookingUrl} target="_blank" rel="noopener noreferrer" className="link-brass pr-6">
-                Book The Modern Hotel Audit <ArrowRight className="w-4 h-4" />
+              <a href={OFFERS.audit.formPath} className="link-brass pr-6">
+                {OFFERS.audit.cta} <ArrowRight className="w-4 h-4" />
               </a>
             </div>
           </div>

@@ -119,7 +119,7 @@ export function SEO({
     setMeta("og:title", title, true);
     setMeta("og:description", description, true);
     setMeta("og:image", ogImage, true);
-    setMeta("og:image:alt", `${SITE_NAME} — ${title}`, true);
+    setMeta("og:image:alt", `${SITE_NAME}: ${title}`, true);
     setMeta("og:site_name", SITE_NAME, true);
     setMeta("og:locale", "en_US", true);
 
@@ -153,7 +153,7 @@ export function SEO({
         url: SITE_URL,
         name: SITE_NAME,
         description:
-          "Operator-led hospitality consulting and remote revenue management for independent hotels, boutique properties, and small hotel groups.",
+          "Operator-led revenue and opening consultancy for independent and boutique hotels, motels and inns.",
         publisher: {
           "@type": "Organization",
           "@id": `${SITE_URL}/#organization`,
@@ -227,7 +227,7 @@ export const ORGANIZATION_SCHEMA = {
   name: "Ramirez Hospitality Group",
   alternateName: "RHG",
   description:
-    "Operator-led hospitality consulting and remote revenue management for independent hotels, boutique properties, and small hotel groups. Founded by Adam Ramirez, a Palm Springs, CA-based hotel operator with 10+ years of experience.",
+    "Operator-led revenue and opening consultancy for independent and boutique hotels, motels and inns. Three offers: The Modern Hotel Audit (free), the revenue management subscription (Essentials $1,250, Growth $2,000, In-House $5,000 a month; flat, nothing on commission), and The Modern Hotel Plan ($6,000 feasibility study) followed by The Modern Hotel Launch (opening and reopening, quoted per project). Founded by Adam Ramirez, Palm Springs, CA: 10+ years, 50+ hospitality properties, 20% average revenue lift.",
   url: SITE_URL,
   telephone: "+1-760-969-9249",
   email: "adam@ramirezhospitality.com",
@@ -252,16 +252,16 @@ export const ORGANIZATION_SCHEMA = {
   },
   serviceType: [
     "Hotel Revenue Management",
-    "Hospitality Consulting",
+    "Hotel Revenue Audit",
+    "Hotel Feasibility Study",
     "Hotel Opening Consulting",
+    "Hospitality Consulting",
     "OTA Optimization",
     "Hotel Technology Consulting",
     "Hotel Operations Consulting",
-    "Hotel Asset Advisory",
-    "Hotel Feasibility Study",
     "Event Production",
   ],
-  priceRange: "$850–$2,500/month",
+  priceRange: "$1,250 to $6,000",
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
     dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -287,7 +287,7 @@ export const PERSON_SCHEMA = {
   familyName: "Ramirez",
   jobTitle: "Founder & Principal Consultant",
   description:
-    "Adam Ramirez is a Palm Springs-based hotel operator and hospitality consultant with 10+ years of experience opening, repositioning, and managing independent and boutique hotels. He has opened 8 hotels from concept to ribbon-cutting, managed over $10M in annual hotel revenue, and led teams of 120+. His properties have been featured in Travel & Leisure, Condé Nast Traveler, Forbes, and Modernism Magazine.",
+    "Adam Ramirez is a Palm Springs-based hotel operator and the founder of Ramirez Hospitality Group: 10+ years, 50+ hospitality properties, 20% average revenue lift. He has opened 8 hotels from concept to ribbon-cutting, repositioned 4, managed $10M+ in annual hotel revenue, led teams of 120+, and produced six funded feasibility projects. His properties have been featured in Travel & Leisure, Condé Nast Traveler, Forbes, and Modernism Magazine.",
   url: `${SITE_URL}/about`,
   email: "adam@ramirezhospitality.com",
   telephone: "+1-760-969-9249",
