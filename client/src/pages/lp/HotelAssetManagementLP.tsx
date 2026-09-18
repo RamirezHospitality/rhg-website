@@ -101,7 +101,7 @@ const FAQ = [
   },
   {
     q: "Do I need new software?",
-    a: "Yes, one, on every plan: a revenue management system. It is not included in the fee. Duetto is our preferred system, and every client on every plan gets it at specially negotiated pricing. We set it up and run it, and everything we build inside it belongs to you. Already running a system you prefer? Tell us on the call and we will consider working inside it.",
+    a: "Yes, one, on every plan: a revenue management system. It is not included in the fee. Duetto is the system we prefer and set up by default, at specially negotiated pricing for every client on every plan. If you already run a system you prefer, tell us on the call and we will consider working inside it. We set it up and run it, and everything we build inside it belongs to you. Already running a system you prefer? Tell us on the call and we will consider working inside it.",
   },
   {
     q: "Do you take a commission?",

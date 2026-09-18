@@ -117,9 +117,9 @@ export const OFFERS = {
  */
 export const SOFTWARE = {
   short:
-    "No software is included in the fee. A revenue management system is required on every plan. Duetto is our preferred system, and every client on every plan gets it at specially negotiated pricing.",
+    "No software is included in the fee. A revenue management system is required on every plan. Duetto is the system we prefer and set up by default, at specially negotiated pricing for every client on every plan.",
   footnote:
-    "Duetto is required on every plan. If you already run a revenue management system you prefer, tell us on the call and we will consider working inside it.",
+    "If you already run a revenue management system you prefer, tell us on the call and we will consider working inside it.",
 } as const;
 
 export const IMAGES = {

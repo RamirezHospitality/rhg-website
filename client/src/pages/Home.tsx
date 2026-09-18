@@ -88,11 +88,11 @@ const FAQ = [
   },
   {
     q: "Software does this for a fraction of the price. Why you?",
-    a: "We run the software for you and do what it cannot: work the booking sites as a cost line, price the wedding inquiry, keep your own website from being undercut. Compare the fee to your hours, not to the software.",
+    a: "Duetto will price your rooms well, if someone sits in it every day, reads what booked overnight and turns it into action. The software is a tool for the person using it, and it is only as good as the discipline behind it. You are already running the front desk, the housekeeping schedule and the guests. Let the revenue work be ours: you focus on your guests, we focus on the revenue, so you can keep being the hotelier. One flat monthly fee, nothing on commission.",
   },
   {
     q: "So I have to buy software too? Do you take a cut?",
-    a: "Yes, one system, on every plan, and it is not included in the fee. Duetto is our preferred system, and every client on every plan gets it at RHG's partner pricing: we are a contracted Duetto vendor, and the commission Duetto would pay us goes back to you as a lower rate than you could get on your own. It is your account and your data. The fee on the page is the whole fee; nothing is on commission.",
+    a: "A revenue management system is required on every plan and is not included in the fee. Duetto is the system we prefer and set up by default, at specially negotiated pricing for every client on every plan. If you already run a system you prefer, tell us on the call and we will consider working inside it. We are a contracted Duetto vendor and pass the commission Duetto would pay us back to you as a lower rate. And no, we take no cut of anything: one flat monthly fee.",
   },
   {
     q: "How will I know it was you and not the market?",
@@ -396,7 +396,7 @@ export default function Home() {
             </Reveal>
             <Reveal delay={200}>
               <p className="mt-8 text-cream/75 text-lg leading-[1.75] max-w-xl">
-                Five fields, then pick a time for a 20-minute call. If it is not a fit, we will say
+                Five fields, then we reach out to set up a 20-minute call. If it is not a fit, we will say
                 so.
               </p>
             </Reveal>

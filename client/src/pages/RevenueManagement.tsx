@@ -159,7 +159,7 @@ const CONTROLS = [
   "Results are reported against your market, not just against last year, so a soft season is never dressed up and a good one is never claimed twice.",
   "Named users, role-scoped logins, and access that ends the day you do.",
   "On In-House, a weekly call and a weekly report, and a visit on property each quarter, with travel and lodging provided by you.",
-  "A revenue management system is required on every plan and is not included in the fee. Duetto is our preferred system, and every RHG client gets it at specially negotiated pricing: we are a contracted Duetto vendor, and the commission Duetto would pay us goes back to you as a lower rate than you could get by contacting Duetto yourself. Every rate plan, rule and piece of data we build lives in your account and belongs to you. If you wanted to take it over tomorrow, you could.",
+  "A revenue management system is required on every plan and is not included in the fee. Duetto is the system we prefer and set up by default, at specially negotiated pricing for every client on every plan. If you already run a system you prefer, tell us on the call and we will consider working inside it. Every rate plan, rule and piece of data we build lives in your account and belongs to you.",
   "After the first cycle, thirty days' notice ends the agreement. No renewal to sign, no term to re-up.",
 ];
 
@@ -189,7 +189,7 @@ const FAQ = [
   },
   {
     q: "Do I need new software?",
-    a: "Yes, one, on every plan: a revenue management system. It is not included in the fee. Duetto is our preferred system, and every client on every plan gets it at specially negotiated pricing, a lower rate than you could get by contacting Duetto yourself, because we are a contracted Duetto vendor and pass the commission Duetto would pay us back to you instead of keeping it. We set it up and run it. Everything we build inside it, the rate plans, the rules and the data, is in your account and belongs to you. Already running a system you prefer? Tell us on the call and we will consider working inside it.",
+    a: "A revenue management system is required on every plan and is not included in the fee. Duetto is the system we prefer and set up by default, at specially negotiated pricing for every client on every plan. If you already run a system you prefer, tell us on the call and we will consider working inside it. We are a contracted Duetto vendor and the commission Duetto would pay us goes back to you as a lower rate than you could get on your own. We set it up and run it in your name, and it stays yours.",
   },
   {
     q: "What is the catch with the free audit?",
@@ -213,7 +213,7 @@ const RM_SERVICE_SCHEMA = {
   "@id": "https://ramirezhospitality.com/revenue-management#service",
   name: "Hotel Revenue Management Subscription",
   description:
-    "Revenue management for independent and boutique hotels, motels and inns: prices set every day inside floors and ceilings the owner sets, booking sites worked as a cost line, groups priced right. Three plans, flat: Essentials $1,250, Growth $2,000, In-House $5,000 a month. Nothing on commission. No software included in the fee; Duetto is the preferred revenue management system, available to every client at negotiated pricing. One full cycle to start (four months, six on In-House), then month to month.",
+    "Revenue management for independent and boutique hotels, motels and inns: prices set every day inside floors and ceilings the owner sets, booking sites worked as a cost line, groups priced right. Three plans, flat: Essentials $1,250, Growth $2,000, In-House $5,000 a month. Nothing on commission. No software included in the fee; a revenue management system is required on every plan, Duetto by default at negotiated pricing, an existing system considered on request. One full cycle to start (four months, six on In-House), then month to month.",
   provider: { "@id": "https://ramirezhospitality.com/#organization" },
   serviceType: "Hotel Revenue Management",
   areaServed: { "@type": "Country", name: "United States" },
@@ -555,7 +555,7 @@ export default function RevenueManagement() {
               <span className="italic text-brass">before you decide.</span>
             </h2>
             <p className="mt-7 text-cream/75 leading-[1.7] max-w-md">
-              Five fields, then pick a time for a 20-minute call. If it is not a fit, we will say
+              Five fields, then we reach out to set up a 20-minute call. If it is not a fit, we will say
               so.
             </p>
             <div className="mt-9">

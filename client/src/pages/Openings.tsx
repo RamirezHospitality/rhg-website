@@ -432,7 +432,7 @@ export default function Openings() {
               <span className="italic text-brass">the project.</span>
             </h2>
             <p className="mt-7 text-cream/75 leading-[1.7] max-w-md">
-              Five fields, then pick a time for a 20-minute consultation. If it is not a fit, we
+              Five fields, then we reach out to set up a 20-minute consultation. If it is not a fit, we
               will say so.
             </p>
             <div className="mt-9">
