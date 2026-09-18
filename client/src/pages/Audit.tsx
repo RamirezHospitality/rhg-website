@@ -111,7 +111,7 @@ export default function Audit() {
               <span className="italic text-brass">your hotel.</span>
             </h2>
             <p className="mt-7 text-cream/75 leading-[1.7] max-w-md">
-              Five fields, then pick a time for a 20-minute fit call. If it is not a fit, I will
+              Five fields, then I reach out to set up a 20-minute fit call. If it is not a fit, I will
               say so.
             </p>
             <div className="mt-9">

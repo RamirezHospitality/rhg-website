@@ -12,8 +12,8 @@
 import { useMemo, useState } from "react";
 
 const MONTHS = ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"];
-// Monthly rooms revenue from the delivered model, in $K, October to September. Used as the seasonal shape.
-const SEASON_SHAPE = [436, 401, 301, 226, 253, 233, 210, 211, 100, 94, 75, 82];
+// Monthly rooms revenue from the delivered model, October to September, $2,622,093 for the year. Used as the seasonal shape.
+const SEASON_SHAPE = [210_273, 225_720, 210_568, 252_681, 301_006, 400_520, 436_050, 233_244, 100_320, 94_240, 75_392, 82_080];
 const SHAPE_TOTAL = SEASON_SHAPE.reduce((a, b) => a + b, 0);
 
 const INPUTS = [
@@ -30,6 +30,9 @@ type Inputs = Record<Key, number>;
 
 // The delivered projection: 38 keys, $284 blended ADR, 66% occupancy, $585K labor, $492K ancillary, 8% cap.
 const DEFAULTS: Inputs = { keys: 38, adr: 284, occ: 66, labor: 585_000, anc: 492_000, cap: 8 };
+// Rooms revenue in the delivered model is the sum of twelve seasonal months, not keys x 365 x ADR x occupancy.
+// Scale from the delivered year so the defaults reproduce it exactly and every input moves it proportionally.
+const DELIVERED_ROOMS = 2_622_093;
 const BASIS = 8_000_000;
 const IMPROVEMENTS = 786_500;
 
@@ -47,8 +50,8 @@ function usd(n: number, k = false) {
 function model(i: Inputs, adrMult = 1, occMult = 1) {
   const occ = Math.min(0.95, (i.occ / 100) * occMult);
   const adr = i.adr * adrMult;
-  const nights = i.keys * 365 * occ;
-  const rooms = nights * adr;
+  const rooms = DELIVERED_ROOMS * (i.keys / DEFAULTS.keys) * (adr / DEFAULTS.adr) * (occ / (DEFAULTS.occ / 100));
+  const nights = rooms / adr;
   const resort = nights * 27;
   const ancillary = i.anc;
   const revenue = rooms + resort + ancillary;
@@ -181,7 +184,7 @@ export function PlanModelDemo() {
         {/* Chart + sensitivity */}
         <div className="lg:col-span-7 min-w-0 p-6 lg:p-8">
           <div className="text-[0.62rem] tracking-[0.32em] uppercase text-brass mb-4">Monthly rooms revenue, on the property's real season</div>
-          <div className="flex items-end gap-[6px] h-40" role="img" aria-label="Monthly rooms revenue across the fiscal year, highest in October and spring, lowest in deep summer">
+          <div className="flex items-end gap-[6px] h-40" role="img" aria-label="Monthly rooms revenue across the fiscal year, highest in April, lowest in August">
             {monthly.map((v, k) => (
               <div key={MONTHS[k]} className="flex-1 min-w-0 flex flex-col items-center justify-end h-full group" title={`${MONTHS[k]}: ${usd(v, true)}`}>
                 <span className="w-full truncate text-center text-[0.6rem] text-cream/55 tabular-nums mb-1 opacity-0 group-hover:opacity-100 transition-opacity">{usd(v, true)}</span>
@@ -191,7 +194,7 @@ export function PlanModelDemo() {
             ))}
           </div>
           <p className="mt-3 text-cream/45 text-xs leading-[1.6]">
-            October to September, the desert's fiscal year. The peak is the festival spring; deep summer runs at a third of it. A model that averages the year misses both.
+            October to September, the desert's fiscal year. April is the peak, at the festivals; August runs at a sixth of it. A model that averages the year misses both.
           </p>
 
           <div className="mt-8 text-[0.62rem] tracking-[0.32em] uppercase text-brass mb-3">Owner NOI if rate and occupancy move</div>

@@ -47,7 +47,7 @@ const TECH_CATEGORIES: TechCategory[] = [
     intro:
       "The engine of dynamic pricing. These platforms analyze comp-set data, demand signals, and booking pace to recommend — or automate — the right rate at the right time.",
     tools: [
-      { name: "Duetto", description: "Our preferred revenue management system, required on every subscription plan and available to every client at specially negotiated pricing. Deep demand forecasting and group pricing, held in the client's own account.", badge: "Preferred" },
+      { name: "Duetto", description: "Required on every subscription plan and not included in the fee. The system we prefer and set up by default, at specially negotiated pricing for every client; an existing system is considered on request. Deep demand forecasting and group pricing, held in the client's own account.", badge: "Preferred" },
       { name: "Hotelitix", description: "AI-powered revenue management for independent hotels. Deployed across multiple properties." },
       { name: "Light House (formerly OTA Insight)", description: "Comp-set intelligence, rate shopping, and market data. Runs alongside any RMS as the market-intelligence layer." },
       { name: "IDeaS", description: "Automated revenue management with deep PMS integration. Strong for full-service properties." },

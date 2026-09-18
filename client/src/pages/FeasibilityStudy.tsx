@@ -170,7 +170,7 @@ export default function FeasibilityStudy() {
   return (
     <PageLayout
       title="Hotel Feasibility Study, $6,000 Flat: The Modern Hotel Plan | Ramirez Hospitality Group"
-      description="Know the numbers before you buy, build or open a hotel. Is the demand real, does the math work, what is it worth. See a delivered Plan's model on the page: $3.4M stabilized revenue, $1.6M owner NOI, five paths compared, and move the inputs yourself. $6,000, priced up front."
+      description="Know the numbers before you buy, build or open a hotel. Is the demand real, does the math work, what is it worth. See a delivered Plan's model on the page: $3.36M stabilized revenue, $1.58M owner NOI, five paths compared, and move the inputs yourself. $6,000, priced up front."
       canonical="/feasibility-study"
       breadcrumbs={[{ name: OFFERS.plan.name, href: "/feasibility-study" }]}
       jsonLd={[PLAN_SERVICE_SCHEMA, PLAN_FAQ_SCHEMA, ORGANIZATION_SCHEMA]}
@@ -516,7 +516,7 @@ export default function FeasibilityStudy() {
               <span className="italic text-brass">the deal.</span>
             </h2>
             <p className="mt-7 text-cream/75 leading-[1.7] max-w-md">
-              Five fields, then pick a time for a 20-minute fit call. If the deal does not need
+              Five fields, then I reach out to set up a 20-minute fit call. If the deal does not need
               a full study, we will say so.
             </p>
             <div className="mt-9">

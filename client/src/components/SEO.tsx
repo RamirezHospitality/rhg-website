@@ -40,8 +40,7 @@ export interface SEOProps {
 
 const SITE_NAME = "Ramirez Hospitality Group";
 const SITE_URL = "https://ramirezhospitality.com"; // canonical domain — update on launch
-const DEFAULT_OG_IMAGE =
-  "/images/rhg_hero.webp";
+const DEFAULT_OG_IMAGE = "https://ramirezhospitality.com/images/rhg_hero.webp";
 const TWITTER_HANDLE = "@RamirezHospitality";
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -272,10 +271,7 @@ export const ORGANIZATION_SCHEMA = {
     "@type": "ImageObject",
     url: DEFAULT_OG_IMAGE,
   },
-  sameAs: [
-    "https://www.linkedin.com/in/adam-ramirez-ab6840149",
-    "https://www.visitgreaterpalmsprings.com/listing/luxe-hospitality-consulting-llc/56322/",
-  ],
+  sameAs: ["https://www.visitgreaterpalmsprings.com/listing/luxe-hospitality-consulting-llc/56322/"],
 };
 
 export const PERSON_SCHEMA = {

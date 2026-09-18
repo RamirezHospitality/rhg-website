@@ -466,8 +466,8 @@ export function AuditSection({ numeral = "II" }: AuditSectionProps) {
               ))}
             </div>
             <p className="mt-3.5 text-cream/75 text-[0.8125rem] leading-[1.6]">
-              The best-reviewed hotel in town, priced beneath a 2.5-star motel, while its own
-              guests pay $59 more a night for the same rooms on Expedia.
+              The best-reviewed hotel in town, priced beneath a boutique motel and a full-service
+              hotel, while its own guests pay $59 more a night for the same rooms on Expedia.
             </p>
           </div>
         </div>
